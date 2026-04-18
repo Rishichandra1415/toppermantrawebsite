@@ -2,7 +2,6 @@
 
 import { useAppSelector } from "@/store/hooks";
 import Navbar from "./Navbar";
-import { main } from "framer-motion/client";
 
 interface MainLayoutProps {
   children: React.ReactNode;
