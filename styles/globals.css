@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Brand Colors (Orange) - Matched to Image */
+  --brand-50: #fff9f5;
+  --brand-100: #ffede6;
+  --brand-500: #ff5b2e;
+  --brand-600: #e64a1f;
+
+  /* Accent Colors (Charcoal/Dark) */
+  --accent-50: #ffffff;
+  --accent-100: #f8fafc;
+  --accent-200: #f1f5f9;
+  --accent-500: #64748b;
+  --accent-900: #1c2b33;
+
+  --foreground-rgb: 15, 23, 42;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 248, 250, 252;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 15, 23, 42;
+    --background-end-rgb: 2, 6, 23;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer base {
+  html {
+    @apply antialiased scroll-smooth font-sans;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-brand-500 text-white hover:bg-brand-600 font-bold py-2.5 px-6 rounded-lg transition-all duration-300 transform active:scale-95 shadow-lg shadow-brand-500/20;
+  }
+}
