@@ -107,11 +107,7 @@ export const MentorshipMegaMenu = () => {
                 </Link>
               ))}
             </div>
-            {/* <div className="mt-6 pt-4 border-t border-gray-50 text-center">
-              <Link href="/mentorship" className="text-xs font-semibold uppercase tracking-wider text-brand-600 hover:text-brand-700">
-                View All Programs →
-              </Link>
-            </div>  */}
+          
           </motion.div>
         )}
       </AnimatePresence>

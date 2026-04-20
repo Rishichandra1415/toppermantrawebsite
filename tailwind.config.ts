@@ -2,10 +2,8 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/features/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -27,7 +25,12 @@ const config: Config = {
           50: "var(--accent-50)",
           100: "var(--accent-100)",
           200: "var(--accent-200)",
+          300: "var(--accent-300)",
+          400: "var(--accent-400)",
           500: "var(--accent-500)",
+          600: "var(--accent-600)",
+          700: "var(--accent-700)",
+          800: "var(--accent-800)",
           900: "var(--accent-900)",
         },
       },

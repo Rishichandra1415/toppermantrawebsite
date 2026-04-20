@@ -5,10 +5,16 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'api.dicebear.com',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "api.dicebear.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },

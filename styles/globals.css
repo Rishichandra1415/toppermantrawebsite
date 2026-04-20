@@ -3,45 +3,90 @@
 @tailwind utilities;
 
 :root {
-  /* Brand Colors (Orange) - Matched to Image */
-  --brand-50: #fff9f5;
-  --brand-100: #ffede6;
+  /* Brand palette */
+  --brand-50: #fff8f4;
+  --brand-100: #ffeddc;
+  --brand-200: #ffd4ba;
+  --brand-300: #ffb48d;
+  --brand-400: #ff8a5b;
   --brand-500: #ff5b2e;
   --brand-600: #e64a1f;
 
-  /* Accent Colors (Charcoal/Dark) */
-  --accent-50: #ffffff;
-  --accent-100: #f8fafc;
-  --accent-200: #f1f5f9;
+  /* Neutral palette */
+  --accent-50: #f8fafc;
+  --accent-100: #f1f5f9;
+  --accent-200: #e2e8f0;
+  --accent-300: #cbd5e1;
+  --accent-400: #94a3b8;
   --accent-500: #64748b;
-  --accent-900: #1c2b33;
+  --accent-600: #475569;
+  --accent-700: #334155;
+  --accent-800: #1e293b;
+  --accent-900: #0f172a;
 
-  --foreground-rgb: 15, 23, 42;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 248, 250, 252;
-}
+  /* Semantic colors */
+  --color-bg: #ffffff;
+  --color-surface: #f8fafc;
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-border: #e2e8f0;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 15, 23, 42;
-    --background-end-rgb: 2, 6, 23;
-  }
+  /* Typography scale */
+  --font-size-h1: clamp(2rem, 4vw, 4rem);
+  --font-size-h2: clamp(1.5rem, 3vw, 2.5rem);
+  --font-size-h3: clamp(1.25rem, 2vw, 1.875rem);
+  --font-size-body-lg: 1.125rem;
+  --font-size-body: 1rem;
+  --font-size-body-sm: 0.875rem;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--color-text);
+  background: var(--color-bg);
 }
 
 @layer base {
   html {
     @apply antialiased scroll-smooth font-sans;
+  }
+
+  body {
+    @apply min-h-screen;
+    font-size: var(--font-size-body);
+    line-height: 1.6;
+  }
+
+  h1,
+  .heading-1 {
+    font-size: var(--font-size-h1);
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  h2,
+  .heading-2 {
+    font-size: var(--font-size-h2);
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+  }
+
+  h3,
+  .heading-3 {
+    font-size: var(--font-size-h3);
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  p,
+  .text-body {
+    font-size: var(--font-size-body);
+    line-height: 1.7;
+    color: var(--color-text-muted);
   }
 }
 
