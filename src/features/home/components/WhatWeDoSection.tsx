@@ -4,50 +4,50 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ChevronLeft, ChevronRight, Trophy, Code, Rocket, Check } from "lucide-react";
+import { ChevronLeft, ChevronRight, Trophy, Code, Rocket, Check, Sparkles } from "lucide-react";
 
 const SERVICES = [
   {
     id: 1,
-    title: "Academic Mentorship",
+    title: "Elite Mentorship",
     icon: Trophy,
-    description: "Direct access to JEE/NEET toppers, Board exam achievers, and Olympiad winners for strategies, study techniques, and exam mastery.",
+    description: "Access the unwritten roadmaps of AIR 1-100 rankers. Master complex subjects with frameworks used by India's top 1% achievers.",
     features: [
-      "Live sessions with AIR rankers",
-      "Board exam toppers' strategies",
-      "Olympiad preparation guidance",
-      "One-on-one doubt clearing",
-      "Time management & study plans"
+      "Live Strategy with AIR Rankers",
+      "Conceptual Clarity Frameworks",
+      "National Topper Study Blueprints",
+      "One-on-One Mastery Sessions",
+      "Psychology of Top Performance"
     ],
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=800&fit=crop&crop=center&auto=format"
+    image: "https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&q=80&w=1200"
   },
   {
     id: 2,
-    title: "Mock Hackathons",
+    title: "Hackathon Dominance",
     icon: Code,
-    description: "Real-world coding competitions modeled after iCode and Smart India Hackathon (Junior) to build problem-solving skills and technical confidence.",
+    description: "Real-world engineering challenges designed to build technical superiority and problem-solving skills for future innovators.",
     features: [
-      "iCode-style challenges",
-      "SIH Junior format practice",
-      "Team collaboration experience",
-      "Real problem statements",
-      "Certificate of participation"
+      "National Format Code Sprints",
+      "Smart India Hackathon Blueprints",
+      "High-Impact Project Building",
+      "Team Leadership Experience",
+      "Certificate of Engineering Excellence"
     ],
-    image: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=800&fit=crop&crop=center&auto=format"
+    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1200"
   },
   {
     id: 3,
-    title: "Startup Mentorship",
+    title: "Entrepreneurial Path",
     icon: Rocket,
-    description: "Learn entrepreneurship from real founders who have built successful startups. Understand business, innovation, and turning ideas into reality.",
+    description: "Master the art of innovation. Learn the fundamentals of startups and business growth directly from successful founders.",
     features: [
-      "Mentorship from real founders",
-      "Startup ideation workshops",
-      "Business model basics",
-      "Innovation & problem-solving",
-      "Pitch practice sessions"
+      "Mentorship from Real Founders",
+      "Ideation to MVP Blueprint",
+      "Pitching & Investor Readiness",
+      "Innovation Problem Solving",
+      "Real-World Business Modeling"
     ],
-    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=800&fit=crop&crop=center&auto=format"
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1200"
   }
 ];
 
@@ -64,30 +64,28 @@ const WhatWeDoSection = () => {
       { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
     );
     
-    gsap.fromTo(".main-card-content", 
+    gsap.fromTo(".main-card-container", 
       { opacity: 0, y: 30 },
       { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", delay: 0.2 }
-    );
-    gsap.fromTo(".side-element",
-      { opacity: 0, scale: 0.8 },
-      { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out", stagger: 0.1, delay: 0.2 }
     );
   }, []);
 
   const navigateToService = (index: number) => {
-    gsap.to(".main-card-content", {
-      opacity: 0, y: -20, duration: 0.3, ease: "power2.in",
+    const tl = gsap.timeline();
+    
+    tl.to(".main-card-content", {
+      opacity: 0, x: index > currentIndex ? -20 : 20, duration: 0.3, ease: "power2.in",
       onComplete: () => {
         setCurrentIndex(index);
         gsap.fromTo(".main-card-content",
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }
+          { opacity: 0, x: index > currentIndex ? 20 : -20 },
+          { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }
         );
       }
     });
 
-    gsap.to(".side-element", {
-      scale: 0.9, opacity: 0.7, duration: 0.2, yoyo: true, repeat: 1, ease: "power2.inOut"
+    gsap.to(".side-card", {
+      scale: 0.95, opacity: 0.5, duration: 0.2, yoyo: true, repeat: 1
     });
   };
 
@@ -95,136 +93,127 @@ const WhatWeDoSection = () => {
   const handleNext = () => navigateToService((currentIndex + 1) % SERVICES.length);
 
   return (
-    <section className="relative w-full min-h-screen bg-brand-50 pt-16 md:pt-20 pb-20 md:pb-32 overflow-hidden flex flex-col justify-center font-sans">
+    <section className="relative w-full py-16 md:py-20 bg-brand-50 overflow-hidden flex flex-col justify-center font-sans focus:outline-none">
       
-      {/* FIXED: Background SVG Height adjusted for mobile (h-[55%]) and desktop (md:h-[75vh]) */}
-      <div className="absolute bottom-0 left-0 w-full h-[55%] md:h-[75%] z-0 pointer-events-none">
-        <svg 
-          viewBox="0 0 1440 600" 
-          fill="none" 
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full object-cover"
-          preserveAspectRatio="none"
-        >
-          <defs>
-            <linearGradient id="premiumOrangeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#ff8a5b" />   {/* brand-400 */}
-              <stop offset="50%" stopColor="#ff5b2e" />  {/* brand-500 */}
-              <stop offset="100%" stopColor="#e64a1f" /> {/* brand-600 */}
-            </linearGradient>
-          </defs>
-          <path 
-            d="M0,50 C400,50 400,480 720,480 C1040,480 1040,50 1440,50 L1440,600 L0,600 Z" 
-            fill="url(#premiumOrangeGrad)"
-          />
-        </svg>
+      {/* Premium Background Elements */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-1/4 -left-20 w-80 h-80 bg-brand-50 rounded-full blur-[100px] opacity-60" />
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-accent-50 rounded-full blur-[120px] opacity-80" />
+        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:40px_40px] opacity-[0.15]" />
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 mt-8 md:mt-12">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4">
         
         {/* Section Heading */}
-        <div className="section-heading text-center mb-16 md:mb-16">
-          <span className="text-brand-500 font-bold tracking-widest uppercase text-xs md:text-sm mb-2 md:mb-3 block">
-            Our Services
-          </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-accent-900 mb-3 md:mb-4 tracking-tight">
-            What We Do
+        <div className="section-heading text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/50 px-4 py-1.5 text-slate-700 mb-5 backdrop-blur-sm">
+            <Sparkles className="h-4 w-4 text-brand-500" />
+            <span className="text-xs font-bold uppercase tracking-widest">Our Expertise</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-5 tracking-tight leading-tight">
+            What We <span className="text-brand-500 italic font-serif">Do</span> Best
           </h2>
-          <p className="text-accent-600 max-w-2xl mx-auto text-sm md:text-lg px-4">
+          <p className="text-slate-500 max-w-xl mx-auto text-sm md:text-base font-medium">
             Empowering students with comprehensive learning experiences across academics, technology, and entrepreneurship.
           </p>
         </div>
 
-        {/* Carousel / Cards Layout */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10 lg:gap-16">
+        {/* Improved Main Layout */}
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
           
-          {/* Left Side: Desktop Only */}
-          <div className="hidden md:flex flex-col items-center gap-6 shrink-0 mt-6 lg:mt-10">
-            <div 
-              onClick={handlePrevious}
-              className="side-element relative w-32 h-32 lg:w-44 lg:h-44 rounded-full overflow-hidden shadow-[0_10px_30px_rgba(230,74,31,0.3)] cursor-pointer hover:scale-105 transition-transform border-[5px] border-white"
-            >
-              <Image src={prevService.image} alt={prevService.title} fill className="object-cover" />
+          {/* Left Navigation Card (Desktop) */}
+          <div 
+            onClick={handlePrevious}
+            className="hidden lg:block side-card group relative w-44 h-60 rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-105 border border-slate-100 shadow-xl opacity-40 hover:opacity-100"
+          >
+            <Image src={prevService.image} alt={prevService.title} fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-4">
+              <span className="text-white text-[10px] font-bold uppercase tracking-wider">{prevService.title}</span>
             </div>
-            
-            <button
-              onClick={handlePrevious}
-              className="side-element shrink-0 w-12 h-12 rounded-full border-2 border-white/60 bg-transparent items-center justify-center text-white hover:bg-white hover:text-brand-600 hover:scale-105 transition-all shadow-lg z-20 flex"
-            >
-              <ChevronLeft size={24} />
-            </button>
           </div>
 
-          {/* Center Main Card */}
-          <div className="relative w-full max-w-[460px] shrink-0 z-30 px-2 sm:px-0 mt-6 md:mt-0">
-            {/* FIXED: Padding adjusted for mobile (`pt-20` vs `md:pt-24`) */}
-            <div className="bg-gradient-to-b from-white via-white to-brand-50 rounded-[30px] md:rounded-[40px] pt-16 md:pt-24 pb-8 md:pb-10 px-5 md:px-10 text-center shadow-[0_20px_50px_rgba(230,74,31,0.15)] border border-brand-100/50">
+          {/* Main Focused Card */}
+          <div className="main-card-container relative w-full max-w-4xl z-30">
+            <div className="bg-white/80 backdrop-blur-md rounded-[40px] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.06)] border border-white/50 grid md:grid-cols-2 lg:min-h-[480px]">
               
-              {/* FIXED: Image size scaled down for mobile (`w-28 h-28`, `-top-14`) so it doesn't look overly huge */}
-              <div className="absolute -top-14 md:-top-20 left-1/2 -translate-x-1/2 w-28 h-28 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden shadow-2xl border-4 md:border-[6px] border-white z-20 bg-white">
+              {/* Image Side */}
+              <div className="relative h-64 md:h-auto overflow-hidden">
                 <Image 
                   src={currentService.image} 
                   alt={currentService.title}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-brand-600/10 mix-blend-overlay" />
               </div>
 
-              {/* Text & Details Content */}
-              <div className="main-card-content flex flex-col items-center mt-4 md:mt-2">
-                <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 mb-3 md:mb-4 w-full">
-                  <currentService.icon className="w-6 h-6 md:w-7 md:h-7 text-brand-500 shrink-0 hidden md:block" />
-                  <h3 className="text-xl md:text-[28px] font-extrabold text-accent-900 leading-tight">
-                    {currentService.title}
-                  </h3>
+              {/* Content Side */}
+              <div className="main-card-content p-8 md:p-10 lg:p-12 flex flex-col">
+                <div className="hidden md:flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center">
+                    <currentService.icon className="w-6 h-6 text-brand-500" />
+                  </div>
+                  <span className="text-brand-500 font-bold text-xs uppercase tracking-widest">Service 0{currentIndex + 1}</span>
                 </div>
+
+                <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-5 leading-tight">
+                  {currentService.title}
+                </h3>
                 
-                <p className="text-accent-600 text-sm md:text-[15px] leading-relaxed mb-6 md:mb-8 px-1">
+                <p className="text-accent-600 text-base md:text-lg leading-relaxed mb-8">
                   {currentService.description}
                 </p>
 
-                {/* Features List */}
-                <div className="w-full text-left bg-white/80 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-5 shadow-sm border border-brand-100/50 mb-2 space-y-2.5 md:space-y-3">
+                <div className="space-y-4 mb-10">
                   {currentService.features.map((feature, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <div className="mt-0.5 w-4 h-4 md:w-5 md:h-5 rounded-full bg-brand-100 flex items-center justify-center shrink-0">
-                        <Check className="w-3 h-3 md:w-3.5 md:h-3.5 text-brand-600" />
+                    <div key={index} className="flex items-center gap-4 group">
+                      <div className="w-6 h-6 rounded-full bg-brand-50 flex items-center justify-center group-hover:bg-brand-500 transition-colors">
+                        <Check className="w-3.5 h-3.5 text-brand-600 group-hover:text-white transition-colors" />
                       </div>
-                      <span className="text-accent-700 text-[13px] md:text-sm font-medium leading-snug">{feature}</span>
+                      <span className="text-accent-700 text-sm md:text-base font-semibold">{feature}</span>
                     </div>
                   ))}
+                </div>
+
+                <div className="mt-8 md:mt-auto flex items-center justify-between md:justify-start gap-4 border-t border-accent-100 pt-6 md:border-none md:pt-0">
+                  <div className="flex items-center gap-4">
+                    <button 
+                      onClick={handlePrevious}
+                      className="w-12 h-12 rounded-full border border-accent-200 flex items-center justify-center text-accent-400 hover:bg-brand-500 hover:border-brand-500 hover:text-white transition-all shadow-sm active:scale-95"
+                    >
+                      <ChevronLeft size={24} />
+                    </button>
+                    <button 
+                      onClick={handleNext}
+                      className="w-12 h-12 rounded-full border border-accent-200 flex items-center justify-center text-accent-400 hover:bg-brand-500 hover:border-brand-500 hover:text-white transition-all shadow-sm active:scale-95"
+                    >
+                      <ChevronRight size={24} />
+                    </button>
+                  </div>
+                  <div className="flex gap-2">
+                    {SERVICES.map((_, i) => (
+                      <div 
+                        key={i} 
+                        className={`h-1.5 transition-all duration-300 rounded-full ${i === currentIndex ? 'w-8 bg-brand-500' : 'w-2 bg-accent-200'}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Side: Desktop Only */}
-          <div className="hidden md:flex flex-col items-center gap-6 shrink-0 mt-6 lg:mt-10">
-            <div 
-              onClick={handleNext}
-              className="side-element relative w-32 h-32 lg:w-44 lg:h-44 rounded-full overflow-hidden shadow-[0_10px_30px_rgba(230,74,31,0.3)] cursor-pointer hover:scale-105 transition-transform border-[5px] border-white"
-            >
-              <Image src={nextService.image} alt={nextService.title} fill className="object-cover" />
+          {/* Right Navigation Card (Desktop) */}
+          <div 
+            onClick={handleNext}
+            className="hidden lg:block side-card group relative w-48 h-64 rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 hover:scale-105 border border-accent-100 shadow-xl opacity-40 hover:opacity-100"
+          >
+            <Image src={nextService.image} alt={nextService.title} fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-4">
+              <span className="text-white text-xs font-bold uppercase tracking-wider">{nextService.title}</span>
             </div>
-
-            <button
-              onClick={handleNext}
-              className="side-element shrink-0 w-12 h-12 rounded-full border-2 border-white/60 bg-transparent items-center justify-center text-white hover:bg-white hover:text-brand-600 hover:scale-105 transition-all shadow-lg z-20 flex"
-            >
-              <ChevronRight size={24} />
-            </button>
           </div>
           
-        </div>
-
-        {/* Mobile Navigation Arrows */}
-        <div className="flex md:hidden justify-center gap-8 mt-10 z-20 relative">
-          <button onClick={handlePrevious} className="w-12 h-12 rounded-full border-2 border-white/80 bg-brand-500 items-center justify-center text-white flex shadow-lg hover:bg-brand-600 active:scale-95 transition-transform">
-            <ChevronLeft size={24} />
-          </button>
-          <button onClick={handleNext} className="w-12 h-12 rounded-full border-2 border-white/80 bg-brand-500 items-center justify-center text-white flex shadow-lg hover:bg-brand-600 active:scale-95 transition-transform">
-            <ChevronRight size={24} />
-          </button>
         </div>
 
       </div>
