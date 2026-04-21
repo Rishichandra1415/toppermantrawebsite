@@ -108,9 +108,8 @@ const ResultsSection = () => {
                     <TrendingUp size={14} />
                     <span className="text-[9px] font-black uppercase tracking-[0.3em]">IMPACT REPORT 2026</span>
                 </div>
-                <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight leading-none">
-                    Performance <br />
-                    <span className="text-slate-400">At Scale.</span>
+                <h2>
+                    Performance At Scale
                 </h2>
             </div>
         </div>

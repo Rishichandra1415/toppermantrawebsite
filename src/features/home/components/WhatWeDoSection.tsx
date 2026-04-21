@@ -110,10 +110,10 @@ const WhatWeDoSection = () => {
             <Sparkles className="h-4 w-4 text-brand-500" />
             <span className="text-xs font-bold uppercase tracking-widest">Our Expertise</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-5 tracking-tight leading-tight">
-            What We <span className="text-brand-500 italic font-serif">Do</span> Best
+          <h2>
+            What We Do Best
           </h2>
-          <p className="text-slate-500 max-w-xl mx-auto text-sm md:text-base font-medium">
+          <p className="max-w-xl mx-auto">
             Empowering students with comprehensive learning experiences across academics, technology, and entrepreneurship.
           </p>
         </div>

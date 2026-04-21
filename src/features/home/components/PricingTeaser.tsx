@@ -55,10 +55,9 @@ const PricingTeaser = () => {
               <Star size={14} className="text-brand-500" fill="currentColor" />
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-800">Investment in Excellence</span>
            </div>
-           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4">
-              Premium Tiers for <br />
-              <span className="text-brand-500 italic font-serif font-medium">Extraordinary</span> Goals.
-           </h2>
+            <h2>
+               Premium Tiers for Extraordinary Goals
+            </h2>
            <p className="text-slate-400 text-sm md:text-base font-medium max-w-xl mx-auto">
               Choose the path that aligns with your ambition. Whether you&apos;re an individual achiever or a leading institution.
            </p>

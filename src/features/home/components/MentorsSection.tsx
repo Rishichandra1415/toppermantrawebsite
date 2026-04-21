@@ -116,10 +116,10 @@ const MentorsSection = () => {
             <Sparkles size={14} className="text-brand-500" />
             <span className="text-[10px] font-bold uppercase tracking-[0.2em]">India&apos;s Elite Mentor Circle</span>
           </div>
-          <h2 className="text-3xl md:text-6xl font-bold text-slate-900 mb-4 tracking-tight leading-[1.1]">
-             Master Your Goal With <br className="hidden md:block" /> 
-             <span className="text-brand-500 italic font-serif font-medium">Topper</span> Guidance
-          </h2>
+          <h2>Meet Your Future Architects</h2>
+          <p className="max-w-xl mx-auto mt-4 text-slate-500">
+             Learn directly from the students who have cracked India&apos;s toughest exams. Real-world insights from the current Top 1%.
+          </p>
         </div>
 
         {/* Categories */}

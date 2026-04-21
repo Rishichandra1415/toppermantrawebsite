@@ -25,9 +25,8 @@ const FinalCTA = () => {
         </div>
 
         {/* The Closer Headline */}
-        <h2 className="text-3xl md:text-6xl lg:text-8xl font-black text-white mb-8 tracking-tight leading-[1.2] md:leading-[1.1]">
-            Start Your Academic <br />
-            <span className="text-brand-500 italic font-serif font-medium">Journey</span> Today.
+        <h2 className="text-white">
+            Start Your Academic Journey Today
         </h2>
 
         <p className="text-slate-400 text-[13px] md:text-xl font-medium max-w-2xl mx-auto mb-10 leading-relaxed px-4 md:px-0">

@@ -70,12 +70,9 @@ const WhyChooseSection = () => {
             <Sparkles className="h-4 w-4 text-brand-500" />
             <span className="text-xs font-bold uppercase tracking-[0.2em]">The Elite Advantage</span>
           </div>
-          <h2 className="reveal-item text-3xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight leading-[1.1]">
-            Secure Your <br className="hidden md:block" /> 
-            <span className="text-brand-500 italic font-serif font-medium">Unfair</span> Advantage
-          </h2>
-          <p className="reveal-item text-slate-500 max-w-2xl mx-auto text-base md:text-lg font-medium leading-relaxed">
-            We don't teach modules; we install success mentalities. Discover how our elite ecosystem empowers individual brilliance and institutional dominance.
+          <h2 className="reveal-item">The TopperMantra Edge</h2>
+          <p className="reveal-item max-w-xl mx-auto">
+            We don&apos;t just teach; we transform. Our strategic approach ensures that every student reaches their full potential.
           </p>
         </div>
 
@@ -91,12 +88,9 @@ const WhyChooseSection = () => {
                 </div>
                 <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">FOR INDIVIDUALS</span>
               </div>
-              <h3 className="text-[2rem] md:text-[2.5rem] font-bold text-slate-900 leading-tight mb-4">
-                Elite Direct <br />
-                <span className="text-brand-500 italic font-serif font-medium">Mentorship.</span>
-              </h3>
-              <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-sm">
-                 Bridge the gap between average and achiever. Access mental models derived from national excellence.
+              <h2>Meet Your Future Architects</h2>
+              <p className="max-w-xl mx-auto">
+                Learn directly from the students who have cracked India&apos;s toughest exams. Real-world insights from the current Top 1%.
               </p>
             </div>
 

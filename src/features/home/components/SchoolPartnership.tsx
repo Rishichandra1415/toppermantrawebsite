@@ -113,9 +113,8 @@ const SchoolPartnership = () => {
                 <School size={16} className="text-brand-400" />
                 <span className="text-[10px] font-black uppercase tracking-[0.3em]">Institutional Supremacy</span>
               </div>
-              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.1] mb-4">
-                Partner In <br />
-                <span className="text-brand-500 italic font-serif font-medium">Excellence.</span>
+              <h2>
+                Partner In Excellence
               </h2>
             </div>
             <p className="text-slate-500 max-w-xs text-base md:text-lg font-medium leading-relaxed border-l-2 border-slate-200 pl-8 pb-1">
