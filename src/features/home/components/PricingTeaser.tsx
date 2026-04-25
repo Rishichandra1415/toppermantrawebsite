@@ -40,7 +40,7 @@ const PLANS = [
 
 const PricingTeaser = () => {
   return (
-    <section className="relative w-full py-16 lg:py-24 bg-white overflow-hidden font-sans">
+    <section className="relative w-full py-12 lg:py-16 bg-white overflow-hidden font-sans">
       
       {/* Editorial Background Decor */}
       <div className="absolute inset-0 pointer-events-none opacity-20">
@@ -50,7 +50,7 @@ const PricingTeaser = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         
         {/* Header */}
-        <div className="text-center mb-16 lg:mb-20">
+        <div className="text-center mb-12 lg:mb-16">
            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 shadow-sm mb-6">
               <Star size={14} className="text-brand-500" fill="currentColor" />
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-800">Investment in Excellence</span>
@@ -58,7 +58,7 @@ const PricingTeaser = () => {
             <h2>
                Premium Tiers for Extraordinary Goals
             </h2>
-           <p className="text-slate-400 text-sm md:text-base font-medium max-w-xl mx-auto">
+           <p className="text-slate-500 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl mx-auto px-4">
               Choose the path that aligns with your ambition. Whether you&apos;re an individual achiever or a leading institution.
            </p>
         </div>
@@ -104,16 +104,21 @@ const PricingTeaser = () => {
                     ))}
                 </div>
 
-                <button className={`
-                    w-full py-4 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn active:scale-[0.98]
-                    ${plan.popular 
-                        ? 'bg-slate-900 text-white shadow-xl hover:bg-brand-500' 
-                        : 'bg-white text-slate-900 border border-slate-200 hover:border-slate-400'
-                    }
-                `}>
-                    {plan.buttonText}
-                    <ArrowRight size={16} className="transition-transform group-hover/btn:translate-x-1" />
-                </button>
+                <a 
+                  href="https://play.google.com/store/apps/details?id=com.support.toppers.mantra&pcampaignid=web_share&pli=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`
+                      w-full py-4 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn active:scale-[0.98]
+                      ${plan.popular 
+                          ? 'bg-slate-900 text-white shadow-xl hover:bg-brand-500' 
+                          : 'bg-white text-slate-900 border border-slate-200 hover:border-slate-400'
+                      }
+                  `}
+                >
+                      Download App to Subscribe
+                      <ArrowRight size={16} className="transition-transform group-hover/btn:translate-x-1" />
+                </a>
               </div>
            ))}
         </div>

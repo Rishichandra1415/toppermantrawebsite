@@ -117,7 +117,7 @@ const SchoolPartnership = () => {
                 Partner In Excellence
               </h2>
             </div>
-            <p className="text-slate-500 max-w-xs text-base md:text-lg font-medium leading-relaxed border-l-2 border-slate-200 pl-8 pb-1">
+            <p className="text-slate-500 max-w-xs text-base sm:text-lg md:text-xl font-medium leading-relaxed border-l-2 border-slate-200 pl-4 sm:pl-8 pb-1">
               Empowering leading institutions with India's most elite mentor ecosystem.
             </p>
           </div>

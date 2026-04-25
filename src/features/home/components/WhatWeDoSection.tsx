@@ -93,7 +93,7 @@ const WhatWeDoSection = () => {
   const handleNext = () => navigateToService((currentIndex + 1) % SERVICES.length);
 
   return (
-    <section className="relative w-full py-16 md:py-20 bg-brand-50 overflow-hidden flex flex-col justify-center font-sans focus:outline-none">
+    <section className="relative w-full py-12 md:py-20 bg-brand-50 overflow-hidden flex flex-col justify-center font-sans focus:outline-none">
       
       {/* Premium Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -113,7 +113,7 @@ const WhatWeDoSection = () => {
           <h2>
             What We Do Best
           </h2>
-          <p className="max-w-xl mx-auto">
+          <p className="max-w-xl mx-auto text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed px-4">
             Empowering students with comprehensive learning experiences across academics, technology, and entrepreneurship.
           </p>
         </div>
@@ -148,7 +148,7 @@ const WhatWeDoSection = () => {
               </div>
 
               {/* Content Side */}
-              <div className="main-card-content p-8 md:p-10 lg:p-12 flex flex-col">
+              <div className="main-card-content p-6 md:p-8 lg:p-12 flex flex-col">
                 <div className="hidden md:flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center">
                     <currentService.icon className="w-6 h-6 text-brand-500" />

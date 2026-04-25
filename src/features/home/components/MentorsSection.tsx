@@ -100,7 +100,7 @@ const MentorsSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="relative w-full py-12 md:py-20 bg-white overflow-hidden font-sans">
+    <section ref={sectionRef} className="relative w-full py-12 md:py-16 bg-white overflow-hidden font-sans">
       
       {/* Decroative Aura */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none z-0">
@@ -117,7 +117,7 @@ const MentorsSection = () => {
             <span className="text-[10px] font-bold uppercase tracking-[0.2em]">India&apos;s Elite Mentor Circle</span>
           </div>
           <h2>Meet Your Future Architects</h2>
-          <p className="max-w-xl mx-auto mt-4 text-slate-500">
+          <p className="max-w-xl mx-auto mt-4 text-base sm:text-lg md:text-xl text-slate-500 leading-relaxed px-4">
              Learn directly from the students who have cracked India&apos;s toughest exams. Real-world insights from the current Top 1%.
           </p>
         </div>
@@ -195,10 +195,15 @@ const MentorsSection = () => {
 
         {/* View All */}
         <div className="mt-8 text-center">
-            <button className="inline-flex items-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-full text-xs font-bold hover:bg-brand-500 transition-all shadow-xl active:scale-95">
-                Explore All Mentors
+            <a 
+              href="https://play.google.com/store/apps/details?id=com.support.toppers.mantra&pcampaignid=web_share&pli=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-full text-xs font-bold hover:bg-brand-500 transition-all shadow-xl active:scale-95"
+            >
+                View All Mentors in App
                 <Star size={14} fill="currentColor" className="text-brand-400" />
-            </button>
+            </a>
         </div>
 
       </div>

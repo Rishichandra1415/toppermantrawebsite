@@ -24,8 +24,7 @@ const HomeHero = () => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline();
       tl.fromTo(".hero-badge", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" })
-        .fromTo(".hero-title-word", { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 1.2, ease: "expo.out" }, "-=0.4")
-        .fromTo(".hero-underline", { scaleX: 0 }, { scaleX: 1, duration: 1, ease: "power4.inOut" }, "-=0.6")
+        .fromTo(".hero-title", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, ease: "expo.out" }, "-=0.4")
         .fromTo(".hero-desc", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.8")
         .fromTo(".hero-ctas", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.8")
         .fromTo(".hero-stats", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.8");
@@ -57,43 +56,62 @@ const HomeHero = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative overflow-hidden bg-[#fafafa] font-sans py-12 lg:py-20">
+    <section ref={containerRef} className="relative w-full overflow-hidden bg-slate-950 font-sans py-16 lg:py-28 min-h-screen flex flex-col justify-center">
       
-      {/* Premium Background Orbs - Mobile Optimized */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="parallax-bg absolute -top-10 -left-10 h-[250px] w-[250px] rounded-full bg-brand-300/20 opacity-70 blur-[60px] sm:h-[400px] sm:w-[400px] lg:top-[-10%] lg:left-[10%] lg:blur-[100px]" />
-        <div className="parallax-bg absolute bottom-0 right-[-10%] h-[200px] w-[200px] rounded-full bg-accent-300/20 opacity-60 blur-[50px] sm:h-[350px] sm:w-[350px] lg:bottom-[10%] lg:right-[15%] lg:blur-[120px]" />
+      {/* Premium Background Orbs & Mesh */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black">
+        <div className="parallax-bg absolute top-[-10%] left-[-10%] w-[300px] h-[300px] lg:w-[600px] lg:h-[600px] rounded-full bg-brand-500/10 blur-[80px] lg:blur-[120px]" />
+        <div className="parallax-bg absolute bottom-[-10%] right-[-10%] w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] rounded-full bg-blue-500/10 blur-[80px] lg:blur-[100px]" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150" />
       </div>
 
       <div className="relative z-10 mx-auto grid w-full max-w-[1440px] items-center gap-8 px-5 sm:px-8 lg:grid-cols-2 lg:gap-12">
         
         {/* Left Content Area */}
-        <div className="z-20 mx-auto w-full max-w-2xl text-center lg:mx-0 lg:text-left mt-8 lg:mt-0">
+        <div className="z-20 mx-auto w-full max-w-2xl text-center lg:mx-0 lg:text-left mt-8 lg:mt-0 flex flex-col items-center lg:items-start">
           
-          <h1 ref={titleRef}>
-            Connect with the <span className="text-brand-500">Top 1%</span>. <br className="hidden sm:block" />
+          <div className="hero-badge inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm mb-6 lg:mb-8">
+            <Sparkles className="h-4 w-4 text-brand-400" />
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white/80">India's Premier Mentorship Network</span>
+          </div>
+
+          <h1 ref={titleRef} className="hero-title font-playfair text-white text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.1] mb-6">
+            Connect with the <br className="hidden sm:block" />
+            <span className="text-gradient">Top 1%</span>. <br />
             Master Your Future.
           </h1>
 
-          <p className="hero-desc mb-8 mx-auto max-w-xl text-slate-600">
+          <p className="hero-desc mb-8 lg:mb-10 mx-auto lg:mx-0 max-w-xl text-slate-400 text-base sm:text-lg lg:text-xl leading-relaxed">
             TopperMantra bridges the gap between effort and excellence by connecting you with mentors who have already conquered the summit.
           </p>
 
-          <div className="hero-ctas flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5 lg:justify-start">
-            <Button variant="primary" size="lg" className="rounded-full px-8 shadow-lg shadow-brand-500/20">
-              Explore Mentors <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+          <div className="hero-ctas flex flex-col w-full sm:w-auto sm:flex-row items-center gap-4">
+            <a 
+              href="https://play.google.com/store/apps/details?id=com.support.toppers.mantra&pcampaignid=web_share&pli=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto flex items-center justify-center rounded-full px-8 py-3.5 shadow-[0_0_40px_rgba(251,91,46,0.3)] hover:shadow-[0_0_60px_rgba(251,91,46,0.5)] bg-brand-500 text-white font-bold"
+            >
+                Get it on Google Play <ArrowRight className="ml-2 h-5 w-5 inline" />
+            </a>
+            <button className="w-full sm:w-auto rounded-full px-8 py-3.5 font-bold text-white border border-white/20 hover:bg-white/10 transition-colors">
+              Learn More
+            </button>
           </div>
 
           {/* Stats Section - Professional & Clean */}
-          <div className="hero-stats mt-10 flex flex-wrap items-center justify-center gap-10 lg:justify-start pt-8 border-t border-slate-200">
-            <div className="flex flex-col items-center lg:items-start">
-              <span className="text-2xl font-bold text-slate-900">500+</span>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Verified Toppers</span>
+          <div className="hero-stats mt-12 grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full max-w-md lg:max-w-none pt-8 border-t border-white/10">
+            <div className="flex flex-col items-center lg:items-start p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+              <span className="text-2xl sm:text-3xl font-bold text-white">500+</span>
+              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-400 mt-1">Verified Toppers</span>
             </div>
-            <div className="flex flex-col items-center lg:items-start">
-              <span className="text-2xl font-bold text-slate-900">AIR 1+</span>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Rank Holders</span>
+            <div className="flex flex-col items-center lg:items-start p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+              <span className="text-2xl sm:text-3xl font-bold text-white">AIR 1+</span>
+              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-400 mt-1">Rank Holders</span>
+            </div>
+            <div className="flex flex-col items-center lg:items-start p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md col-span-2 lg:col-span-1">
+              <span className="text-2xl sm:text-3xl font-bold text-white">10k+</span>
+              <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-brand-400 mt-1">Students Guided</span>
             </div>
           </div>
         </div>

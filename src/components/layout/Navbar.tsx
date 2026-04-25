@@ -194,14 +194,14 @@ const Navbar = () => {
               {/* CTA & Mobile Toggle */}
               <div className="flex items-center gap-5">
                 <div className="hidden sm:block hover:-translate-y-0.5 transition-transform duration-300">
-                  <Button 
-                    variant="primary" 
-                    size="md" 
-                    // Clean button without heavy text or harsh shadow
-                    className="shadow-sm hover:shadow-md bg-brand-500 hover:bg-brand-600 text-white rounded-full px-6 py-2.5 text-[15px] font-medium tracking-wide"
+                  <a 
+                    href="https://play.google.com/store/apps/details?id=com.support.toppers.mantra&pcampaignid=web_share&pli=1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shadow-sm hover:shadow-md bg-brand-500 hover:bg-brand-600 text-white rounded-full px-6 py-2.5 text-[15px] font-medium tracking-wide inline-flex items-center justify-center"
                   >
-                    Join TopperMantra
-                  </Button>
+                    Download App
+                  </a>
                 </div>
                 
                 <button

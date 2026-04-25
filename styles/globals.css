@@ -103,3 +103,30 @@ body {
     @apply bg-brand-500 text-white hover:bg-brand-600 font-bold py-2.5 px-6 rounded-lg transition-all duration-300 transform active:scale-95 shadow-lg shadow-brand-500/20;
   }
 }
+
+@layer utilities {
+  .font-playfair {
+    font-family: var(--font-playfair), serif;
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-brand-600;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.1; transform: scale(1) translate(-2%, -2%); }
+  50% { opacity: 0.2; transform: scale(1.1) translate(2%, 2%); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s infinite ease-in-out;
+}

@@ -44,54 +44,50 @@ const ResultsSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const numbers = document.querySelectorAll(".stat-number");
-    
-    numbers.forEach((num) => {
-      const target = parseInt(num.getAttribute("data-target") || "0");
-      
-      gsap.fromTo(num, 
-        { innerText: "0" }, 
-        { 
-          innerText: target,
-          duration: 3,
-          snap: { innerText: 1 },
-          scrollTrigger: {
-            trigger: num,
-            start: "top 95%",
-          },
-          ease: "back.out(1.2)"
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Animate cards
+          gsap.fromTo(".stat-card", 
+            { opacity: 0, y: 50, scale: 0.98 },
+            { opacity: 1, y: 0, scale: 1, stagger: 0.15, duration: 1.4, ease: "expo.out" }
+          );
+
+          // Animate deco lines
+          gsap.fromTo(".deco-line", 
+            { width: 0 },
+            { width: 96, stagger: 0.2, duration: 2, ease: "power2.inOut", clearProps: "width" }
+          );
+
+          // Animate numbers
+          const numbers = document.querySelectorAll(".stat-number");
+          numbers.forEach((num) => {
+            const target = parseInt(num.getAttribute("data-target") || "0");
+            const obj = { val: 0 };
+            gsap.to(obj, { 
+                val: target,
+                duration: 3,
+                ease: "back.out(1.2)",
+                onUpdate: () => {
+                   num.innerHTML = Math.round(obj.val).toString();
+                }
+            });
+          });
+
+          if (containerRef.current) observer.unobserve(containerRef.current);
         }
-      );
-    });
+      });
+    }, { threshold: 0.2 });
 
-    gsap.from(".stat-card", {
-       scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%"
-       },
-       opacity: 0,
-       y: 50,
-       scale: 0.98,
-       stagger: 0.15,
-       duration: 1.4,
-       ease: "expo.out"
-    });
-
-    // Decorative Line Animation
-    gsap.from(".deco-line", {
-       scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%"
-       },
-       width: 0,
-       stagger: 0.2,
-       duration: 2,
-       ease: "power2.inOut"
-    });
+    if (containerRef.current) {
+       // Ensure elements are initially hidden before observer fires
+       gsap.set(".stat-card", { opacity: 0 });
+       observer.observe(containerRef.current);
+    }
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative w-full py-20 lg:py-32 bg-white overflow-hidden font-sans border-y border-slate-50">
+    <section ref={containerRef} className="relative w-full py-12 lg:py-24 bg-white overflow-hidden font-sans border-y border-slate-50">
       
       {/* Editorial Luxury Background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -102,7 +98,7 @@ const ResultsSection = () => {
       <div className="relative z-10 max-w-[1440px] mx-auto px-6">
         
         {/* Section Identity */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 lg:mb-16 gap-4 px-4 md:px-0">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 lg:mb-12 gap-4 px-4 md:px-0">
             <div className="flex flex-col gap-3">
                 <div className="inline-flex items-center gap-2 text-brand-500">
                     <TrendingUp size={14} />
@@ -120,7 +116,7 @@ const ResultsSection = () => {
              <div 
                 key={stat.id} 
                 className={`
-                    stat-card relative group flex flex-col p-10 lg:p-20 transition-all duration-700 hover:bg-slate-50/80
+                    stat-card relative group flex flex-col p-6 sm:p-8 lg:p-16 transition-all duration-700 hover:bg-slate-50/80
                     ${idx !== 2 ? 'md:border-r border-slate-100 border-b md:border-b-0' : ''}
                 `}
              >
