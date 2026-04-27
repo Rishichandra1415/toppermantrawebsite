@@ -12,11 +12,13 @@ interface MobileMenuProps {
 }
 
 const navLinks = [
-  { name: "Partnership Opportunities", href: "/partnership" },
-  { name: "Contact With Us", href: "/contact" },
-  { name: "Pricing", href: "/pricing" },
   { name: "About Us", href: "/about" },
-  { name: "We Work With", href: "/partners" },
+  { name: "Contact", href: "/contact" },
+];
+
+const joinUsItems = [
+  { name: "For Schools", href: "/join/school", icon: GraduationCap },
+  { name: "For Students", href: "/join/student", icon: Trophy },
 ];
 
 const mentorshipItems = [
@@ -62,6 +64,26 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Mentorship</h3>
                 <div className="space-y-3">
                   {mentorshipItems.map((item, idx) => (
+                    <Link
+                      key={idx}
+                      href={item.href}
+                      className="flex items-center justify-between p-3 rounded-xl bg-gray-50 hover:bg-brand-50 transition-colors group"
+                      onClick={onClose}
+                    >
+                      <div className="flex items-center gap-3">
+                        <item.icon className="w-5 h-5 text-brand-600" />
+                        <span className="font-medium text-gray-700">{item.name}</span>
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-brand-500 transform group-hover:translate-x-1 transition-all" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Join Us</h3>
+                <div className="space-y-3">
+                  {joinUsItems.map((item, idx) => (
                     <Link
                       key={idx}
                       href={item.href}

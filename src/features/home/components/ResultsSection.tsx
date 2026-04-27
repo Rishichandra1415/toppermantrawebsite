@@ -49,14 +49,8 @@ const ResultsSection = () => {
         if (entry.isIntersecting) {
           // Animate cards
           gsap.fromTo(".stat-card", 
-            { opacity: 0, y: 50, scale: 0.98 },
-            { opacity: 1, y: 0, scale: 1, stagger: 0.15, duration: 1.4, ease: "expo.out" }
-          );
-
-          // Animate deco lines
-          gsap.fromTo(".deco-line", 
-            { width: 0 },
-            { width: 96, stagger: 0.2, duration: 2, ease: "power2.inOut", clearProps: "width" }
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, stagger: 0.1, duration: 1, ease: "power2.out" }
           );
 
           // Animate numbers
@@ -66,10 +60,10 @@ const ResultsSection = () => {
             const obj = { val: 0 };
             gsap.to(obj, { 
                 val: target,
-                duration: 3,
-                ease: "back.out(1.2)",
+                duration: 2.5,
+                ease: "power2.out",
                 onUpdate: () => {
-                   num.innerHTML = Math.round(obj.val).toString();
+                   num.innerHTML = Math.round(obj.val).toLocaleString();
                 }
             });
           });
@@ -80,79 +74,45 @@ const ResultsSection = () => {
     }, { threshold: 0.2 });
 
     if (containerRef.current) {
-       // Ensure elements are initially hidden before observer fires
-       gsap.set(".stat-card", { opacity: 0 });
+       gsap.set(".stat-card", { opacity: 0, y: 20 });
        observer.observe(containerRef.current);
     }
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative w-full py-12 lg:py-24 bg-white overflow-hidden font-sans border-y border-slate-50">
-      
-      {/* Editorial Luxury Background */}
-      <div className="absolute inset-0 pointer-events-none">
-         <div className="absolute top-0 right-0 w-[40%] h-full bg-slate-50/30 skew-x-[-12deg] translate-x-[20%]" />
-         <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:20px_20px] opacity-[0.2]" />
-      </div>
+    <section ref={containerRef} className="relative w-full py-16 lg:py-24 bg-white font-sans">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 items-center">
+          {STATS.map((stat, idx) => (
+            <div 
+              key={stat.id} 
+              className={`
+                stat-card flex flex-col items-center text-center px-4
+                ${idx !== STATS.length - 1 ? 'md:border-r border-slate-100' : ''}
+              `}
+            >
+              {/* Icon */}
+              <div className="mb-6 text-slate-400">
+                <stat.icon size={32} strokeWidth={1.5} />
+              </div>
 
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6">
-        
-        {/* Section Identity */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 lg:mb-12 gap-4 px-4 md:px-0">
-            <div className="flex flex-col gap-3">
-                <div className="inline-flex items-center gap-2 text-brand-500">
-                    <TrendingUp size={14} />
-                    <span className="text-[9px] font-black uppercase tracking-[0.3em]">IMPACT REPORT 2026</span>
-                </div>
-                <h2>
-                    Performance At Scale
-                </h2>
+              {/* Number */}
+              <div className="flex items-baseline justify-center gap-1 mb-2">
+                <span 
+                  className="stat-number text-5xl lg:text-6xl font-bold tracking-tight text-slate-900"
+                  data-target={stat.value}
+                >
+                  0
+                </span>
+                <span className="text-2xl lg:text-3xl font-bold text-slate-400">{stat.suffix}</span>
+              </div>
+              
+              {/* Label */}
+              <h3 className="text-xs lg:text-sm font-bold uppercase tracking-[0.2em] text-slate-500">
+                {stat.label}
+              </h3>
             </div>
-        </div>
-
-        {/* Global Impact Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-slate-100 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-white/50 backdrop-blur-sm shadow-xl shadow-slate-200/40 mx-4 md:mx-0">
-           {STATS.map((stat, idx) => (
-             <div 
-                key={stat.id} 
-                className={`
-                    stat-card relative group flex flex-col p-6 sm:p-8 lg:p-16 transition-all duration-700 hover:bg-slate-50/80
-                    ${idx !== 2 ? 'md:border-r border-slate-100 border-b md:border-b-0' : ''}
-                `}
-             >
-                {/* Precision Floating Labels */}
-                <div className="absolute top-6 left-6 text-[8px] font-bold text-slate-300 group-hover:text-slate-500 transition-colors uppercase tracking-widest">
-                    {stat.meta}
-                </div>
-
-                <div className="flex flex-col mt-4 lg:mt-12">
-                    <div className="flex items-baseline gap-1 mb-3">
-                        <span 
-                            className={`stat-number text-5xl lg:text-8xl font-bold tracking-tighter bg-gradient-to-br bg-clip-text text-transparent transition-all duration-500 ${stat.color}`}
-                            data-target={stat.value}
-                        >
-                            0
-                        </span>
-                        <span className="text-2xl lg:text-4xl font-bold text-slate-300 group-hover:text-brand-500 transition-all">{stat.suffix}</span>
-                    </div>
-                    
-                    <div className="deco-line h-[1px] w-24 bg-slate-100 mb-6 group-hover:bg-brand-500 group-hover:w-32 transition-all duration-700" />
-                    
-                    <h3 className="text-xs lg:text-sm font-bold uppercase tracking-[0.3em] text-slate-400 group-hover:text-slate-900 transition-colors">
-                        {stat.label}
-                    </h3>
-                    
-                    <p className="mt-4 text-[10px] lg:text-[11px] font-medium text-slate-300 opacity-0 group-hover:opacity-100 transition-all duration-500 leading-tight translate-y-4 group-hover:translate-y-0 max-w-[120px]">
-                        Verified institutional metrics provided by audit partner 2026.
-                    </p>
-                </div>
-
-                {/* Bottom Number - Precision Index */}
-                <div className="absolute bottom-6 right-8 text-[9px] font-black text-slate-100 italic group-hover:text-slate-200 transition-colors">
-                    REF-0{stat.id}
-                </div>
-             </div>
-           ))}
+          ))}
         </div>
       </div>
     </section>

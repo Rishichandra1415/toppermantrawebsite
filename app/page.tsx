@@ -39,9 +39,9 @@ export default function Home() {
       </section>
 
       {/* 6. Investment Tiers */}
-      <section className="w-full max-w-full overflow-hidden flex items-center bg-brand-50">
+      {/* <section className="w-full max-w-full overflow-hidden flex items-center bg-brand-50">
         <PricingTeaser />
-      </section>
+      </section> */}
       
       {/* 7. Institutional Mastery */}
       <section className="w-full max-w-full overflow-hidden flex items-center bg-white">
@@ -49,9 +49,9 @@ export default function Home() {
       </section>
 
       {/* 8. The Closer - Grand Finale */}
-      <section className="w-full max-w-full overflow-hidden flex items-center bg-slate-950">
+      {/* <section className="w-full max-w-full overflow-hidden flex items-center bg-slate-950">
         <FinalCTA />
-      </section>
+      </section> */}
 
     </main>
   );

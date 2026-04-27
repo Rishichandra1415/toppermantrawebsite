@@ -124,7 +124,7 @@ import {
 } from "framer-motion";
 import { Menu } from "lucide-react";
 import Link from "next/link";
-import { NavLink, MentorshipMegaMenu } from "./NavMenu";
+import { NavLink, MentorshipMegaMenu, JoinUsMegaMenu } from "./NavMenu";
 import MobileMenu from "./MobileMenu";
 import Button from "../common/Button";
 
@@ -184,11 +184,14 @@ const Navbar = () => {
               {/* NOTE: Make sure to remove font-bold from inside your NavLink component! */}
               <div className="hidden lg:flex items-center gap-6 text-[15px] font-medium text-slate-600">
                 <MentorshipMegaMenu />
-                <NavLink href="/partnership">Partnership</NavLink>
+                <JoinUsMegaMenu />
+                {/* <NavLink href="/partnership">Partnership</NavLink> */}
+                 <NavLink href="/about">About Us</NavLink>
+
                 <NavLink href="/contact">Contact</NavLink>
-                <NavLink href="/pricing">Pricing</NavLink>
-                <NavLink href="/about">About Us</NavLink>
-                <NavLink href="/partners">We Work With</NavLink>
+                {/* <NavLink href="/pricing">Pricing</NavLink> */}
+ 
+                {/* <NavLink href="/partners">We Work With</NavLink> */}
               </div>
 
               {/* CTA & Mobile Toggle */}

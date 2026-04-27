@@ -130,10 +130,10 @@ const WhyChooseSection = () => {
             </div>
 
             <a 
-              href="#"
-              className="relative w-full inline-flex items-center justify-center gap-3 bg-slate-900 hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 active:scale-[0.98]"
+              href="/join/student"
+              className="relative w-full inline-flex items-center justify-center gap-3 bg-slate-900 hover:bg-brand-500 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 active:scale-[0.98]"
             >
-               Download as a Student
+               Explore More
                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
@@ -184,10 +184,10 @@ const WhyChooseSection = () => {
             </div>
 
             <a 
-              href="#"
-              className="relative w-full inline-flex items-center justify-center gap-3 bg-white hover:bg-amber-400 text-slate-900 font-bold py-4 px-8 rounded-2xl transition-all duration-300 active:scale-[0.98]"
+              href="/join/school"
+              className="relative w-full inline-flex items-center justify-center gap-3 bg-white hover:bg-brand-500 text-slate-900 hover:text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 active:scale-[0.98]"
             >
-               Partner as a School
+               Explore More
                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>

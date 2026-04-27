@@ -2,6 +2,7 @@
 
 import { useAppSelector } from "@/store/hooks";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -14,15 +15,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     <div className="min-h-screen bg-gray-50 flex flex-col pt-24">
       <Navbar />
 
-      <div className="flex flex-1">
-    
+      <main className="flex-1">
+        {children}
+      </main>
 
-        <main className="flex-1">
-          {children}
-        </main>
-      </div>
-
-   
+      <Footer />
     </div>
   );
 };
