@@ -139,11 +139,11 @@ const SchoolJoinPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAFAFA] selection:bg-brand-500 selection:text-white pt-24 font-sans">
+    <main className="min-h-screen bg-[#FAFAFA] selection:bg-brand-500 selection:text-white pt-16 font-sans">
       
       {/* --- HERO SECTION --- */}
       <section 
-        className="relative py-12 md:py-20 lg:py-32 overflow-hidden"
+        className="relative pt-0 pb-8 md:pb-12 overflow-hidden"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
@@ -162,7 +162,7 @@ const SchoolJoinPage = () => {
               variants={staggerContainer}
               initial="hidden"
               animate="visible"
-              className="flex-1 space-y-8 z-20"
+              className="flex-1 space-y-6 z-20"
             >
               <motion.div variants={fadeUpVariant} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white shadow-[0_2px_10px_rgba(0,0,0,0.04)] border border-slate-100">
                 <div className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
@@ -200,7 +200,7 @@ const SchoolJoinPage = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="flex-1 relative flex justify-center items-center h-[400px] sm:h-[500px] lg:h-[650px] perspective-1000 w-full"
+              className="flex-1 relative flex justify-center items-center h-[350px] sm:h-[450px] lg:h-[550px] perspective-1000 w-full"
             >
               <div className="relative w-full h-full flex items-center justify-center">
                 
@@ -244,12 +244,12 @@ const SchoolJoinPage = () => {
       </section>
 
       {/* --- WHY US SECTION --- */}
-      <section className="py-16 md:py-24 bg-white relative">
+      <section className="py-12 md:py-16 bg-white relative">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <motion.div 
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}
             variants={fadeUpVariant}
-            className="text-center mb-20"
+            className="text-center mb-12"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">Why Partner with Us?</h2>
             <p className="mt-5 text-base sm:text-lg text-slate-500 max-w-2xl mx-auto font-medium">
@@ -284,7 +284,7 @@ const SchoolJoinPage = () => {
       </section>
 
       {/* --- FORM SECTION (Premium Minimalist Look) --- */}
-      <section className="py-16 md:py-24 relative overflow-hidden">
+      <section className="py-12 md:py-16 relative overflow-hidden">
         {/* Background Image with Premium Overlay */}
         <div className="absolute inset-0 -z-10">
           <img 

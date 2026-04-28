@@ -82,7 +82,7 @@ const MentorshipHero = ({ type = "academic" }: MentorshipHeroProps) => {
   }, { scope: containerRef, dependencies: [type] });
 
   return (
-    <section ref={containerRef} className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-white pt-24 pb-24">
+    <section ref={containerRef} className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-white pt-0 pb-10">
       
       <div className="absolute inset-0 z-0">
         <div 
@@ -109,13 +109,13 @@ const MentorshipHero = ({ type = "academic" }: MentorshipHeroProps) => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="hero-content text-center mb-20 font-sans">
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-white/80 border border-brand-100 px-5 py-2 shadow-[0_8px_20px_rgba(251,91,46,0.1)] backdrop-blur-md">
+        <div className="hero-content text-center mb-8 font-sans">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/80 border border-brand-100 px-5 py-2 shadow-[0_8px_20px_rgba(251,91,46,0.1)] backdrop-blur-md">
             <Sparkles className="w-4 h-4 text-brand-600 animate-pulse" />
             <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-700">{data.badge}</span>
           </div>
 
-          <h1 className="mb-8 font-bold tracking-tight leading-[1.05]">
+          <h1 className="mb-4 font-bold tracking-tight leading-[1.05]">
             {data.title[0]} <br className="hidden md:block" />
             {data.title[1]} <span className="relative inline-block text-brand-500">
               {data.title[2]}
@@ -129,7 +129,7 @@ const MentorshipHero = ({ type = "academic" }: MentorshipHeroProps) => {
             {data.desc}
           </p>
 
-          <div className="mt-12 flex flex-wrap justify-center gap-6">
+          <div className="mt-6 flex flex-wrap justify-center gap-6">
             <button className="group relative bg-brand-500 text-white px-10 py-5 rounded-full text-base font-bold shadow-[0_20px_40px_rgba(251,91,46,0.25)] hover:bg-brand-600 hover:shadow-[0_25px_50px_rgba(251,91,46,0.35)] transition-all active:scale-95 flex items-center gap-3">
               Request Mentorship
               <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />

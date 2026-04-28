@@ -105,7 +105,7 @@ const MentorsSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="relative w-full py-12 md:py-16 bg-white overflow-hidden font-sans">
+    <section ref={sectionRef} className="relative w-full py-8 md:py-10 bg-white overflow-hidden font-sans">
       
       {/* Decroative Aura */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none z-0">
@@ -116,7 +116,7 @@ const MentorsSection = () => {
       <div className="relative z-10 max-w-[1440px] mx-auto px-4 md:px-12">
         
         {/* Header */}
-        <div className="mentor-header text-center mb-10 md:mb-16">
+        <div className="mentor-header text-center mb-6 md:mb-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/60 bg-white px-5 py-2 text-slate-700 mb-6 shadow-sm">
             <Sparkles size={14} className="text-brand-500" />
             <span className="text-[10px] font-bold uppercase tracking-[0.2em]">India&apos;s Elite Mentor Circle</span>

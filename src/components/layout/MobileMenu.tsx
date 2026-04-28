@@ -12,6 +12,7 @@ interface MobileMenuProps {
 }
 
 const navLinks = [
+  { name: "Home", href: "/", icon: Info },
   { name: "About Us", href: "/about", icon: Info },
   { name: "Contact", href: "/contact", icon: MessageSquare },
 ];

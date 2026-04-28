@@ -57,7 +57,7 @@ const WhyChooseSection = () => {
   }, { scope: sectionRef });
 
   return (
-    <section ref={sectionRef} className="relative w-full py-20 md:py-32 bg-slate-50 overflow-hidden font-sans">
+    <section ref={sectionRef} className="relative w-full py-10 md:py-16 bg-slate-50 overflow-hidden font-sans">
       
       {/* Premium Background Decor */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -69,7 +69,7 @@ const WhyChooseSection = () => {
       <div className="relative z-10 max-w-[1440px] mx-auto px-6">
         
         {/* Centralized Header */}
-        <div className="text-center mb-16 md:mb-24 flex flex-col items-center">
+        <div className="text-center mb-8 md:mb-12 flex flex-col items-center">
           <div className="reveal-header inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/60 backdrop-blur-md px-5 py-2.5 text-slate-800 mb-6 shadow-sm">
             <Crown className="h-4 w-4 text-amber-500" />
             <span className="text-xs font-bold uppercase tracking-[0.2em]">One Elite Platform. Two Paths.</span>

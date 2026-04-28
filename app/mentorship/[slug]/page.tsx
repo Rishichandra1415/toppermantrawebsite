@@ -46,7 +46,7 @@ export default function MentorshipDynamicPage({ params }: PageProps) {
 
   // We will pass the 'slug' or 'type' to the components to theme them
   return (
-    <main className="w-full">
+    <main className="w-full pt-16">
       <AcademicHero type={params.slug} />
       <AcademicDetails type={params.slug} />
       <MentorList type={params.slug} />

@@ -77,24 +77,24 @@ const MentorshipDetails = ({ type = "academic" }: MentorshipDetailsProps) => {
   const data = CONTENT[type] || CONTENT.academic;
 
   return (
-    <section className="py-32 bg-[#FAFAFA] relative overflow-hidden">
+    <section className="py-10 bg-[#FAFAFA] relative overflow-hidden">
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:32px_32px] opacity-[0.2]" />
         <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-brand-100/20 rounded-full blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 font-sans">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="relative">
             <div className="absolute -left-10 top-0 w-1 h-24 bg-brand-500/20 hidden lg:block" />
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-[10px] font-bold text-brand-600 uppercase tracking-wider mb-8 shadow-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 text-[10px] font-bold text-brand-600 uppercase tracking-wider mb-4 shadow-sm">
               {data.badge}
             </div>
             <h2 className="font-bold">
               {data.title[0]} <br />
               <span className="text-brand-500">{data.title[1]}</span>
             </h2>
-            <p className="text-slate-600 mt-8 mb-12 max-w-lg text-lg leading-relaxed font-medium">
+            <p className="text-slate-600 mt-4 mb-6 max-w-lg text-lg leading-relaxed font-medium">
               {data.desc}
             </p>
 
@@ -113,16 +113,16 @@ const MentorshipDetails = ({ type = "academic" }: MentorshipDetailsProps) => {
 
           <div className="relative group">
             <div className="absolute inset-0 bg-brand-500/10 blur-[80px] rounded-full scale-90 group-hover:scale-110 transition-transform duration-1000" />
-            <div className="relative bg-white rounded-[3rem] p-12 md:p-16 border border-slate-100 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] overflow-hidden">
+            <div className="relative bg-white rounded-[3rem] p-8 md:p-12 border border-slate-100 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.05)] overflow-hidden">
                <div className="absolute top-0 right-0 w-40 h-40 bg-brand-50/50 rounded-bl-[5rem] -z-0" />
-               <h3 className="mb-10 flex items-center gap-4 font-bold">
+               <h3 className="mb-8 flex items-center gap-4 font-bold">
                   <div className="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center">
                     <Zap className="w-5 h-5 text-white" />
                   </div>
                   Performance Mastery
                </h3>
                
-               <div className="space-y-10">
+               <div className="space-y-8">
                  {data.stats.map((stat: any, i: number) => (
                    <div key={i} className="flex items-start gap-8 group/stat">
                      <div className="text-4xl font-bold text-slate-900 group-hover/stat:text-brand-500 transition-colors">{stat.val}</div>
@@ -134,7 +134,7 @@ const MentorshipDetails = ({ type = "academic" }: MentorshipDetailsProps) => {
                  ))}
                </div>
 
-               <div className="mt-16 pt-10 border-t border-slate-100">
+               <div className="mt-12 pt-8 border-t border-slate-100">
                  <button className="w-full bg-slate-950 text-white font-bold py-5 rounded-2xl hover:bg-brand-600 transition-all text-base shadow-2xl shadow-slate-200 flex items-center justify-center gap-3">
                    {data.cta}
                    <ShieldCheck className="w-5 h-5" />

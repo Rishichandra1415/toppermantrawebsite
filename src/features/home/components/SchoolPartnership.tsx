@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -29,7 +30,8 @@ const PARTNERSHIP_FEATURES = [
     icon: Trophy,
     size: "lg", 
     color: "from-orange-500 to-brand-600",
-    badge: "Exclusive"
+    badge: "Exclusive",
+    image: "/images/market-dominance-v2.png"
   },
   {
     id: 2,
@@ -70,7 +72,8 @@ const PARTNERSHIP_FEATURES = [
     icon: ShieldCheck,
     size: "lg",
     color: "from-brand-500 to-rose-600",
-    badge: "Proven"
+    badge: "Proven",
+    image: "/images/validated-legacy-v2.png"
   }
 ];
 
@@ -94,74 +97,106 @@ const SchoolPartnership = () => {
   }, { scope: sectionRef });
 
   return (
-    <section ref={sectionRef} className="relative w-full py-16 md:py-24 bg-[#fafafa] overflow-hidden font-sans">
-      
-      {/* Editorial Luxury Background */}
-      <div className="absolute inset-0 pointer-events-none opacity-40">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:40px_40px]" />
-        <div className="absolute top-1/4 right-[10%] w-[500px] h-[500px] bg-brand-200/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 left-[5%] w-[600px] h-[600px] bg-blue-200/20 rounded-full blur-[150px]" />
+    <section ref={sectionRef} className="relative w-full py-16 md:py-20 overflow-hidden bg-[#fdfeff]">
+      {/* --- VIBRANT TECH-LIGHT BACKGROUND --- */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Soft Multi-color Blobs */}
+        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-brand-200/30 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[700px] h-[700px] bg-blue-200/30 rounded-full blur-[150px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-100/40 rounded-full blur-[180px]" />
+        
+        {/* Clean Technical Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000003_1px,transparent_1px),linear-gradient(to_bottom,#00000003_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
 
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 md:px-0">
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         
-        {/* Deep Premium Header */}
-        <div className="mb-20 md:mb-32">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
-            <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-3 rounded-full bg-slate-900 px-5 py-2 text-white mb-8 shadow-2xl">
+        {/* --- PREMIUM LIGHT GLASS HEADER --- */}
+        <div className="mb-10 md:mb-16 p-8 md:p-12 rounded-[3rem] bg-white/60 backdrop-blur-2xl border border-white shadow-[0_20px_50px_rgba(0,0,0,0.04)] relative group transition-all duration-500 hover:shadow-[0_30px_70px_rgba(0,0,0,0.06)]">
+          <div className="relative z-10 flex flex-col md:flex-row md:items-end justify-start gap-12 md:gap-20">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-3 rounded-full bg-slate-900 px-5 py-2 text-white mb-8 shadow-xl">
                 <School size={16} className="text-brand-400" />
                 <span className="text-[10px] font-black uppercase tracking-[0.3em]">Institutional Supremacy</span>
               </div>
-              <h2>
-                Partner In Excellence
+              <h2 className="text-slate-900 text-4xl md:text-6xl tracking-tighter leading-none">
+                Partner In <span className="text-brand-500">Excellence</span>
               </h2>
             </div>
-            <p className="text-slate-500 max-w-xs text-base sm:text-lg md:text-xl font-medium leading-relaxed border-l-2 border-slate-200 pl-4 sm:pl-8 pb-1">
-              Empowering leading institutions with India's most elite mentor ecosystem.
+            <p className="text-slate-500 max-w-xs text-base md:text-lg font-medium leading-relaxed border-l-2 border-brand-500/20 pl-8 pb-1">
+              Empowering leading institutions with India&apos;s most elite mentor ecosystem.
             </p>
           </div>
         </div>
 
-        {/* 3D Glass Bento Grid */}
+        {/* --- LIGHT GLASS BENTO GRID --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 gap-4 md:gap-6 h-auto">
           {PARTNERSHIP_FEATURES.map((feature) => (
             <div 
               key={feature.id}
               className={`
-                bento-card group relative rounded-[2.5rem] p-7 md:p-9 border border-white bg-white/40 backdrop-blur-md shadow-[0_20px_50px_rgba(0,0,0,0.03)] overflow-hidden transition-all duration-700
-                ${feature.size === 'lg' ? 'md:col-span-2 lg:row-span-2' : 'col-span-1'}
-                hover:shadow-[0_45px_100px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:bg-white
+                group relative rounded-[2.5rem] p-6 md:p-8 border border-white bg-white/60 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.03)] overflow-hidden transition-all duration-500
+                ${feature.id === 6 ? 'md:col-span-2 lg:col-span-4 lg:row-span-1' : (feature.size === 'lg' ? 'md:col-span-2 lg:row-span-2' : 'col-span-1')}
+                hover:shadow-[0_30px_60px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:bg-white/80
               `}
             >
               <div className="relative z-10 h-full flex flex-col">
                 
-                <div className="flex items-center justify-between mb-6">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br ${feature.color} text-white shadow-lg shadow-brand-500/10`}>
-                    <feature.icon size={22} strokeWidth={1.5} />
+                {/* Wrap in a grid for ID 6 specifically to handle side-by-side image */}
+                <div className={feature.id === 6 ? "grid md:grid-cols-2 gap-8 items-center h-full" : "h-full flex flex-col"}>
+                  
+                  <div className="flex flex-col h-full">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br ${feature.color} text-white shadow-lg shadow-brand-500/10`}>
+                        <feature.icon size={20} strokeWidth={1.5} />
+                      </div>
+                      {feature.badge && (
+                        <span className="text-[7px] font-bold uppercase tracking-widest text-slate-400 border border-white/10 px-2 py-0.5 rounded-full">
+                          {feature.badge}
+                        </span>
+                      )}
+                    </div>
+                    
+                    <h3 className={`font-bold text-slate-900 leading-tight mb-2 ${feature.size === 'lg' ? 'text-xl md:text-2xl' : 'text-base md:text-lg'}`}>
+                      {feature.title}
+                    </h3>
+                    
+                    <p className="text-slate-500 text-[13px] md:text-sm leading-relaxed font-medium">
+                      {feature.desc}
+                    </p>
+
+                    {/* Image for ID 1 (Market Dominance) - Below text */}
+                    {feature.id === 1 && feature.image && (
+                      <div className="mt-4 relative w-full h-36 md:h-44 rounded-2xl overflow-hidden border border-white/5 shadow-sm shrink-0">
+                        <Image src={feature.image} fill className="object-cover" alt={feature.title} />
+                      </div>
+                    )}
+
+                    {feature.size === 'lg' && feature.id !== 6 && (
+                       <div className="mt-auto pt-6">
+                          <div className="flex items-center gap-2 text-brand-500 font-bold text-sm tracking-tight group-hover:gap-4 transition-all">
+                            Institutional Proposal <ArrowRight size={18} />
+                          </div>
+                       </div>
+                    )}
                   </div>
-                  {feature.badge && (
-                    <span className="text-[8px] font-bold uppercase tracking-widest text-slate-400 border border-slate-200 px-2.5 py-1 rounded-full">
-                      {feature.badge}
-                    </span>
+
+                  {/* Image for ID 6 (Validated Legacy) - Beside text on desktop */}
+                  {feature.id === 6 && feature.image && (
+                    <div className="hidden md:block relative w-full h-full min-h-[160px] rounded-2xl overflow-hidden border border-white/5 shadow-sm">
+                      <Image src={feature.image} fill className="object-cover" alt={feature.title} />
+                    </div>
+                  )}
+
+                  {/* ID 6 Proposal link for mobile or integrated in side-by-side */}
+                  {feature.id === 6 && (
+                    <div className="md:hidden mt-4 pt-4 border-t border-white/10">
+                       <div className="flex items-center gap-2 text-brand-500 font-bold text-sm tracking-tight">
+                         Institutional Proposal <ArrowRight size={18} />
+                       </div>
+                    </div>
                   )}
                 </div>
-                
-                <h3 className={`font-bold text-slate-900 leading-tight mb-3 ${feature.size === 'lg' ? 'text-2xl md:text-3xl' : 'text-lg md:text-xl'}`}>
-                  {feature.title}
-                </h3>
-                
-                <p className="text-slate-500 text-sm md:text-base leading-relaxed font-medium">
-                  {feature.desc}
-                </p>
-
-                {feature.size === 'lg' && (
-                   <div className="mt-auto pt-12">
-                      <div className="flex items-center gap-3 text-brand-500 font-bold text-base tracking-tight group-hover:gap-5 transition-all">
-                        Institutional Proposal <ArrowRight size={20} />
-                      </div>
-                   </div>
-                )}
               </div>
 
               {/* Interaction Decor */}
@@ -171,7 +206,7 @@ const SchoolPartnership = () => {
         </div>
 
         {/* High-End Social Proof Footer */}
-        <div className="mt-24 flex flex-col md:flex-row items-center justify-between gap-10 border-t border-slate-100 pt-16">
+        <div className="mt-12 flex flex-col md:flex-row items-center justify-between gap-10 border-t border-slate-100 pt-10">
             <div className="flex items-center gap-6">
                 <div className="flex -space-x-4">
                   {[1,2,3,4].map(i => (

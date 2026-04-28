@@ -189,10 +189,10 @@ const StudentJoinPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAFAFA] selection:bg-brand-500 selection:text-white pt-24 font-sans">
+    <main className="min-h-screen bg-[#FAFAFA] selection:bg-brand-500 selection:text-white pt-16 font-sans">
       {/* Hero Section */}
       <section 
-        className="relative py-12 md:py-20 lg:py-32 overflow-hidden"
+        className="relative pt-0 pb-8 md:pb-12 overflow-hidden"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
@@ -213,7 +213,7 @@ const StudentJoinPage = () => {
             animate="visible"
             className="flex flex-col lg:flex-row items-center gap-16"
           >
-            <div className="flex-1 space-y-8 z-20">
+            <div className="flex-1 space-y-6 z-20">
               <motion.div 
                 variants={fadeUpVariant}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 text-brand-600 border border-brand-100 shadow-sm mx-auto lg:mx-0"
@@ -259,7 +259,7 @@ const StudentJoinPage = () => {
             
             <motion.div 
               variants={fadeUpVariant}
-              className="flex-1 relative flex justify-center items-center h-[400px] sm:h-[500px] lg:h-[650px] perspective-1000 w-full"
+              className="flex-1 relative flex justify-center items-center h-[350px] sm:h-[450px] lg:h-[550px] perspective-1000 w-full"
             >
               {/* Magnetic Student Ecosystem Animation */}
               <div className="relative w-full h-full flex items-center justify-center">
@@ -314,9 +314,9 @@ const StudentJoinPage = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
-          <div className="text-center mb-16 md:mb-20">
+          <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900">Unlock Your Full Potential</h2>
             <p className="mt-4 text-base sm:text-lg text-slate-500 max-w-2xl mx-auto px-4">
               We bridge the gap between hard work and smart work with features designed for winners.
@@ -371,7 +371,7 @@ const StudentJoinPage = () => {
       </section>
 
       {/* Download Section */}
-      <section id="download" className="py-16 md:py-24 bg-slate-900 relative overflow-hidden rounded-[2rem] md:rounded-[3rem] lg:rounded-[4rem] mx-4 md:mx-12 mb-16 md:mb-24">
+      <section id="download" className="py-12 md:py-16 bg-slate-900 relative overflow-hidden rounded-[2rem] md:rounded-[3rem] lg:rounded-[4rem] mx-4 md:mx-12 mb-12 md:mb-16">
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500 rounded-full blur-[120px]" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full blur-[120px]" />
@@ -402,7 +402,7 @@ const StudentJoinPage = () => {
       </section>
 
       {/* --- FORM SECTION (Premium Minimalist Look) --- */}
-      <section id="form" className="py-16 md:py-24 relative overflow-hidden">
+      <section id="form" className="py-12 md:py-16 relative overflow-hidden">
         {/* Background Image with Premium Overlay */}
         <div className="absolute inset-0 -z-10">
           <img 
@@ -421,7 +421,7 @@ const StudentJoinPage = () => {
             transition={{ duration: 0.8 }}
             className="bg-white rounded-[32px] sm:rounded-[40px] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.08)] border border-slate-100 p-8 sm:p-12 md:p-16"
           >
-            <div className="text-center mb-12 md:mb-16">
+            <div className="text-center mb-10">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">Request a Career Session</h2>
               <p className="mt-5 text-slate-500 font-medium max-w-2xl mx-auto text-base sm:text-lg italic px-4">
                 Not sure where to start? Let our experts guide you to the right mentorship path.

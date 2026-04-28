@@ -5,7 +5,7 @@ import { MessageSquare, ArrowRight, Sparkles, Rocket } from "lucide-react";
 
 const FinalCTA = () => {
   return (
-    <section className="relative w-full py-16 lg:py-24 bg-slate-950 overflow-hidden font-sans">
+    <section className="relative w-full py-10 lg:py-14 bg-slate-950 overflow-hidden font-sans">
       
       {/* Cinematic Glow Accents */}
       <div className="absolute inset-0 pointer-events-none z-0">

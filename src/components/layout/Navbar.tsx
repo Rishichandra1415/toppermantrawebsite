@@ -183,6 +183,7 @@ const Navbar = () => {
               {/* Desktop Nav - Enforcing soft text color and medium font weight */}
               {/* NOTE: Make sure to remove font-bold from inside your NavLink component! */}
               <div className="hidden lg:flex items-center gap-6 text-[15px] font-medium text-slate-600">
+                <NavLink href="/">Home</NavLink>
                 <MentorshipMegaMenu />
                 <JoinUsMegaMenu />
                 {/* <NavLink href="/partnership">Partnership</NavLink> */}

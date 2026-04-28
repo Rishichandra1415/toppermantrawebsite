@@ -93,7 +93,7 @@ const WhatWeDoSection = () => {
   const handleNext = () => navigateToService((currentIndex + 1) % SERVICES.length);
 
   return (
-    <section className="relative w-full py-12 md:py-20 bg-brand-50 overflow-hidden flex flex-col justify-center font-sans focus:outline-none">
+    <section className="relative w-full py-8 md:py-12 bg-brand-50 overflow-hidden flex flex-col justify-center font-sans focus:outline-none">
       
       {/* Premium Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -105,7 +105,7 @@ const WhatWeDoSection = () => {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4">
         
         {/* Section Heading */}
-        <div className="section-heading text-center mb-12 md:mb-16">
+        <div className="section-heading text-center mb-8 md:mb-10">
           <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/50 px-4 py-1.5 text-slate-700 mb-5 backdrop-blur-sm">
             <Sparkles className="h-4 w-4 text-brand-500" />
             <span className="text-xs font-bold uppercase tracking-widest">Our Expertise</span>

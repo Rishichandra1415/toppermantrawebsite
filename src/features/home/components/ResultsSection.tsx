@@ -80,7 +80,7 @@ const ResultsSection = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative w-full py-16 lg:py-24 bg-white font-sans">
+    <section ref={containerRef} className="relative w-full py-10 lg:py-14 bg-white font-sans">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 items-center">
           {STATS.map((stat, idx) => (

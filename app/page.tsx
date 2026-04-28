@@ -11,7 +11,7 @@ import {
 
 export default function Home() {
   return (
-    <main className="relative w-full max-w-full overflow-x-hidden bg-white">
+    <main className="relative w-full max-w-full overflow-x-hidden bg-white pt-20">
       
       {/* 1. Hero Journey */}
       <section className="w-full max-w-full overflow-hidden flex items-center bg-white">
