@@ -37,7 +37,81 @@ const staggerContainer: Variants = {
   }
 };
 
+// --- Sub-components for Hook Safety ---
+
+const OrbitingIcon = ({ item, idx, dx, dy, isMobile }: { item: any, idx: number, dx: any, dy: any, isMobile: boolean }) => {
+  const scale = isMobile ? 0.6 : 1;
+  
+  // Hooks called at the top level of the component
+  const xTransform = useTransform(dx, [-500, 500], [item.x - 30, item.x + 30]);
+  const yTransform = useTransform(dy, [-500, 500], [item.y - 30, item.y + 30]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      animate={isMobile ? { 
+        opacity: 1, 
+        scale: 1,
+        y: [item.y * scale, (item.y * scale) - 10, item.y * scale],
+        transition: { 
+          y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: idx * 0.5 },
+          opacity: { delay: 0.6 + idx * 0.15 },
+          scale: { delay: 0.6 + idx * 0.15 }
+        }
+      } : { opacity: 1, scale: 1 }}
+      transition={{ delay: 0.6 + idx * 0.15, type: "spring", stiffness: 200 }}
+      style={{ 
+        x: isMobile ? item.x * scale : xTransform,
+        y: isMobile ? item.y * scale : yTransform
+      }}
+      className="absolute p-3 sm:p-4 bg-white/90 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-white flex flex-col items-center gap-2 sm:gap-3 cursor-pointer group"
+      whileHover={{ scale: 1.1, y: -5, zIndex: 30 }}
+    >
+      <div className={`p-2 sm:p-3 rounded-xl ${item.bg} ${item.color} group-hover:scale-110 transition-transform`}>
+        <item.icon size={isMobile ? 20 : 26} strokeWidth={2} />
+      </div>
+      <span className="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover:text-slate-800 transition-colors">
+        {item.label}
+      </span>
+    </motion.div>
+  );
+};
+
+const InteractiveBadge = ({ dx, dy, isMobile }: { dx: any, dy: any, isMobile: boolean }) => {
+  const xTransform = useTransform(dx, [-500, 500], [-10, 10]);
+  const yTransform = useTransform(dy, [-500, 500], [10, -10]);
+
+  return (
+    <motion.div 
+      style={{ 
+        x: isMobile ? 0 : xTransform,
+        y: isMobile ? 0 : yTransform
+      }}
+      className="absolute bottom-4 left-0 sm:-left-8 bg-white p-3 sm:p-4 rounded-2xl shadow-xl border border-slate-50 z-20 flex items-center gap-3 sm:gap-4"
+    >
+      <div className="relative">
+        <div className="absolute inset-0 bg-green-400 rounded-full blur opacity-40 animate-pulse"></div>
+        <CheckCircle2 size={isMobile ? 24 : 32} className="text-green-500 relative z-10 bg-white rounded-full" />
+      </div>
+      <div>
+        <div className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">50+</div>
+        <div className="text-[8px] sm:text-[10px] text-slate-500 font-bold uppercase tracking-widest">Partner Schools</div>
+      </div>
+    </motion.div>
+  );
+};
+
 const SchoolJoinPage = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile for responsive animations
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   // Smooth Mouse Tracking for High-End Interactivity
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -51,6 +125,7 @@ const SchoolJoinPage = () => {
   const rotateY = useTransform(dx, [-400, 400], [-12, 12]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (isMobile) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
@@ -68,7 +143,7 @@ const SchoolJoinPage = () => {
       
       {/* --- HERO SECTION --- */}
       <section 
-        className="relative py-20 lg:py-32 overflow-hidden"
+        className="relative py-12 md:py-20 lg:py-32 overflow-hidden"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
@@ -94,7 +169,7 @@ const SchoolJoinPage = () => {
                 <span className="text-xs font-bold text-slate-800 uppercase tracking-widest">Institutional Partnership</span>
               </motion.div>
               
-              <motion.h1 variants={fadeUpVariant} className="text-5xl lg:text-[72px] font-bold text-slate-900 leading-[1.1] tracking-tight">
+              <motion.h1 variants={fadeUpVariant} className="text-4xl sm:text-5xl lg:text-[72px] font-bold text-slate-900 leading-[1.1] tracking-tight text-center lg:text-left">
                 Empower Your <br/> Students with <span className="text-brand-500 relative">
                   Elite Mentorship
                   <svg className="absolute w-full h-3 -bottom-1 left-0 text-brand-300 opacity-60" viewBox="0 0 100 10" preserveAspectRatio="none">
@@ -103,18 +178,18 @@ const SchoolJoinPage = () => {
                 </span>
               </motion.h1>
               
-              <motion.p variants={fadeUpVariant} className="text-lg text-slate-500 max-w-xl leading-relaxed font-medium">
+              <motion.p variants={fadeUpVariant} className="text-base sm:text-lg text-slate-500 max-w-xl leading-relaxed font-medium text-center lg:text-left mx-auto lg:mx-0">
                 Partner with TopperMantra to bring India's top 1% achievers directly to your campus. Bridge the gap between academic theory and competitive success.
               </motion.p>
               
-              <motion.div variants={fadeUpVariant} className="flex flex-wrap gap-5 pt-4">
-                <button className="relative group overflow-hidden rounded-full bg-slate-900 text-white px-8 py-4 font-semibold shadow-2xl transition-all hover:shadow-[0_0_40px_rgba(15,23,42,0.3)] hover:-translate-y-1">
+              <motion.div variants={fadeUpVariant} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-5 pt-4">
+                <button className="w-full sm:w-auto relative group overflow-hidden rounded-full bg-slate-900 text-white px-8 py-4 font-semibold shadow-2xl transition-all hover:shadow-[0_0_40px_rgba(15,23,42,0.3)] hover:-translate-y-1">
                   <div className="absolute inset-0 bg-brand-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="relative z-10 flex items-center gap-2">
+                  <span className="relative z-10 flex items-center justify-center gap-2">
                     Partner With Us <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                   </span>
                 </button>
-                <button className="rounded-full bg-white text-slate-700 px-8 py-4 font-semibold border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm">
+                <button className="w-full sm:w-auto rounded-full bg-white text-slate-700 px-8 py-4 font-semibold border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm">
                   Learn More
                 </button>
               </motion.div>
@@ -125,69 +200,43 @@ const SchoolJoinPage = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="flex-1 relative flex justify-center items-center h-[500px] lg:h-[650px] perspective-1000"
+              className="flex-1 relative flex justify-center items-center h-[400px] sm:h-[500px] lg:h-[650px] perspective-1000 w-full"
             >
               <div className="relative w-full h-full flex items-center justify-center">
                 
                 {/* Magnetic Central Hub */}
                 <motion.div 
                   style={{ rotateX, rotateY }}
-                  className="relative z-10 w-56 h-56 bg-white/80 backdrop-blur-xl rounded-[40px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] flex items-center justify-center border border-white/50 cursor-pointer"
+                  className="relative z-10 w-40 h-40 sm:w-56 sm:h-56 bg-white/80 backdrop-blur-xl rounded-[32px] sm:rounded-[40px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] flex items-center justify-center border border-white/50 cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 >
-                  <div className="absolute inset-0 bg-brand-400/20 rounded-[40px] blur-3xl animate-pulse" />
-                  <div className="bg-gradient-to-br from-slate-800 to-slate-950 w-36 h-36 rounded-[28px] flex items-center justify-center text-white shadow-2xl relative overflow-hidden">
+                  <div className="absolute inset-0 bg-brand-400/20 rounded-[32px] sm:rounded-[40px] blur-3xl animate-pulse" />
+                  <div className="bg-gradient-to-br from-slate-800 to-slate-950 w-24 h-24 sm:w-36 sm:h-36 rounded-[20px] sm:rounded-[28px] flex items-center justify-center text-white shadow-2xl relative overflow-hidden">
                     <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-20 mix-blend-overlay"></div>
-                    <School size={64} strokeWidth={1.5} className="relative z-10 text-brand-100" />
+                    <School size={isMobile ? 40 : 64} strokeWidth={1.5} className="relative z-10 text-brand-100" />
                   </div>
                 </motion.div>
 
                 {/* Interactive Orbiting Icons */}
                 {[
                   { icon: GraduationCap, label: "Mentorship", color: "text-brand-500", bg: "bg-brand-50", x: -180, y: -140 },
-                  { icon: Sparkles, label: "Success", color: "text-slate-900", bg: "bg-slate-50", x: 200, y: -100 },
-                  { icon: Users, label: "Growth", color: "text-brand-500", bg: "bg-brand-50", x: 60, y: 200 },
-                  { icon: LineChart, label: "Results", color: "text-slate-900", bg: "bg-slate-50", x: -200, y: 150 }
+                  { icon: Sparkles, label: "Success", color: "text-slate-900", bg: "bg-slate-50", x: 160, y: -100 },
+                  { icon: Users, label: "Growth", color: "text-brand-500", bg: "bg-brand-50", x: 60, y: 160 },
+                  { icon: LineChart, label: "Results", color: "text-slate-900", bg: "bg-slate-50", x: -160, y: 120 }
                 ].map((item, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.6 + idx * 0.15, type: "spring", stiffness: 200 }}
-                    style={{ 
-                      x: useTransform(dx, [-500, 500], [item.x - 30, item.x + 30]),
-                      y: useTransform(dy, [-500, 500], [item.y - 30, item.y + 30])
-                    }}
-                    className="absolute p-4 bg-white/90 backdrop-blur-md rounded-2xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-white flex flex-col items-center gap-3 cursor-pointer group"
-                    whileHover={{ scale: 1.1, y: -5, zIndex: 30 }}
-                  >
-                    <div className={`p-3 rounded-xl ${item.bg} ${item.color} group-hover:scale-110 transition-transform`}>
-                      <item.icon size={26} strokeWidth={2} />
-                    </div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover:text-slate-800 transition-colors">
-                      {item.label}
-                    </span>
-                  </motion.div>
+                  <OrbitingIcon 
+                    key={idx} 
+                    item={item} 
+                    idx={idx} 
+                    dx={dx} 
+                    dy={dy} 
+                    isMobile={isMobile} 
+                  />
                 ))}
 
                 {/* Floating Badges */}
-                <motion.div 
-                  style={{ 
-                    x: useTransform(dx, [-500, 500], [-10, 10]),
-                    y: useTransform(dy, [-500, 500], [10, -10])
-                  }}
-                  className="absolute bottom-4 -left-8 bg-white p-4 rounded-2xl shadow-xl border border-slate-50 z-20 flex items-center gap-4"
-                >
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-green-400 rounded-full blur opacity-40 animate-pulse"></div>
-                    <CheckCircle2 size={32} className="text-green-500 relative z-10 bg-white rounded-full" />
-                  </div>
-                  <div>
-                    <div className="text-2xl font-black text-slate-900 tracking-tight">50+</div>
-                    <div className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Partner Schools</div>
-                  </div>
-                </motion.div>
+                <InteractiveBadge dx={dx} dy={dy} isMobile={isMobile} />
               </div>
             </motion.div>
           </div>
@@ -195,15 +244,15 @@ const SchoolJoinPage = () => {
       </section>
 
       {/* --- WHY US SECTION --- */}
-      <section className="py-24 bg-white relative">
+      <section className="py-16 md:py-24 bg-white relative">
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
           <motion.div 
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }}
             variants={fadeUpVariant}
             className="text-center mb-20"
           >
-            <h2 className="text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">Why Partner with Us?</h2>
-            <p className="mt-5 text-lg text-slate-500 max-w-2xl mx-auto font-medium">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">Why Partner with Us?</h2>
+            <p className="mt-5 text-base sm:text-lg text-slate-500 max-w-2xl mx-auto font-medium">
               We provide more than just mentorship; we offer a <span className="text-slate-900 font-semibold">complete ecosystem</span> for student excellence.
             </p>
           </motion.div>
@@ -221,13 +270,13 @@ const SchoolJoinPage = () => {
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.2, duration: 0.6 }}
                 whileHover={{ y: -8 }}
-                className="group relative p-10 rounded-[32px] bg-slate-50 hover:bg-white border border-slate-100 hover:border-brand-100 transition-all duration-300 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)]"
+                className="group relative p-8 sm:p-10 rounded-[24px] sm:rounded-[32px] bg-slate-50 hover:bg-white border border-slate-100 hover:border-brand-100 transition-all duration-300 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)]"
               >
-                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-brand-600 shadow-sm mb-8 border border-slate-100 group-hover:bg-brand-50 group-hover:scale-110 transition-all">
-                  <feature.icon size={32} strokeWidth={1.5} />
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-2xl flex items-center justify-center text-brand-600 shadow-sm mb-6 sm:mb-8 border border-slate-100 group-hover:bg-brand-50 group-hover:scale-110 transition-all">
+                  <feature.icon size={isMobile ? 28 : 32} strokeWidth={1.5} />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">{feature.title}</h3>
-                <p className="text-slate-500 text-base leading-relaxed">{feature.desc}</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3 sm:mb-4 tracking-tight">{feature.title}</h3>
+                <p className="text-slate-500 text-sm sm:text-base leading-relaxed">{feature.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -235,7 +284,7 @@ const SchoolJoinPage = () => {
       </section>
 
       {/* --- FORM SECTION (Premium Minimalist Look) --- */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-16 md:py-24 relative overflow-hidden">
         {/* Background Image with Premium Overlay */}
         <div className="absolute inset-0 -z-10">
           <img 
@@ -252,13 +301,13 @@ const SchoolJoinPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="bg-white rounded-[40px] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.08)] border border-slate-100 flex flex-col lg:flex-row"
+            className="bg-white rounded-[32px] sm:rounded-[40px] overflow-hidden shadow-[0_40px_100px_-20px_rgba(0,0,0,0.08)] border border-slate-100 flex flex-col lg:flex-row"
           >
             {/* Form Left Side (Branding Info) */}
-            <div className="lg:w-2/5 bg-slate-50/50 p-10 lg:p-14 border-r border-slate-100 flex flex-col justify-between">
+            <div className="lg:w-2/5 bg-slate-50/50 p-8 sm:p-10 lg:p-14 border-r border-slate-100 flex flex-col justify-between">
               <div>
-                <h2 className="text-3xl font-bold text-slate-900 tracking-tight mb-4">Let's Build the Future</h2>
-                <p className="text-slate-500 leading-relaxed font-medium">
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mb-4">Let's Build the Future</h2>
+                <p className="text-slate-500 text-sm sm:text-base leading-relaxed font-medium">
                   Fill out the form and our institutional head will reach out to you within <span className="text-brand-500 font-bold underline decoration-brand-100 underline-offset-4">24 hours</span>.
                 </p>
               </div>
@@ -276,9 +325,9 @@ const SchoolJoinPage = () => {
             </div>
 
             {/* Form Right Side (Inputs) */}
-            <div className="lg:w-3/5 p-10 lg:p-14 bg-white">
-              <form className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="lg:w-3/5 p-8 sm:p-10 lg:p-14 bg-white">
+              <form className="space-y-6 sm:space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                   <div className="space-y-3">
                     <label className="text-[11px] font-bold text-slate-500 uppercase tracking-widest ml-1">School Name</label>
                     <input type="text" placeholder="Enter school name" className="w-full px-6 py-4 bg-slate-50 border-none rounded-2xl text-slate-900 text-sm focus:ring-2 focus:ring-brand-500/20 focus:bg-white transition-all outline-none placeholder:text-slate-400" />

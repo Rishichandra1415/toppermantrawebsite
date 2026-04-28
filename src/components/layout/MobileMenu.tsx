@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, GraduationCap, Trophy, Lightbulb, ChevronRight } from "lucide-react";
+import { X, GraduationCap, Trophy, Lightbulb, ChevronRight, Info, MessageSquare } from "lucide-react";
 import Link from "next/link";
 import Button from "../common/Button";
 
@@ -12,8 +12,8 @@ interface MobileMenuProps {
 }
 
 const navLinks = [
-  { name: "About Us", href: "/about" },
-  { name: "Contact", href: "/contact" },
+  { name: "About Us", href: "/about", icon: Info },
+  { name: "Contact", href: "/contact", icon: MessageSquare },
 ];
 
 const joinUsItems = [
@@ -28,6 +28,9 @@ const mentorshipItems = [
 ];
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
+  const [isMentorshipOpen, setIsMentorshipOpen] = React.useState(false);
+  const [isJoinUsOpen, setIsJoinUsOpen] = React.useState(false);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -50,7 +53,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             className="fixed top-0 right-0 h-full w-[300px] bg-white shadow-2xl z-[100] p-6 flex flex-col"
           >
             <div className="flex items-center justify-between mb-8">
-              <span className="text-xl font-display font-black text-brand-600">TopperMantra</span>
+              <span className="text-xl font-display font-black text-brand-600 tracking-tight">TopperMantra</span>
               <button
                 onClick={onClose}
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -59,58 +62,112 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
               </button>
             </div>
 
-            <nav className="space-y-6 flex-1 overflow-y-auto">
+            <nav className="space-y-6 flex-1 overflow-y-auto pr-2 custom-scrollbar">
+              {/* Mentorship Dropdown Section */}
               <div>
-                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Mentorship</h3>
-                <div className="space-y-3">
-                  {mentorshipItems.map((item, idx) => (
-                    <Link
-                      key={idx}
-                      href={item.href}
-                      className="flex items-center justify-between p-3 rounded-xl bg-gray-50 hover:bg-brand-50 transition-colors group"
-                      onClick={onClose}
+                <button 
+                  onClick={() => setIsMentorshipOpen(!isMentorshipOpen)}
+                  className="w-full flex items-center justify-between py-2 text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-brand-600 transition-colors"
+                >
+                  Mentorship
+                  <motion.div
+                    animate={{ rotate: isMentorshipOpen ? 90 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </motion.div>
+                </button>
+                
+                <AnimatePresence>
+                  {isMentorshipOpen && (
+                    <motion.div 
+                      initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                      animate={{ height: "auto", opacity: 1, marginTop: 16 }}
+                      exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                      className="space-y-3 overflow-hidden"
                     >
-                      <div className="flex items-center gap-3">
-                        <item.icon className="w-5 h-5 text-brand-600" />
-                        <span className="font-medium text-gray-700">{item.name}</span>
-                      </div>
-                      <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-brand-500 transform group-hover:translate-x-1 transition-all" />
-                    </Link>
-                  ))}
-                </div>
+                      {mentorshipItems.map((item, idx) => (
+                        <Link
+                          key={idx}
+                          href={item.href}
+                          className="flex items-center justify-between p-3 rounded-xl bg-gray-50 hover:bg-brand-50 transition-colors group"
+                          onClick={onClose}
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="p-1.5 bg-white rounded-lg shadow-sm">
+                              <item.icon className="w-4 h-4 text-brand-600" />
+                            </div>
+                            <span className="font-medium text-sm text-gray-700">{item.name}</span>
+                          </div>
+                          <ChevronRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-brand-500 transform group-hover:translate-x-0.5 transition-all" />
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Join Us Dropdown Section */}
+              <div>
+                <button 
+                  onClick={() => setIsJoinUsOpen(!isJoinUsOpen)}
+                  className="w-full flex items-center justify-between py-2 text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-brand-600 transition-colors"
+                >
+                  Join Us
+                  <motion.div
+                    animate={{ rotate: isJoinUsOpen ? 90 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </motion.div>
+                </button>
+                
+                <AnimatePresence>
+                  {isJoinUsOpen && (
+                    <motion.div 
+                      initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                      animate={{ height: "auto", opacity: 1, marginTop: 16 }}
+                      exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                      className="space-y-3 overflow-hidden"
+                    >
+                      {joinUsItems.map((item, idx) => (
+                        <Link
+                          key={idx}
+                          href={item.href}
+                          className="flex items-center justify-between p-3 rounded-xl bg-gray-50 hover:bg-brand-50 transition-colors group"
+                          onClick={onClose}
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="p-1.5 bg-white rounded-lg shadow-sm">
+                              <item.icon className="w-4 h-4 text-brand-600" />
+                            </div>
+                            <span className="font-medium text-sm text-gray-700">{item.name}</span>
+                          </div>
+                          <ChevronRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-brand-500 transform group-hover:translate-x-0.5 transition-all" />
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               <div>
-                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Join Us</h3>
+                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Links</h3>
                 <div className="space-y-3">
-                  {joinUsItems.map((item, idx) => (
-                    <Link
-                      key={idx}
-                      href={item.href}
-                      className="flex items-center justify-between p-3 rounded-xl bg-gray-50 hover:bg-brand-50 transition-colors group"
-                      onClick={onClose}
-                    >
-                      <div className="flex items-center gap-3">
-                        <item.icon className="w-5 h-5 text-brand-600" />
-                        <span className="font-medium text-gray-700">{item.name}</span>
-                      </div>
-                      <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-brand-500 transform group-hover:translate-x-1 transition-all" />
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">Links</h3>
-                <div className="space-y-2">
                   {navLinks.map((link, idx) => (
                     <Link
                       key={idx}
                       href={link.href}
-                      className="block py-2 text-lg font-medium text-gray-800 hover:text-brand-600 transition-colors"
+                      className="flex items-center justify-between p-3 rounded-xl bg-gray-50 hover:bg-brand-50 transition-all group"
                       onClick={onClose}
                     >
-                      {link.name}
+                      <div className="flex items-center gap-3">
+                        <div className="p-1.5 bg-white rounded-lg shadow-sm">
+                          <link.icon className="w-4 h-4 text-brand-600" />
+                        </div>
+                        <span className="font-medium text-sm text-gray-700">{link.name}</span>
+                      </div>
+                      <ChevronRight className="w-3.5 h-3.5 text-gray-300 group-hover:text-brand-500 transform group-hover:translate-x-0.5 transition-all" />
                     </Link>
                   ))}
                 </div>
