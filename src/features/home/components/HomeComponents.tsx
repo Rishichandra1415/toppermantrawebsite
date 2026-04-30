@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useRef, useState } from "react";
@@ -74,46 +75,46 @@ export const HomeHero = () => {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="relative w-full overflow-hidden bg-slate-950 font-sans pt-6 pb-10 lg:pt-10 lg:pb-12 min-h-[75vh] flex flex-col justify-center border-b border-brand-500/10">
+    <section ref={containerRef} className="relative w-full overflow-hidden bg-[#f8fafc] font-sans pt-6 pb-10 lg:pt-10 lg:pb-12 min-h-[75vh] flex flex-col justify-center border-b border-slate-200/50">
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-5%] left-[-5%] w-[400px] h-[400px] rounded-full bg-brand-500/10 blur-[100px]" />
-        <div className="parallax-bg absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-orange-400/5 blur-[120px]" />
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.04] mix-blend-overlay" />
+        <div className="absolute top-[-5%] left-[-5%] w-[400px] h-[400px] rounded-full bg-brand-400/15 blur-[100px]" />
+        <div className="parallax-bg absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-amber-400/10 blur-[120px]" />
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.02] mix-blend-overlay" />
       </div>
 
       <div className="relative z-10 mx-auto grid w-full max-w-[1440px] items-center gap-8 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-6">
         <div className="z-20 mx-auto w-full max-w-2xl text-center lg:mx-0 lg:text-left flex flex-col items-center lg:items-start">
-          <div className="hero-badge inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3.5 py-1 mb-5 shadow-[0_0_15px_rgba(255,91,46,0.1)] backdrop-blur-md">
-            <Shield className="h-3 w-3 text-brand-400" />
-            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.1em] text-slate-300">
+          <div className="hero-badge inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/70 px-3.5 py-1 mb-5 shadow-[0_8px_20px_rgba(0,0,0,0.04)] backdrop-blur-xl">
+            <Shield className="h-3 w-3 text-brand-500" />
+            <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.1em] text-slate-700">
               India's Premier Mentorship <span className="text-brand-500 mx-1">•</span> JEE <span className="text-brand-400 mx-1">•</span> NEET
             </span>
           </div>
 
-          <h1 ref={titleRef} className="hero-title text-white text-4xl sm:text-5xl lg:text-[60px] font-extrabold leading-[1.05] tracking-tight mb-5">
+          <h1 ref={titleRef} className="hero-title text-slate-900 text-4xl sm:text-5xl lg:text-[60px] font-extrabold leading-[1.05] tracking-tight mb-5">
             Connect with the <br className="hidden sm:block" />
-            <span className="text-gradient drop-shadow-[0_0_20px_rgba(255,91,46,0.3)]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-orange-400 drop-shadow-[0_4px_10px_rgba(255,91,46,0.15)]">
               Top 1%.
             </span> <br />
             Master Your Future.
           </h1>
 
-          <p className="hero-desc mb-6 mx-auto lg:mx-0 max-w-lg text-slate-400 text-sm sm:text-base leading-relaxed font-medium">
-            <strong className="text-white font-semibold">TopperMantra</strong> bridges the gap between effort and excellence by connecting you with mentors who have already conquered the summit.
+          <p className="hero-desc mb-6 mx-auto lg:mx-0 max-w-lg text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
+            <strong className="text-slate-900 font-bold">TopperMantra</strong> bridges the gap between effort and excellence by connecting you with mentors who have already conquered the summit.
           </p>
 
-          <div className="w-full flex flex-row flex-wrap lg:flex-nowrap gap-3 mb-6 border border-slate-800 bg-slate-900/60 rounded-xl p-3 backdrop-blur-md">
+          <div className="w-full flex flex-row flex-wrap lg:flex-nowrap gap-3 mb-6 border border-white/60 bg-white/50 rounded-2xl p-3 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.03)]">
             {[
-              { icon: BookOpen, color: "text-brand-400", bg: "bg-brand-500/10", num: "500+", label: "Verified Toppers" },
-              { icon: Shield, color: "text-orange-400", bg: "bg-orange-500/10", num: "AIR 1+", label: "Rank Holders" },
-              { icon: TrendingUp, color: "text-amber-400", bg: "bg-amber-500/10", num: "10k+", label: "Students Guided" },
+              { icon: BookOpen, color: "text-brand-500", bg: "bg-brand-50", num: "500+", label: "Verified Toppers" },
+              { icon: Shield, color: "text-orange-500", bg: "bg-orange-50", num: "AIR 1+", label: "Rank Holders" },
+              { icon: TrendingUp, color: "text-amber-500", bg: "bg-amber-50", num: "10k+", label: "Students Guided" },
             ].map((stat, i) => (
-              <div key={i} className="hero-stats-card flex-1 min-w-[110px] flex flex-col items-start p-2.5 rounded-lg hover:bg-slate-800/50 transition-colors border border-transparent hover:border-brand-500/20 group">
-                <div className={`p-1.5 rounded-md ${stat.bg} mb-2 group-hover:scale-105 transition-transform`}>
+              <div key={i} className="hero-stats-card flex-1 min-w-[110px] flex flex-col items-start p-2.5 rounded-xl hover:bg-white/80 transition-colors border border-transparent hover:border-slate-100 hover:shadow-sm group">
+                <div className={`p-1.5 rounded-lg ${stat.bg} mb-2 group-hover:scale-105 transition-transform border border-white`}>
                   <stat.icon className={`w-4 h-4 ${stat.color}`} />
                 </div>
-                <h3 className="text-white font-bold text-base">{stat.num}</h3>
-                <p className="text-[9px] text-slate-400 font-semibold uppercase tracking-wider mt-0.5 group-hover:text-brand-300 transition-colors">{stat.label}</p>
+                <h3 className="text-slate-900 font-black text-base">{stat.num}</h3>
+                <p className="text-[9px] text-slate-500 font-bold uppercase tracking-wider mt-0.5 group-hover:text-brand-600 transition-colors">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -123,11 +124,11 @@ export const HomeHero = () => {
               href="https://play.google.com/store/apps/details?id=com.support.toppers.mantra&pcampaignid=web_share&pli=1"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative w-full sm:w-auto flex items-center justify-center rounded-lg px-7 py-3 bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_rgba(255,91,46,0.3)]"
+              className="group relative w-full sm:w-auto flex items-center justify-center rounded-xl px-7 py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm transition-all hover:scale-[1.02] active:scale-95 shadow-[0_10px_25px_rgba(255,91,46,0.25)]"
             >
               Start Learning Now <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
-            <button className="w-full sm:w-auto rounded-lg px-7 py-3 font-semibold text-slate-300 text-sm border border-slate-700 bg-slate-900/50 hover:border-brand-500/50 hover:text-brand-400 transition-colors backdrop-blur-sm">
+            <button className="w-full sm:w-auto rounded-xl px-7 py-3.5 font-bold text-slate-700 text-sm border border-slate-200 bg-white/60 hover:border-brand-500/30 hover:bg-white hover:text-brand-600 transition-all backdrop-blur-md shadow-sm hover:shadow-md">
               Explore Courses
             </button>
           </div>
@@ -153,31 +154,31 @@ export const HomeHero = () => {
 
           <div className="orbit-wrapper absolute inset-0 h-full w-full">
             {HERO_TOPPERS.map((topper, index) => {
-              const neonColors = [
-                "border-brand-500/50 shadow-[0_0_15px_rgba(255,91,46,0.2)]",
-                "border-orange-400/50 shadow-[0_0_15px_rgba(251,146,60,0.2)]",
-                "border-amber-500/50 shadow-[0_0_15px_rgba(245,158,11,0.2)]"
+              const premiumShadows = [
+                "shadow-[0_12px_30px_rgba(255,91,46,0.12)] border-white/80",
+                "shadow-[0_12px_30px_rgba(251,146,60,0.12)] border-white/80",
+                "shadow-[0_12px_30px_rgba(245,158,11,0.12)] border-white/80"
               ];
-              const colorClass = neonColors[index % neonColors.length];
+              const shadowClass = premiumShadows[index % premiumShadows.length];
 
               return (
                 <div key={topper.id} className="topper-node absolute flex items-center justify-center z-10" style={{ left: topper.x, top: topper.y }}>
                   <div className="group h-[85px] w-[85px] sm:h-[100px] sm:w-[100px] [perspective:1000px] -translate-x-1/2 -translate-y-1/2">
                     <div className="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)] cursor-pointer">
-                      <div className={`absolute inset-0 [backface-visibility:hidden] flex flex-col items-center justify-center rounded-2xl border ${colorClass} bg-slate-900/90 backdrop-blur-md`}>
-                        <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center overflow-hidden rounded-full bg-slate-800 mb-1 border border-slate-700">
+                      <div className={`absolute inset-0 [backface-visibility:hidden] flex flex-col items-center justify-center rounded-3xl border ${shadowClass} bg-white/80 backdrop-blur-xl`}>
+                        <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center overflow-hidden rounded-full bg-slate-50 mb-1 border border-slate-100">
                           <Image src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${topper.name}`} alt={topper.name} width={48} height={48} className="object-cover" />
                         </div>
-                        <span className="text-[10px] sm:text-[11px] font-bold text-white tracking-wide">{topper.name}</span>
+                        <span className="text-[10px] sm:text-[11px] font-black text-slate-800 tracking-wide">{topper.name}</span>
                       </div>
-                      <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col items-center justify-center rounded-2xl border border-brand-400 bg-brand-500/10 backdrop-blur-xl shadow-[0_0_20px_rgba(255,91,46,0.4)] p-2">
+                      <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] flex flex-col items-center justify-center rounded-3xl border border-brand-200 bg-gradient-to-br from-white to-brand-50 backdrop-blur-xl shadow-[0_15px_35px_rgba(255,91,46,0.15)] p-2">
                         <div className="flex-grow flex items-center justify-center">
-                          <p className="text-[9px] sm:text-[10px] font-medium text-slate-200 text-center leading-tight">
+                          <p className="text-[9px] sm:text-[10px] font-bold text-slate-700 text-center leading-tight">
                             "{topper.mantra}"
                           </p>
                         </div>
-                        <div className="border-t border-brand-500/30 w-full pt-1 text-center mt-1">
-                          <span className="text-[10px] font-black text-brand-400 uppercase tracking-wider">{topper.rank}</span>
+                        <div className="border-t border-brand-200 w-full pt-1 text-center mt-1">
+                          <span className="text-[10px] font-black text-brand-600 uppercase tracking-wider">{topper.rank}</span>
                         </div>
                       </div>
                     </div>
@@ -189,15 +190,15 @@ export const HomeHero = () => {
 
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0 flex flex-col items-center">
             <div className="relative mb-3">
-              <div className="absolute inset-0 h-28 w-28 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-brand-500/20 blur-xl sm:h-36 sm:w-36" />
-              <div className="group relative z-10 flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border border-brand-500/50 bg-gradient-to-b from-slate-800 to-slate-950 p-2 shadow-[0_0_30px_rgba(255,91,46,0.3)] transition-transform hover:scale-105 hover:border-brand-400 sm:h-36 sm:w-36">
-                <Image src="https://api.dicebear.com/7.x/avataaars/svg?seed=student" alt="Student" width={120} height={120} className="object-contain opacity-90" />
+              <div className="absolute inset-0 h-28 w-28 animate-[pulse_3s_ease-in-out_infinite] rounded-full bg-brand-400/20 blur-xl sm:h-36 sm:w-36" />
+              <div className="group relative z-10 flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border-4 border-white bg-slate-50 p-2 shadow-[0_20px_50px_rgba(255,91,46,0.15)] transition-transform hover:scale-105 hover:border-brand-50 sm:h-36 sm:w-36">
+                <Image src="https://api.dicebear.com/7.x/avataaars/svg?seed=student" alt="Student" width={120} height={120} className="object-contain" />
               </div>
             </div>
             <div className="relative w-40 sm:w-48 h-10 flex flex-col items-center -mt-5 z-20">
-              <div className="w-full h-3 bg-gradient-to-r from-slate-900 via-brand-500/80 to-slate-900 rounded-[50%] shadow-[0_0_15px_rgba(255,91,46,0.4)] z-10" />
-              <div className="w-[85%] h-6 bg-gradient-to-b from-slate-800 to-slate-950 rounded-b-full border-b border-brand-500/30 flex items-center justify-center -mt-1.5">
-                <span className="text-[9px] font-black uppercase tracking-[0.2em] text-brand-100 pt-1">Your Rank</span>
+              <div className="w-full h-3 bg-gradient-to-r from-transparent via-brand-400 to-transparent rounded-[50%] shadow-[0_4px_15px_rgba(255,91,46,0.3)] z-10" />
+              <div className="w-[85%] h-7 bg-white rounded-b-full border border-t-0 border-slate-200 shadow-md flex items-center justify-center -mt-1.5">
+                <span className="text-[9px] font-black uppercase tracking-[0.2em] text-slate-700 pt-1">Your Rank</span>
               </div>
             </div>
           </div>
@@ -698,8 +699,8 @@ export const MentorsSection = () => {
 
         <div className="mt-8 text-center">
             <a href="https://play.google.com/store/apps/details?id=com.support.toppers.mantra&pcampaignid=web_share&pli=1" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-full text-xs font-bold hover:bg-brand-500 transition-all shadow-xl active:scale-95">
-                View All Mentors in App
-                <Star size={14} fill="currentColor" className="text-brand-400" />
+               View All Mentors in App
+               <Star size={14} fill="currentColor" className="text-brand-400" />
             </a>
         </div>
       </div>
@@ -922,3 +923,4 @@ export const FinalCTA = () => {
     </section>
   );
 };
+
