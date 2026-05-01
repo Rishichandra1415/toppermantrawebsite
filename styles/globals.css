@@ -120,10 +120,6 @@ body {
 }
 
 @layer utilities {
-  .font-playfair {
-    font-family: var(--font-playfair), serif;
-  }
-  
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -137,6 +133,27 @@ body {
     background-clip: text;
     color: transparent;
     background-image: linear-gradient(to right, var(--brand-400), var(--brand-600));
+  }
+
+  /* School Premium Typography System */
+  .premium-h1 {
+    @apply font-sans text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight;
+  }
+
+  .premium-h2 {
+    @apply font-sans text-3xl sm:text-4xl lg:text-[42px] font-extrabold leading-[1.1] tracking-tight;
+  }
+
+  .premium-h3 {
+    @apply font-sans text-xl sm:text-2xl font-bold tracking-tight;
+  }
+
+  .premium-p {
+    @apply font-sans text-sm sm:text-base text-slate-500 leading-relaxed font-medium;
+  }
+
+  .premium-p-small {
+    @apply font-sans text-[10px] font-bold uppercase tracking-widest text-slate-400;
   }
 }
 

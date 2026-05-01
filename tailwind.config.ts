@@ -36,7 +36,6 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "ui-sans-serif", "system-ui"],
-        serif: ["var(--font-playfair)", "serif"],
         display: ["var(--font-inter)", "ui-sans-serif", "system-ui"],
       },
     },

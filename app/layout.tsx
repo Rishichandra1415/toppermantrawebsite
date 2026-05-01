@@ -1,15 +1,10 @@
 import "../styles/globals.css";
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Providers } from "@/store/Providers";
 import MainLayout from "@/components/layout/MainLayout";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({ 
-  subsets: ["latin"], 
-  weight: ["400", "500", "600", "700", "900"],
-  variable: "--font-playfair" 
-});
 
 export const metadata: Metadata = {
   title: "TopperMantra | Scalable EdTech Platform",
@@ -23,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} font-sans`}>
+      <body className={`${inter.variable} font-sans`}>
         <Providers>
           <MainLayout>{children}</MainLayout>
         </Providers>

@@ -91,15 +91,26 @@ export const HomeHero = () => {
             </span>
           </div>
 
-          <h1 ref={titleRef} className="hero-title text-slate-900 text-4xl sm:text-5xl lg:text-[60px] font-extrabold leading-[1.05] tracking-tight mb-5">
+          <h1 ref={titleRef} className="hero-title premium-h1 text-slate-900 mb-5">
             Connect with the <br className="hidden sm:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-orange-400 drop-shadow-[0_4px_10px_rgba(255,91,46,0.15)]">
               Top 1%.
             </span> <br />
-            Master Your Future.
+            Master Your{" "}
+            <span className="relative whitespace-nowrap inline-block">
+              Future.
+              <div
+                className="absolute w-[110%] h-[8px] -bottom-1 -left-[5%] z-0 opacity-30 blur-[0.5px]"
+                style={{ 
+                  background: 'linear-gradient(90deg, transparent 0%, #FF5B2E 50%, transparent 100%)',
+                  transform: 'rotate(-2deg) skewX(-15deg)',
+                  borderRadius: '20% 80% 20% 80% / 50%'
+                }}
+              />
+            </span>
           </h1>
 
-          <p className="hero-desc mb-6 mx-auto lg:mx-0 max-w-lg text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
+          <p className="hero-desc premium-p mb-6 mx-auto lg:mx-0">
             <strong className="text-slate-900 font-bold">TopperMantra</strong> bridges the gap between effort and excellence by connecting you with mentors who have already conquered the summit.
           </p>
 
@@ -309,8 +320,8 @@ export const WhatWeDoSection = () => {
             <Sparkles className="h-4 w-4 text-brand-500" />
             <span className="text-xs font-bold uppercase tracking-widest">Our Expertise</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">What We Do Best</h2>
-          <p className="max-w-xl mx-auto text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed px-4">
+          <h2 className="premium-h2 text-slate-900 mb-4">What We Do Best</h2>
+          <p className="premium-p max-w-xl mx-auto px-4">
             Empowering students with comprehensive learning experiences across academics, technology, and entrepreneurship.
           </p>
         </div>
@@ -436,7 +447,7 @@ export const WhyChooseSection = () => {
             <Crown className="h-4 w-4 text-amber-500" />
             <span className="text-xs font-bold uppercase tracking-[0.2em]">One Elite Platform. Two Paths.</span>
           </div>
-          <h2 className="reveal-header text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight mb-6">
+          <h2 className="reveal-header premium-h2 text-slate-900 mb-6">
             The TopperMantra <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Ecosystem</span>
           </h2>
           <p className="reveal-header max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed px-4">
@@ -622,8 +633,8 @@ export const MentorsSection = () => {
             <Sparkles size={14} className="text-brand-500" />
             <span className="text-[10px] font-bold uppercase tracking-[0.2em]">India&apos;s Elite Mentor Circle</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900">Meet Your Future Architects</h2>
-          <p className="max-w-xl mx-auto mt-4 text-base sm:text-lg md:text-xl text-slate-500 leading-relaxed px-4">
+          <h2 className="premium-h2 text-slate-900">Meet Your Future Architects</h2>
+          <p className="premium-p max-w-xl mx-auto mt-4 px-4">
              Learn directly from the students who have cracked India&apos;s toughest exams. Real-world insights from the current Top 1%.
           </p>
         </div>
@@ -754,7 +765,7 @@ export const SchoolPartnership = () => {
                 <School size={16} className="text-brand-400" />
                 <span className="text-[10px] font-black uppercase tracking-[0.3em]">Institutional Supremacy</span>
               </div>
-              <h2 className="text-slate-900 text-4xl md:text-6xl tracking-tighter leading-none">Partner In <span className="text-brand-500">Excellence</span></h2>
+              <h2 className="premium-h2 text-slate-900">Partner In <span className="text-brand-500">Excellence</span></h2>
             </div>
             <p className="text-slate-500 max-w-xs text-base md:text-lg font-medium leading-relaxed border-l-2 border-brand-500/20 pl-8 pb-1">
               Empowering leading institutions with India&apos;s most elite mentor ecosystem.
@@ -851,7 +862,7 @@ export const ResultsSection = () => {
             <div key={stat.id} className={`stat-card flex flex-col items-center text-center px-4 ${idx !== RESULTS_STATS.length - 1 ? 'md:border-r border-slate-100' : ''}`}>
               <div className="mb-6 text-slate-400"><stat.icon size={32} strokeWidth={1.5} /></div>
               <div className="flex items-baseline justify-center gap-1 mb-2">
-                <span className="stat-number text-5xl lg:text-6xl font-bold tracking-tight text-slate-900" data-target={stat.value}>0</span>
+                <span className="stat-number premium-h1 text-slate-900" data-target={stat.value}>0</span>
                 <span className="text-2xl lg:text-3xl font-bold text-slate-400">{stat.suffix}</span>
               </div>
               <h3 className="text-xs lg:text-sm font-bold uppercase tracking-[0.2em] text-slate-500">{stat.label}</h3>
@@ -876,8 +887,8 @@ export const PricingTeaser = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-12 lg:mb-16">
            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-100 shadow-sm mb-6"><Star size={14} className="text-brand-500" fill="currentColor" /><span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-800">Investment in Excellence</span></div>
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-900">Premium Tiers for Extraordinary Goals</h2>
-           <p className="text-slate-500 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl mx-auto px-4">Choose the path that aligns with your ambition. Whether you&apos;re an individual achiever or a leading institution.</p>
+            <h2 className="premium-h2 text-slate-900">Premium Tiers for Extraordinary Goals</h2>
+           <p className="premium-p mx-auto px-4">Choose the path that aligns with your ambition. Whether you&apos;re an individual achiever or a leading institution.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12 max-w-5xl mx-auto">
            {PRICING_PLANS.map((plan) => (
@@ -907,8 +918,8 @@ export const FinalCTA = () => {
       </div>
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <div className="flex justify-center mb-8"><div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-slate-800 bg-slate-900/50 backdrop-blur-md text-[10px] font-black uppercase tracking-[0.4em] text-brand-400"><Sparkles size={14} />Your Legacy Begins Here</div></div>
-        <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Download the TopperMantra App Today</h2>
-        <p className="text-slate-400 text-base sm:text-lg md:text-xl font-medium max-w-2xl mx-auto mb-10 leading-relaxed px-4 md:px-0">Stop leaving your future to chance. Join India&apos;s most elite mentorship network and secure your place in the top 1%.</p>
+        <h2 className="premium-h1 text-white mb-4">Download the TopperMantra App Today</h2>
+        <p className="premium-p max-w-2xl mx-auto mb-10 px-4 md:px-0 text-slate-400">Stop leaving your future to chance. Join India&apos;s most elite mentorship network and secure your place in the top 1%.</p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
             <a href="https://play.google.com/store/apps/details?id=com.support.toppers.mantra&pcampaignid=web_share&pli=1" target="_blank" rel="noopener noreferrer" className="group relative w-full sm:w-auto h-16 px-10 rounded-2xl bg-brand-500 text-white font-bold text-lg shadow-2xl shadow-brand-500/20 hover:bg-brand-600 hover:shadow-brand-500/40 transition-all active:scale-[0.98] overflow-hidden">
                 <span className="relative z-10 flex items-center justify-center gap-3 h-full">Get it on Google Play<Rocket size={20} className="transition-transform group-hover:translate-y-[-2px] group-hover:translate-x-[2px]" /></span>

@@ -138,7 +138,7 @@ const SchoolJoinPage = () => {
                 <span className="text-xs font-bold text-slate-800 uppercase tracking-widest">Institutional Partnership</span>
               </motion.div>
               
-              <motion.h1 variants={fadeUpVariant} className="text-4xl sm:text-5xl lg:text-[72px] font-extrabold text-slate-900 leading-[1.05] tracking-tight text-center lg:text-left">
+              <motion.h1 variants={fadeUpVariant} className="premium-h1 text-center lg:text-left text-slate-900">
                 Empower Your <br/> Students with <span className="text-orange-500 relative">
                   Elite Mentorship
                   <svg className="absolute w-full h-3 -bottom-2 left-0 text-orange-200 opacity-60" viewBox="0 0 100 10" preserveAspectRatio="none">
@@ -147,7 +147,7 @@ const SchoolJoinPage = () => {
                 </span>
               </motion.h1>
               
-              <motion.p variants={fadeUpVariant} className="text-base sm:text-lg text-slate-500 max-w-xl leading-relaxed font-medium text-center lg:text-left mx-auto lg:mx-0">
+              <motion.p variants={fadeUpVariant} className="premium-p text-center lg:text-left mx-auto lg:mx-0">
                 Partner with TopperMantra to bring India's top 1% achievers directly to your campus. Bridge the gap between academic theory and competitive success.
               </motion.p>
               
@@ -197,10 +197,10 @@ const SchoolJoinPage = () => {
             <motion.div variants={fadeUpVariant}>
               <span className="text-xs font-bold text-orange-500 uppercase tracking-[0.2em] px-4 py-2 rounded-full border border-orange-100 bg-orange-50">What You Get</span>
             </motion.div>
-            <motion.h2 variants={fadeUpVariant} className="mt-6 text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+            <motion.h2 variants={fadeUpVariant} className="premium-h2 text-slate-900">
               A Complete Ecosystem for <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-400">Your School</span>
             </motion.h2>
-            <motion.p variants={fadeUpVariant} className="mt-5 text-lg text-slate-500 max-w-2xl mx-auto font-medium">
+            <motion.p variants={fadeUpVariant} className="premium-p mt-5 mx-auto">
               We don't just guide students; we empower your institution with technology, data, and elite human capital.
             </motion.p>
           </motion.div>
@@ -213,7 +213,7 @@ const SchoolJoinPage = () => {
               <div className="w-16 h-16 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center mb-8 relative z-10 group-hover:scale-110 transition-transform">
                 <Users size={32} />
               </div>
-              <h3 className="text-3xl font-bold text-slate-900 mb-4 relative z-10">1-on-1 Personalized Mentorship</h3>
+              <h3 className="premium-h3 text-slate-900 mb-4 relative z-10">1-on-1 Personalized Mentorship</h3>
               <p className="text-slate-500 text-lg leading-relaxed max-w-lg relative z-10">
                 Every student is mapped to an elite mentor (IIT/AIIMS toppers). They receive customized study plans, weekly check-ins, and strategy sessions that align perfectly with your school's curriculum.
               </p>
@@ -225,7 +225,7 @@ const SchoolJoinPage = () => {
               <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-8 relative z-10 group-hover:scale-110 transition-transform">
                 <LayoutDashboard size={32} className="text-blue-400"/>
               </div>
-              <h3 className="text-2xl font-bold mb-4 relative z-10">Institutional Dashboard</h3>
+              <h3 className="premium-h3 mb-4 relative z-10 text-white">Institutional Dashboard</h3>
               <p className="text-slate-300 leading-relaxed relative z-10 font-light">
                 Get a bird's-eye view of your entire school's performance. Track mentor-mentee engagement, identify weak subjects, and download monthly progression reports.
               </p>
@@ -279,7 +279,7 @@ const SchoolJoinPage = () => {
               <motion.div variants={fadeUpVariant}>
                 <span className="text-xs font-bold text-blue-600 uppercase tracking-[0.2em] px-4 py-2 rounded-full border border-blue-100 bg-blue-50">Student Impact</span>
               </motion.div>
-              <motion.h2 variants={fadeUpVariant} className="mt-6 text-4xl md:text-5xl font-extrabold text-slate-900 leading-[1.1] tracking-tight mb-8">
+              <motion.h2 variants={fadeUpVariant} className="premium-h2 text-slate-900 mb-8">
                 How We Transform <br/> Your Students
               </motion.h2>
               
@@ -336,7 +336,7 @@ const SchoolJoinPage = () => {
             initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeUpVariant}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">The TopperMantra Advantage</h2>
+            <h2 className="premium-h1 text-white text-center">The TopperMantra Advantage</h2>
             <p className="mt-5 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto font-light">
               We provide more than just mentorship; we offer a complete, data-backed ecosystem for institutional excellence.
             </p>
@@ -380,7 +380,7 @@ const SchoolJoinPage = () => {
               <div className="absolute top-[-20%] left-[-20%] w-64 h-64 bg-brand-500 rounded-full blur-[100px] opacity-30" />
               
               <div className="relative z-10">
-                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">Let's Build the Future</h2>
+                <h2 className="premium-h2 text-white mb-4">Let's Build the Future</h2>
                 <p className="text-slate-400 text-base leading-relaxed font-light">
                   Fill out the form and our institutional relations head will reach out to you within <span className="text-brand-400 font-semibold">24 hours</span>.
                 </p>

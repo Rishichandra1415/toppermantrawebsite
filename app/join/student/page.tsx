@@ -61,7 +61,7 @@ const InteractivePhone = ({ rotateX, rotateY, isMobile }: { rotateX: any, rotate
         className="w-full h-full object-cover rounded-[1.6rem] sm:rounded-[2.1rem] opacity-90"
         onError={(e) => {
           e.currentTarget.style.display = "none";
-          e.currentTarget.parentElement!.innerHTML += `<div class="absolute inset-0 bg-gradient-to-br from-slate-900 to-black rounded-[1.6rem] sm:rounded-[2.1rem] flex flex-col items-center justify-center p-5"><div class="w-16 h-16 bg-gradient-to-br from-[#FF6B35] to-[#f98a60] rounded-2xl flex items-center justify-center mb-4 shadow-[0_5px_20px_rgba(255,107,53,0.4)]"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="text-white font-serif text-2xl mb-1">TopperMantra</div><div class="text-white/50 text-[9px] font-sans tracking-[0.2em] uppercase">Elite Access</div></div>`;
+          e.currentTarget.parentElement!.innerHTML += `<div class="absolute inset-0 bg-gradient-to-br from-slate-900 to-black rounded-[1.6rem] sm:rounded-[2.1rem] flex flex-col items-center justify-center p-5"><div class="w-16 h-16 bg-gradient-to-br from-[#FF6B35] to-[#f98a60] rounded-2xl flex items-center justify-center mb-4 shadow-[0_5px_20px_rgba(255,107,53,0.4)]"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="text-white premium-h3 mb-1">TopperMantra</div><div class="text-white/50 text-[9px] font-sans tracking-[0.2em] uppercase">Elite Access</div></div>`;
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[#FF6B35]/80 via-transparent to-transparent flex flex-col justify-end p-4 mix-blend-hard-light rounded-[1.6rem] sm:rounded-[2.1rem] pointer-events-none">
@@ -110,9 +110,6 @@ const StudentJoinPage = () => {
   return (
     <main className="min-h-screen bg-[#FAFAF8] selection:bg-[#FF6B35] selection:text-white pt-16 font-sans overflow-x-hidden text-[#0D0D0D]">
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap');
-        .font-serif { font-family: 'DM Serif Display', serif; }
-        .font-sans { font-family: 'Inter', sans-serif; letter-spacing: -0.01em; }
         
         .noise-bg { position: relative; }
         .noise-bg::before { 
@@ -158,7 +155,7 @@ const StudentJoinPage = () => {
                 <span className="font-sans text-[9px] font-bold text-slate-600 uppercase tracking-[0.25em]">The Elite Student Circle</span>
               </motion.div>
               
-              <motion.h1 variants={fadeUpVariant} className="font-serif text-5xl lg:text-[72px] leading-[1.0] tracking-tight text-center lg:text-left text-[#0D0D0D]">
+              <motion.h1 variants={fadeUpVariant} className="premium-h1 text-center lg:text-left text-[#0D0D0D]">
                 Outsmart the <br className="hidden lg:block"/>
                 <span className="relative whitespace-nowrap inline-block mt-1">
                   <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B35] to-orange-400">Competition.</span>
@@ -166,7 +163,7 @@ const StudentJoinPage = () => {
                 </span>
               </motion.h1>
               
-              <motion.p variants={fadeUpVariant} className="font-sans text-base lg:text-lg text-slate-500 max-w-lg leading-relaxed font-light text-center lg:text-left mx-auto lg:mx-0">
+              <motion.p variants={fadeUpVariant} className="premium-p text-center lg:text-left mx-auto lg:mx-0">
                 Stop grinding blindly. Get the exact blueprints, premium notes, and <strong className="text-[#0D0D0D] font-medium">1-on-1 mentorship</strong> from India's top 1% rankers.
               </motion.p>
               
@@ -207,7 +204,7 @@ const StudentJoinPage = () => {
         <div className="max-w-[1440px] mx-auto px-6 lg:px-12 relative z-10">
           <div className="text-center mb-10">
             <span className="font-sans text-[9px] font-bold text-[#FF6B35] uppercase tracking-[0.25em] px-3 py-1.5 rounded-full border border-[#FF6B35]/20 bg-[#FF6B35]/5 mb-4 inline-block">The Arsenal</span>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#0D0D0D] tracking-tight">Your Unfair <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B35] to-orange-400">Advantage.</span></h2>
+            <h2 className="premium-h2 text-[#0D0D0D]">Your Unfair <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B35] to-orange-400">Advantage.</span></h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -227,7 +224,7 @@ const StudentJoinPage = () => {
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-5 group-hover:scale-105 transition-transform duration-300 ${benefit.iconColor} ${benefit.iconBg}`}>
                     <benefit.icon size={20} strokeWidth={2} />
                   </div>
-                  <h3 className={`font-serif text-xl mb-2 ${benefit.darkCard ? 'text-white' : 'text-[#0D0D0D]'}`}>{benefit.title}</h3>
+                  <h3 className={`premium-h3 mb-2 ${benefit.darkCard ? 'text-white' : 'text-[#0D0D0D]'}`}>{benefit.title}</h3>
                   <p className={`font-sans text-xs leading-relaxed font-light ${benefit.darkCard ? 'text-white/60' : 'text-slate-500'} max-w-sm`}>{benefit.desc}</p>
                 </div>
               </motion.div>
@@ -244,8 +241,8 @@ const StudentJoinPage = () => {
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="flex-1 w-full">
-              <motion.h2 variants={fadeUpVariant} className="font-serif text-4xl lg:text-5xl text-[#0D0D0D] leading-[1.05] tracking-tight mb-10">
-                The Anatomy of a <br/> <em className="not-italic text-slate-400">Topper.</em>
+              <motion.h2 variants={fadeUpVariant} className="premium-h2 text-[#0D0D0D] mb-10">
+                The Anatomy of a <br/> <span className="text-slate-400">Topper.</span>
               </motion.h2>
               
               <div className="space-y-8 relative before:absolute before:inset-0 before:ml-[15px] before:-translate-x-px before:h-full before:w-[1px] before:bg-gradient-to-b before:from-transparent before:via-black/10 before:to-transparent">
@@ -259,7 +256,7 @@ const StudentJoinPage = () => {
                       {item.num}
                     </div>
                     <div className="mt-1">
-                      <h4 className="font-serif text-xl text-[#0D0D0D] mb-1.5 group-hover:text-[#FF6B35] transition-colors">{item.title}</h4>
+                      <h4 className="premium-h3 text-[#0D0D0D] mb-1.5 group-hover:text-[#FF6B35] transition-colors">{item.title}</h4>
                       <p className="font-sans text-slate-500 text-xs leading-relaxed font-light max-w-sm">{item.desc}</p>
                     </div>
                   </motion.div>
@@ -275,7 +272,7 @@ const StudentJoinPage = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B35]/5 to-[#4F46E5]/5 rounded-full blur-2xl opacity-50" />
                 <div className="text-center relative z-10">
                   <div className="text-[5rem] mb-3">📈</div>
-                  <div className="font-serif text-2xl text-[#0D0D0D]">Exponential Growth</div>
+                  <div className="premium-h3 text-[#0D0D0D]">Exponential Growth</div>
                 </div>
               </div>
             </motion.div>
@@ -300,10 +297,10 @@ const StudentJoinPage = () => {
         
         <div className="relative z-10 max-w-4xl mx-auto text-center px-6 py-14">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
-            <motion.h2 variants={fadeUpVariant} className="font-serif text-4xl md:text-5xl font-normal mb-4 tracking-tight text-[#0D0D0D]">
-              Ready to <span className="italic text-[#FF6B35]">Ascend?</span>
+            <motion.h2 variants={fadeUpVariant} className="premium-h2 mb-4 text-[#0D0D0D]">
+              Ready to <span className="text-[#FF6B35]">Ascend?</span>
             </motion.h2>
-            <motion.p variants={fadeUpVariant} className="font-sans text-slate-500 text-sm md:text-base mb-8 max-w-lg mx-auto font-light leading-relaxed">
+            <motion.p variants={fadeUpVariant} className="premium-p mb-8 max-w-lg mx-auto">
               Join the exclusive circle of students redefining success. Download the app and claim your free strategy session.
             </motion.p>
             
@@ -346,7 +343,7 @@ const StudentJoinPage = () => {
                 <div className="w-10 h-10 bg-white/10 backdrop-blur border border-white/20 rounded-[0.8rem] flex items-center justify-center mb-6 shadow-inner">
                   <GraduationCap size={18} className="text-white" />
                 </div>
-                <h2 className="font-serif text-3xl sm:text-4xl tracking-tight mb-3">Request Access.</h2>
+                <h2 className="premium-h2 text-white mb-3">Request Access.</h2>
                 <p className="font-sans text-white/70 text-xs leading-relaxed font-light max-w-xs">
                   Not sure where to start? Let our experts analyze your profile and guide you to the perfect path.
                 </p>

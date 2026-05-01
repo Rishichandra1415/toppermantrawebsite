@@ -179,12 +179,7 @@ const AboutPage = () => {
       className="min-h-screen font-sans overflow-x-hidden selection:bg-[#0D0D0D] selection:text-white"
       style={{ background: "#FAF9F6", color: "#0D0D0D" }} // Alabaster/Pearl White for ultimate premium feel
     >
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap');
-
-        .about-serif { font-family: 'DM Serif Display', Georgia, serif; }
-        .about-sans { font-family: 'Inter', system-ui, sans-serif; letter-spacing: -0.01em; }
-
+      <style dangerouslySetInnerHTML={{ __html: `
         .grain-overlay::before {
           content: ''; position: absolute; inset: 0;
           background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
@@ -214,61 +209,128 @@ const AboutPage = () => {
           animation: shine 6s linear infinite;
         }
         @keyframes shine { to { background-position: 200% center; } }
-      `}</style>
+      ` }} />
 
-      {/* ── HERO: PARALLAX & BENTO VISION ─────────────────────────────────────── */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden grain-overlay">
-        
-        {/* Animated Cinematic Orbs (Multiply Blend for Ink-like feel) */}
-        <motion.div style={{ y: orbsY }} className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center">
-          <div className="absolute top-0 right-10 w-[500px] h-[500px] rounded-full bg-[#FF6B35] mix-blend-multiply blur-[120px] opacity-[0.08] animate-pulse" />
-          <div className="absolute top-20 left-10 w-[600px] h-[600px] rounded-full bg-[#4F46E5] mix-blend-multiply blur-[130px] opacity-[0.06]" />
-        </motion.div>
+      {/* ── HERO: 2-COLUMN LAYOUT ─────────────────────────────────────── */}
+      <section className="relative min-h-[85vh] flex items-center pt-32 pb-20 overflow-hidden bg-[#FAFAF8]">
+        {/* Background Orbs */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute w-[600px] h-[600px] rounded-full blur-[140px] opacity-[0.08] -top-40 -left-20 bg-[#FF6B35]" />
+          <div className="absolute w-[500px] h-[500px] rounded-full blur-[120px] opacity-[0.05] bottom-0 right-0 bg-[#4F46E5]" />
+        </div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <motion.div style={{ y: heroY, opacity: opacityFade }} className="text-center max-w-5xl mx-auto mb-20">
-            <motion.div initial="hidden" animate="visible" variants={fadeUp} className="mb-6 inline-flex">
-              <span className="about-sans text-[10px] uppercase font-bold tracking-[0.2em] px-4 py-2 rounded-full border border-black/10 bg-white/50 backdrop-blur-md shadow-sm">
-                Unlocking True Potential
-              </span>
-            </motion.div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
-            <motion.h1 initial="hidden" animate="visible" variants={fadeUp} className="about-serif text-6xl md:text-[5.5rem] leading-[0.95] tracking-tight mb-8 text-[#0D0D0D]">
-              Empowering Ambition <br className="hidden md:block" />
-              with <em className="not-italic text-gradient">Proven Experience.</em>
-            </motion.h1>
-            
-            <motion.p initial="hidden" animate="visible" variants={fadeUp} className="about-sans text-lg md:text-xl text-black/50 max-w-2xl mx-auto leading-relaxed font-light">
-              We bridge the gap between student potential and academic excellence by connecting aspirants directly with those who have already conquered the summit.
-            </motion.p>
-          </motion.div>
+            {/* Left: Content */}
+            <motion.div 
+              initial="hidden" 
+              animate="visible" 
+              variants={stagger}
+              className="text-center lg:text-left"
+            >
+              <motion.div variants={fadeUp} className="mb-6 inline-flex">
+                <span className="about-sans text-[10px] uppercase font-bold tracking-[0.2em] px-4 py-2 rounded-full border border-black/10 bg-white/50 backdrop-blur-md shadow-sm">
+                  Our Journey & Vision
+                </span>
+              </motion.div>
+              
+              <motion.h1 variants={fadeUp} className="premium-h1 mb-8 text-[#0D0D0D]">
+                Crafting the Future of <br />
+                <span className="relative whitespace-nowrap inline-block mt-2">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B35] to-[#4F46E5]">Academic</span>
+                  <div
+                    className="absolute w-[110%] h-[8px] -bottom-1 -left-[5%] z-0 opacity-30 blur-[0.5px]"
+                    style={{ 
+                      background: 'linear-gradient(90deg, transparent 0%, #FF6B35 50%, transparent 100%)',
+                      transform: 'rotate(-2deg) skewX(-15deg)',
+                      borderRadius: '20% 80% 20% 80% / 50%'
+                    }}
+                  />
+                </span> Excellence.
+              </motion.h1>
+              
+              <motion.p variants={fadeUp} className="premium-p max-w-xl mx-auto lg:mx-0 mb-10">
+                TopperMantra is more than a platform—it's a mission to democratize elite education. We connect the next generation of achievers with the 1% who have already conquered the summit.
+              </motion.p>
 
-          {/* Hyper-Glassmorphism Bento Cards */}
-          <motion.div initial="hidden" animate="visible" variants={stagger} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {/* Vision Card */}
-            <motion.div variants={fadeUp} className="glass-card p-10 md:p-12 rounded-[2.5rem] relative overflow-hidden group">
-              <div className="absolute -top-32 -right-32 w-64 h-64 bg-[#FF6B35] rounded-full blur-[90px] opacity-20 group-hover:opacity-40 transition-opacity duration-700" />
-              <div className="w-16 h-16 rounded-2xl mb-8 flex items-center justify-center bg-gradient-to-br from-[#FF6B35] to-[#ff9470] text-white shadow-lg group-hover:scale-105 transition-transform duration-500">
-                <Globe size={30} strokeWidth={1.5} />
-              </div>
-              <h3 className="about-serif text-3xl md:text-4xl mb-4 text-[#0D0D0D]">Our Vision</h3>
-              <p className="about-sans text-base text-black/60 leading-relaxed font-light">
-                To build a globally democratized ecosystem where every student, regardless of their background, has access to top-tier mentorship, advanced strategies, and the motivation needed to achieve their ultimate goals.
-              </p>
+              <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                <button className="px-8 py-4 rounded-full bg-[#0D0D0D] text-white font-black text-xs uppercase tracking-widest hover:bg-[#FF6B35] transition-all shadow-xl active:scale-95">
+                  Our Mission
+                </button>
+                <button className="px-8 py-4 rounded-full border border-black/10 bg-white/50 backdrop-blur-md text-[#0D0D0D] font-black text-xs uppercase tracking-widest hover:bg-slate-50 transition-all">
+                  Join the Elite
+                </button>
+              </motion.div>
             </motion.div>
 
-            {/* Mission Card */}
-            <motion.div variants={fadeUp} className="glass-card p-10 md:p-12 rounded-[2.5rem] relative overflow-hidden group">
-              <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-[#4F46E5] rounded-full blur-[90px] opacity-20 group-hover:opacity-40 transition-opacity duration-700" />
-              <div className="w-16 h-16 rounded-2xl mb-8 flex items-center justify-center bg-gradient-to-br from-[#4F46E5] to-[#6b64f0] text-white shadow-lg group-hover:scale-105 transition-transform duration-500">
-                <Target size={30} strokeWidth={1.5} />
+            {/* Right: Animation */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, x: 20 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="relative h-[400px] sm:h-[450px] lg:h-[550px] flex items-center justify-center mt-10 lg:mt-0"
+            >
+              {/* Central Focal Point (stylized book/knowledge) */}
+              <div className="relative z-10 w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 bg-white/40 backdrop-blur-3xl rounded-[2.5rem] lg:rounded-[3rem] border border-white/60 shadow-[0_40px_100px_rgba(0,0,0,0.08)] flex items-center justify-center group overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#FF6B35]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="relative z-20 flex flex-col items-center gap-4">
+                  <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl bg-[#0D0D0D] flex items-center justify-center shadow-2xl animate-bounce" style={{ animationDuration: '4s' }}>
+                    <Brain className="w-7 h-7 sm:w-10 sm:h-10 text-[#FF6B35]" />
+                  </div>
+                  <div className="text-center px-4">
+                    <div className="text-lg sm:text-2xl font-black tracking-tight text-[#0D0D0D]">TopperMantra</div>
+                    <div className="text-[8px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Established 2024</div>
+                  </div>
+                </div>
+                {/* Decorative floating lines inside */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[2px] bg-gradient-to-r from-transparent via-black/5 to-transparent rotate-45" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[2px] bg-gradient-to-r from-transparent via-black/5 to-transparent -rotate-45" />
               </div>
-              <h3 className="about-serif text-3xl md:text-4xl mb-4 text-[#0D0D0D]">Our Mission</h3>
-              <p className="about-sans text-base text-black/60 leading-relaxed font-light">
-                To revolutionize competitive exam preparation through innovative technology and structured peer-learning. We strive to provide personalized 1-on-1 guidance from verified national-level toppers.
-              </p>
+
+              {/* Floating Badges Orbiting */}
+              {[
+                { icon: Star, label: "Consistency", x: -110, y: -100, dx: -140, dy: -120, delay: 0.2 },
+                { icon: Target, label: "Strategy", x: 120, y: -70, dx: 160, dy: -80, delay: 0.4 },
+                { icon: ShieldCheck, label: "Excellence", x: -100, y: 120, dx: -120, dy: 140, delay: 0.6 },
+                { icon: Zap, label: "Success", x: 110, y: 90, dx: 140, dy: 100, delay: 0.8 },
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  animate={{ 
+                    y: [0, -10, 0],
+                    rotate: [0, 2, 0]
+                  }}
+                  transition={{ 
+                    duration: 4 + idx, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    delay: item.delay 
+                  }}
+                  className="absolute px-3 py-2 sm:px-4 sm:py-2.5 rounded-xl sm:rounded-2xl bg-white/90 backdrop-blur-xl border border-black/5 shadow-lg flex items-center gap-2 sm:gap-2.5 cursor-default hover:scale-110 transition-transform z-20"
+                  style={{ 
+                    left: '50%',
+                    top: '50%',
+                    marginLeft: `calc(var(--offset-x) * 1px)`,
+                    marginTop: `calc(var(--offset-y) * 1px)`,
+                    transform: 'translate(-50%, -50%)',
+                    '--offset-x': typeof window !== 'undefined' && window.innerWidth < 1024 ? item.x : item.dx,
+                    '--offset-y': typeof window !== 'undefined' && window.innerWidth < 1024 ? item.y : item.dy,
+                  } as any}
+                >
+                  <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-slate-50 flex items-center justify-center text-[#FF6B35]">
+                    <item.icon size={12} className="sm:w-4 sm:h-4" strokeWidth={2.5} />
+                  </div>
+                  <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-slate-800">{item.label}</span>
+                </motion.div>
+              ))}
+
+              {/* Orbital Rings */}
+              <div className="absolute w-[300px] h-[300px] sm:w-[440px] sm:h-[440px] rounded-full border border-dashed border-black/[0.04] animate-[spin_60s_linear_infinite]" />
+              <div className="absolute w-[220px] h-[220px] sm:w-[320px] sm:h-[320px] rounded-full border border-dashed border-black/[0.06] animate-[spin_40s_linear_infinite_reverse]" />
             </motion.div>
-          </motion.div>
+
+          </div>
         </div>
       </section>
 
@@ -278,8 +340,8 @@ const AboutPage = () => {
           {[...Array(2)].map((_, i) =>
             stats.map((s, j) => (
               <div key={`${i}-${j}`} className="flex items-center gap-3 px-12 shrink-0">
-                <span className="about-serif text-2xl font-normal text-[#0D0D0D]">{s.value}</span>
-                <span className="about-sans text-sm text-black/60 font-medium tracking-wide">{s.label}</span>
+                <span className="premium-h3 text-[#0D0D0D]">{s.value}</span>
+                <span className="premium-p-small">{s.label}</span>
                 <span className="text-black/10 mx-6 text-xl">/</span>
               </div>
             ))
@@ -292,7 +354,7 @@ const AboutPage = () => {
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white/60 to-transparent pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-20">
+          <div className="flex flex-col-reverse lg:flex-row items-center lg:items-start gap-12 lg:gap-20">
             
             {/* Left: Sticky Editorial Text */}
             <div className="flex-1 w-full lg:sticky lg:top-32">
@@ -309,7 +371,7 @@ const AboutPage = () => {
                   exit={{ opacity: 0, x: 20, filter: "blur(4px)" }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <h3 className="about-serif text-5xl md:text-7xl leading-[0.95] mb-6 text-[#0D0D0D]">
+                  <h3 className="premium-h2 leading-[0.95] mb-6 text-[#0D0D0D]">
                     {founders[activeFounder].name.split(" ").slice(0, -1).join(" ")}<br />
                     <span style={{ color: founders[activeFounder].accentColor }}>
                       {founders[activeFounder].name.split(" ").slice(-1)}
@@ -325,7 +387,7 @@ const AboutPage = () => {
                     </span>
                   </div>
 
-                  <p className="about-sans text-lg text-black/60 leading-relaxed font-light mb-10 max-w-md border-l-2 pl-4" style={{ borderColor: founders[activeFounder].accentColor }}>
+                  <p className="premium-p mb-10 max-w-md border-l-2 pl-4" style={{ borderColor: founders[activeFounder].accentColor }}>
                     {founders[activeFounder].bio}
                   </p>
                 </motion.div>
@@ -350,13 +412,13 @@ const AboutPage = () => {
             </div>
 
             {/* Right: Glass Card Stack */}
-            <div className="flex-1 relative w-full min-h-[500px] flex justify-center mt-10 lg:mt-0">
+            <div className="flex-1 relative w-full min-h-[400px] sm:min-h-[500px] flex justify-center mt-10 lg:mt-0">
               {founders.map((founder, idx) => {
                 const offset = (idx - activeFounder + founders.length) % founders.length;
                 const isActive = offset === 0;
                 const zIndex = isActive ? 30 : offset === 1 ? 20 : 10;
                 const scale = isActive ? 1 : offset === 1 ? 0.95 : 0.9;
-                const x = isActive ? 0 : offset === 1 ? 40 : 80;
+                const x = isActive ? 0 : offset === 1 ? 30 : 60;
                 const rotate = isActive ? 0 : offset === 1 ? 4 : 8;
 
                 return (
@@ -364,7 +426,7 @@ const AboutPage = () => {
                     key={founder.id}
                     animate={{ scale, x, rotate, zIndex, opacity: offset > 2 ? 0 : 1 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="absolute w-full max-w-[340px] cursor-pointer origin-bottom-right"
+                    className="absolute w-full max-w-[280px] sm:max-w-[340px] cursor-pointer origin-bottom-right"
                     onClick={() => isActive ? null : setActiveFounder(idx)}
                     style={{ zIndex }}
                   >
@@ -377,7 +439,7 @@ const AboutPage = () => {
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                           onError={(e) => {
                             e.currentTarget.style.display = "none";
-                            e.currentTarget.parentElement!.innerHTML = `<div class="w-full h-full flex items-center justify-center bg-gray-100 text-4xl font-serif text-gray-400">${founder.initials}</div>`;
+                            e.currentTarget.parentElement!.innerHTML = `<div class="w-full h-full flex items-center justify-center bg-gray-100 premium-h2 text-gray-400">${founder.initials}</div>`;
                           }}
                         />
                         {isActive && (
@@ -407,8 +469,8 @@ const AboutPage = () => {
             <motion.div variants={fadeUp}>
               <span className="about-sans text-xs font-bold uppercase tracking-[0.2em] text-black/40 mb-4 block">Methodology</span>
             </motion.div>
-            <motion.h2 variants={fadeUp} className="about-serif text-4xl md:text-5xl text-[#0D0D0D]">
-              Three Pillars of <em className="not-italic text-gradient">Excellence</em>
+            <motion.h2 variants={fadeUp} className="premium-h2 text-[#0D0D0D]">
+              Three Pillars of <span className="text-gradient">Excellence</span>
             </motion.h2>
           </motion.div>
 
@@ -431,7 +493,7 @@ const AboutPage = () => {
                   </div>
                 </div>
 
-                <h3 className="about-serif text-2xl mb-3 text-[#0D0D0D]">{p.title}</h3>
+                <h3 className="premium-h3 mb-3 text-[#0D0D0D]">{p.title}</h3>
                 <p className="about-sans text-sm leading-relaxed font-light mb-6 text-black/60">
                   {p.desc}
                 </p>
@@ -451,7 +513,7 @@ const AboutPage = () => {
             
             <div className="flex-1 w-full">
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-                <motion.h2 variants={fadeUp} className="about-serif text-5xl md:text-6xl leading-[1.05] mb-8 text-[#0D0D0D]">
+                <motion.h2 variants={fadeUp} className="premium-h2 mb-8 text-[#0D0D0D]">
                   The Ultimate <br />
                   <span className="text-[#4F46E5]">Student Ecosystem</span>
                 </motion.h2>
@@ -492,7 +554,7 @@ const AboutPage = () => {
                     <img src="/toppermantra_community.png" alt="App" className="w-full object-cover"
                       onError={(e) => {
                         e.currentTarget.style.display = "none";
-                        e.currentTarget.parentElement!.innerHTML = `<div class="aspect-[4/5] flex flex-col items-center justify-center bg-white"><div class="font-serif text-5xl mb-2 text-[#0D0D0D]">10K+</div><div class="font-sans text-[10px] font-bold tracking-widest uppercase text-black/40">Active Users</div></div>`;
+                        e.currentTarget.parentElement!.innerHTML = `<div class="aspect-[4/5] flex flex-col items-center justify-center bg-white"><div class="premium-h1 mb-2 text-[#0D0D0D]">10K+</div><div class="premium-p-small text-black/40">Active Users</div></div>`;
                       }}
                     />
                   </div>
@@ -523,10 +585,10 @@ const AboutPage = () => {
                 Start Your Journey
               </span>
             </motion.div>
-            <motion.h2 variants={fadeUp} className="about-serif text-5xl md:text-7xl leading-[1.0] mb-8 text-white">
-              Ready to join the <em className="not-italic text-[#FF6B35]">elite?</em>
+            <motion.h2 variants={fadeUp} className="premium-h1 mb-8 text-white">
+              Ready to join the <span className="text-[#FF6B35]">elite?</span>
             </motion.h2>
-            <motion.p variants={fadeUp} className="about-sans text-lg md:text-xl text-white/50 mb-12 max-w-lg mx-auto font-light leading-relaxed">
+            <motion.p variants={fadeUp} className="premium-p mb-12 max-w-lg mx-auto text-white/70">
               Don't just work hard. Work smart with the guidance of those who have already conquered the summit.
             </motion.p>
             
