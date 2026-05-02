@@ -828,7 +828,7 @@ const COLUMNS = [
 // ─── CONSTANTS ───────────────────────────────────────────────────────────────
 
 const PEEK_H = 52;  // px each stacked card peeks above the next
-const TOP_H  = 110; // height of the topmost (last) card
+const TOP_H  = 52;  // height of the topmost (last) card
 
 // ─── STACK COLUMN ────────────────────────────────────────────────────────────
 
@@ -839,63 +839,96 @@ function MentorStack({
   mentors: Mentor[];
   onSelect: (m: Mentor) => void;
 }) {
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
   const N = mentors.length;
-  const stackH = (N - 1) * PEEK_H + TOP_H;
+  const stackH = (N - 1) * PEEK_H + TOP_H + 20;
 
   return (
     <div className="relative w-full" style={{ height: stackH }}>
       {mentors.map((mentor, i) => {
         const isTop = i === N - 1;
-        const top   = i * PEEK_H;
-        const cardH = isTop ? TOP_H : PEEK_H + 8;
+        const isHovered = hoveredId === mentor.id;
+        
+        // Dynamic positioning: cards above the hovered one shift slightly
+        const hoverOffset = (hoveredId !== null && i > mentors.findIndex(m => m.id === hoveredId)) ? -40 : 0;
+        const top = i * PEEK_H + hoverOffset;
+        
+        const cardH = isHovered ? 180 : (isTop ? TOP_H : PEEK_H + 8);
 
         return (
           <motion.div
             key={mentor.id}
-            className="absolute left-0 right-0 overflow-hidden cursor-pointer select-none"
+            className="absolute left-0 right-0 overflow-hidden cursor-pointer select-none group"
             style={{
               top,
-              height: cardH,
-              zIndex: i + 1,
-              borderRadius: 18,
+              zIndex: isHovered ? 50 : i + 1,
+              borderRadius: 24,
               background: mentor.color,
             }}
-            whileHover={{ scale: 1.018 }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: "spring", stiffness: 340, damping: 28 }}
+            animate={{ 
+              height: cardH,
+              top: top,
+              scale: isHovered ? 1.04 : 1,
+            }}
+            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+            onMouseEnter={() => setHoveredId(mentor.id)}
+            onMouseLeave={() => setHoveredId(null)}
             onClick={() => onSelect(mentor)}
           >
             {/* Photo overlay */}
-            <div className="absolute inset-0 overflow-hidden rounded-[18px]">
+            <div className="absolute inset-0 overflow-hidden rounded-[24px]">
               <Image
                 src={mentor.image}
                 alt={mentor.name}
                 fill
-                className="object-cover"
-                style={{ opacity: isTop ? 0.32 : 0.2 }}
+                className="object-cover transition-opacity duration-500"
+                style={{ opacity: (isTop || isHovered) ? 0.45 : 0.2 }}
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
 
-            {/* Label */}
+            {/* Content Container */}
             <div
-              className="absolute bottom-0 left-0 right-0 flex items-end"
-              style={{ padding: isTop ? "14px 16px" : "9px 14px" }}
+              className="absolute inset-0 flex flex-col justify-end p-4 md:p-5"
             >
-              <span
-                className="relative z-10 text-white font-semibold leading-tight"
-                style={{ fontSize: isTop ? 15 : 13 }}
-              >
-                {mentor.name}
-              </span>
-
-              {isTop && (
+              <div className="flex items-center justify-between gap-2 mb-1">
                 <span
-                  className="ml-auto relative z-10 text-[10px] font-bold px-2.5 py-1 rounded-full"
-                  style={{ background: "rgba(255,255,255,0.22)", color: "white" }}
+                  className="relative z-10 text-white font-black leading-tight truncate"
+                  style={{ fontSize: isHovered ? 18 : 14 }}
                 >
-                  {mentor.rank}
+                  {mentor.name}
                 </span>
-              )}
+                {(isTop || isHovered) && (
+                  <span
+                    className="relative z-10 text-[9px] font-black px-2.5 py-1 rounded-full shadow-lg"
+                    style={{ background: "rgba(255,255,255,0.25)", color: "white", backdropFilter: "blur(4px)" }}
+                  >
+                    {mentor.rank}
+                  </span>
+                )}
+              </div>
+
+              {/* Revealable Details */}
+              <AnimatePresence>
+                {isHovered && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="mt-2 space-y-3"
+                  >
+                    <div className="flex flex-col">
+                      <span className="text-[10px] text-white/70 font-bold uppercase tracking-widest">College</span>
+                      <span className="text-xs text-white font-bold">{mentor.college}</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between border-t border-white/20 pt-3">
+                       <span className="text-[9px] text-white/80 font-black uppercase tracking-widest">View Full Profile</span>
+                       <ArrowRight size={14} className="text-white" />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
         );

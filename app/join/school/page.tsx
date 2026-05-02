@@ -365,79 +365,116 @@ const SchoolJoinPage = () => {
       </section>
 
       {/* =========================================
-          SECTION 5: PARTNERSHIP FORM (PREMIUM)
+          SECTION 5: PARTNERSHIP FORM (COMPACT)
       ========================================= */}
-      <section className="py-20 md:py-32 relative overflow-hidden bg-white">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-40" />
-        
+      <section className="py-16 md:py-24 relative overflow-hidden bg-slate-50/50">
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-            className="bg-white rounded-[2.5rem] sm:rounded-[3rem] overflow-hidden shadow-[0_20px_80px_-20px_rgba(0,0,0,0.1)] border border-slate-100 flex flex-col lg:flex-row"
-          >
-            {/* Form Left Side (Branding Info) */}
-            <div className="lg:w-2/5 bg-slate-900 p-10 lg:p-14 flex flex-col justify-between text-white relative overflow-hidden">
-              <div className="absolute top-[-20%] left-[-20%] w-64 h-64 bg-brand-500 rounded-full blur-[100px] opacity-30" />
+          <div className="bg-white rounded-[32px] shadow-[0_20px_50px_rgba(0,0,0,0.04)] border border-slate-100 overflow-hidden flex flex-col lg:flex-row">
+            
+            {/* Left Side: School Illustration */}
+            <div className="lg:w-[45%] bg-slate-50 p-8 lg:p-12 flex flex-col items-center justify-center relative">
+              <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] opacity-30" />
               
-              <div className="relative z-10">
-                <h2 className="premium-h2 text-white mb-4">Let's Build the Future</h2>
-                <p className="text-slate-400 text-base leading-relaxed font-light">
-                  Fill out the form and our institutional relations head will reach out to you within <span className="text-brand-400 font-semibold">24 hours</span>.
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="relative z-10 w-full max-w-[320px]"
+              >
+                {/* Professional School SVG */}
+                <svg viewBox="0 0 400 400" className="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* School Building */}
+                  <motion.path 
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    d="M50 350H350V180L200 100L50 180V350Z" fill="white" stroke="#94A3B8" strokeWidth="4"/>
+                  <path d="M200 100V350" stroke="#E2E8F0" strokeWidth="2" strokeDasharray="4 4"/>
+                  
+                  {/* Windows */}
+                  <rect x="80" y="200" width="40" height="40" rx="4" fill="#F1F5F9" stroke="#CBD5E1" strokeWidth="2"/>
+                  <rect x="140" y="200" width="40" height="40" rx="4" fill="#F1F5F9" stroke="#CBD5E1" strokeWidth="2"/>
+                  <rect x="220" y="200" width="40" height="40" rx="4" fill="#F1F5F9" stroke="#CBD5E1" strokeWidth="2"/>
+                  <rect x="280" y="200" width="40" height="40" rx="4" fill="#F1F5F9" stroke="#CBD5E1" strokeWidth="2"/>
+                  
+                  <rect x="80" y="260" width="40" height="40" rx="4" fill="#F1F5F9" stroke="#CBD5E1" strokeWidth="2"/>
+                  <rect x="140" y="260" width="40" height="40" rx="4" fill="#F1F5F9" stroke="#CBD5E1" strokeWidth="2"/>
+                  <rect x="220" y="260" width="40" height="40" rx="4" fill="#F1F5F9" stroke="#CBD5E1" strokeWidth="2"/>
+                  <rect x="280" y="260" width="40" height="40" rx="4" fill="#F1F5F9" stroke="#CBD5E1" strokeWidth="2"/>
+
+                  {/* Door */}
+                  <path d="M170 350V300C170 283.431 183.431 270 200 270C216.569 270 230 283.431 230 300V350H170Z" fill="#F97316" fillOpacity="0.1" stroke="#F97316" strokeWidth="3"/>
+                  
+                  {/* Floating Icons */}
+                  <motion.g animate={{ y: [0, -10, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>
+                    <circle cx="100" cy="120" r="25" fill="#3B82F6" fillOpacity="0.1" stroke="#3B82F6" strokeWidth="2"/>
+                    <path d="M92 120L108 120M100 112L100 128" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round"/>
+                  </motion.g>
+                  
+                  <motion.g animate={{ y: [0, -12, 0] }} transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}>
+                    <circle cx="300" cy="100" r="20" fill="#10B981" fillOpacity="0.1" stroke="#10B981" strokeWidth="2"/>
+                    <path d="M295 100L305 100" stroke="#10B981" strokeWidth="2" strokeLinecap="round"/>
+                  </motion.g>
+
+                  {/* Ground */}
+                  <path d="M20 350H380" stroke="#CBD5E1" strokeWidth="4" strokeLinecap="round"/>
+                </svg>
+              </motion.div>
+
+              <div className="mt-8 text-center relative z-10">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-white rounded-full shadow-sm border border-slate-100 mb-4">
+                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                   <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Active Partnership</span>
+                </div>
+                <h3 className="text-xl font-black text-slate-900 mb-2">School Network</h3>
+                <p className="text-slate-500 text-xs font-medium max-w-[200px] mx-auto leading-relaxed">
+                  Join a community of forward-thinking institutions.
                 </p>
               </div>
-
-              <div className="mt-16 space-y-8 relative z-10">
-                <div className="flex items-center gap-5 group cursor-pointer">
-                  <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center border border-white/10 group-hover:bg-brand-500 group-hover:border-brand-500 transition-all"><Mail size={20} className="text-white"/></div>
-                  <div><p className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-500">Email Us</p><p className="font-semibold text-white tracking-wide">partner@toppermantra.com</p></div>
-                </div>
-                <div className="flex items-center gap-5 group cursor-pointer">
-                  <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center border border-white/10 group-hover:bg-brand-500 group-hover:border-brand-500 transition-all"><Phone size={20} className="text-white"/></div>
-                  <div><p className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-500">Call Us</p><p className="font-semibold text-white tracking-wide">+91 98765 43210</p></div>
-                </div>
-              </div>
             </div>
 
-            {/* Form Right Side (Inputs) */}
-            <div className="lg:w-3/5 p-10 lg:p-14 bg-white">
-              <form className="space-y-6 sm:space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">School Name</label>
-                    <input type="text" placeholder="Enter school name" className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 text-sm focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all outline-none placeholder:text-slate-300" />
+            {/* Right Side: Form */}
+            <div className="lg:w-[55%] p-8 md:p-12 bg-white">
+              <div className="mb-8">
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Connect With Us</h2>
+                <p className="text-slate-500 text-sm font-medium">Our team will reach out within 24 hours.</p>
+              </div>
+
+              <form className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">School Name</label>
+                    <input type="text" placeholder="Enter school name" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-slate-900 text-sm font-semibold focus:border-brand-500 focus:bg-white transition-all outline-none" />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Contact Person</label>
-                    <input type="text" placeholder="Your Name" className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 text-sm focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all outline-none placeholder:text-slate-300" />
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Contact Name</label>
+                    <input type="text" placeholder="Your Name" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-slate-900 text-sm font-semibold focus:border-brand-500 focus:bg-white transition-all outline-none" />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Email Address</label>
-                    <input type="email" placeholder="school@example.com" className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 text-sm focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all outline-none placeholder:text-slate-300" />
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Work Email</label>
+                    <input type="email" placeholder="admin@school.com" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-slate-900 text-sm font-semibold focus:border-brand-500 focus:bg-white transition-all outline-none" />
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Phone Number</label>
-                    <input type="tel" placeholder="+91 XXXXX XXXXX" className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 text-sm focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all outline-none placeholder:text-slate-300" />
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Phone</label>
+                    <input type="tel" placeholder="+91 XXXXX XXXXX" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-slate-900 text-sm font-semibold focus:border-brand-500 focus:bg-white transition-all outline-none" />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">How can we help?</label>
-                  <textarea 
-                    className="w-full px-5 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 text-sm focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all outline-none min-h-[120px] resize-none placeholder:text-slate-300"
-                    placeholder="Briefly describe your student count and requirements..."
-                  />
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Requirements</label>
+                  <textarea placeholder="How can we help?" className="w-full px-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-slate-900 text-sm font-semibold focus:border-brand-500 focus:bg-white transition-all outline-none min-h-[100px] resize-none" />
                 </div>
 
-                <button type="button" className="w-full group relative overflow-hidden rounded-2xl bg-slate-900 text-white py-5 font-bold text-sm tracking-wide shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1">
-                  <div className="absolute inset-0 bg-brand-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="relative z-10 flex items-center justify-center gap-3">
-                    Submit Partnership Request
-                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </button>
+                <motion.button 
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full bg-slate-900 text-white py-4 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-lg hover:bg-brand-500 transition-all duration-300"
+                >
+                  Submit Partnership Request
+                  <ArrowRight size={16} />
+                </motion.button>
               </form>
             </div>
-          </motion.div>
+
+          </div>
         </div>
       </section>
 

@@ -109,8 +109,7 @@ const StudentJoinPage = () => {
 
   return (
     <main className="min-h-screen bg-[#FAFAF8] selection:bg-[#FF6B35] selection:text-white pt-16 font-sans overflow-x-hidden text-[#0D0D0D]">
-      <style>{`
-        
+      <style dangerouslySetInnerHTML={{ __html: `
         .noise-bg { position: relative; }
         .noise-bg::before { 
           content: ''; position: absolute; inset: 0; 
@@ -129,7 +128,7 @@ const StudentJoinPage = () => {
           box-shadow: 0 12px 25px -10px rgba(0,0,0,0.08), inset 0 1px 1px rgba(255,255,255,1);
           border-color: rgba(0,0,0,0.06);
         }
-      `}</style>
+      `}} />
 
       {/* =========================================
           SECTION 1: HERO (COMPACT & TIGHT)
@@ -320,86 +319,126 @@ const StudentJoinPage = () => {
       </section>
 
       {/* =========================================
-          SECTION 5: PREMIUM FORM (COMPACT SPLIT)
+          SECTION 5: STUDENT ACCESS FORM (PREMIUM LIGHT)
       ========================================= */}
-      <section id="form" className="py-16 relative overflow-hidden bg-[#FAFAF8]">
-        <div className="max-w-[1100px] mx-auto px-6 relative z-10">
+      <section id="form" className="py-20 md:py-28 relative overflow-hidden bg-[#F8FAFC]">
+        {/* Soft background glows */}
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-brand-100/40 rounded-full blur-[100px] -ml-40 -mt-40" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-indigo-100/30 rounded-full blur-[100px] -mr-40 -mb-40" />
+        
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
           <motion.div 
-            initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-            className="bg-white rounded-[2rem] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] border border-black/5 flex flex-col md:flex-row"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-[40px] shadow-[0_24px_60px_-12px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden flex flex-col lg:flex-row items-stretch"
           >
-            {/* Form Left Side (Cinematic Image Overlay) */}
-            <div className="md:w-[40%] relative p-8 lg:p-10 flex flex-col justify-between text-white overflow-hidden min-h-[350px]">
-              <img 
-                src="/images/student-study-focus.jpg" 
-                alt="Student studying" 
-                className="absolute inset-0 w-full h-full object-cover"
-                onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.style.background = 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)'; }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-[#0D0D0D]/90 via-[#0D0D0D]/70 to-[#FF6B35]/60 mix-blend-multiply" />
-              <div className="absolute inset-0 bg-[#0D0D0D]/10 backdrop-blur-[1px]" />
+            {/* Left Side: Student Illustration (SVG) */}
+            <div className="lg:w-[45%] bg-slate-50 p-10 lg:p-16 flex flex-col items-center justify-center relative overflow-hidden">
+              <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:20px_20px] opacity-40" />
               
-              <div className="relative z-10">
-                <div className="w-10 h-10 bg-white/10 backdrop-blur border border-white/20 rounded-[0.8rem] flex items-center justify-center mb-6 shadow-inner">
-                  <GraduationCap size={18} className="text-white" />
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                className="relative z-10 w-full max-w-[340px]"
+              >
+                {/* Custom Premium Student SVG */}
+                <svg viewBox="0 0 400 400" className="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Floating Graduation Cap */}
+                  <motion.g 
+                    animate={{ y: [0, -15, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <path d="M200 100L320 160L200 220L80 160L200 100Z" fill="white" stroke="#334155" strokeWidth="4"/>
+                    <path d="M120 180V230C120 230 150 250 200 250C250 250 280 230 280 230V180" stroke="#334155" strokeWidth="4" strokeLinejoin="round"/>
+                    <path d="M320 160V220" stroke="#F97316" strokeWidth="4" strokeLinecap="round"/>
+                    <circle cx="320" cy="230" r="8" fill="#F97316"/>
+                  </motion.g>
+
+                  {/* Brain/Core Icon */}
+                  <motion.circle 
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    cx="200" cy="300" r="60" fill="#F97316" fillOpacity="0.05" stroke="#F97316" strokeWidth="2" strokeDasharray="8 8"/>
+                  
+                  {/* Floating Success Stars */}
+                  <motion.path 
+                    animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0 }}
+                    d="M100 280L105 295L120 300L105 305L100 320L95 305L80 300L95 295L100 280Z" fill="#FBBF24"/>
+                  
+                  <motion.path 
+                    animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                    d="M300 250L303 260L313 263L303 266L300 276L297 266L287 263L297 260L300 250Z" fill="#FBBF24"/>
+                </svg>
+              </motion.div>
+
+              <div className="mt-10 text-center relative z-10">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-white rounded-full shadow-sm border border-slate-100 mb-4">
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-ping" />
+                  <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Early Access Open</span>
                 </div>
-                <h2 className="premium-h2 text-white mb-3">Request Access.</h2>
-                <p className="font-sans text-white/70 text-xs leading-relaxed font-light max-w-xs">
-                  Not sure where to start? Let our experts analyze your profile and guide you to the perfect path.
+                <h3 className="text-2xl font-black text-slate-900 mb-3">Join the 1% Club</h3>
+                <p className="text-slate-500 text-sm font-medium leading-relaxed max-w-[280px] mx-auto">
+                  Get personalized mentorship and tools to dominate your exams.
                 </p>
               </div>
-
-              <div className="relative z-10 mt-8 pt-6 border-t border-white/10 hidden md:block">
-                <div className="flex items-center gap-3">
-                  <div className="flex -space-x-2.5">
-                    {[1,2,3].map((i) => (
-                      <div key={i} className="w-8 h-8 rounded-full border border-[#0D0D0D] bg-white/20 overflow-hidden flex items-center justify-center backdrop-blur">
-                         <span className="text-[8px] text-white/80">{i}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="font-sans text-[10px] text-white/60 font-light">
-                    Join <span className="text-white font-medium">10,000+</span> Students
-                  </div>
-                </div>
-              </div>
             </div>
-            
-            {/* Form Right Side (Clean Light Inputs) */}
-            <div className="md:w-[60%] p-8 lg:p-10 bg-white">
-              <form className="space-y-5 font-sans">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+
+            {/* Right Side: Refined Form */}
+            <div className="lg:w-[55%] p-10 lg:p-16 bg-white">
+              <div className="mb-10">
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight mb-2">Request Your Access</h2>
+                <p className="text-slate-500 text-sm font-medium">Analyze your potential with our expert team.</p>
+              </div>
+
+              <form className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
                   {[
-                    { label: "Full Name", type: "text", placeholder: "John Doe" },
-                    { label: "Email", type: "email", placeholder: "john@example.com" },
-                    { label: "Phone", type: "tel", placeholder: "+91" },
-                    { label: "Class", type: "text", placeholder: "Class 12, Dropper" },
-                    { label: "Target Exam", type: "text", placeholder: "JEE, NEET" },
-                    { label: "Goal", type: "text", placeholder: "IIT Bombay" },
+                    { label: "Full Name", placeholder: "e.g. Rahul Sharma" },
+                    { label: "Email", placeholder: "rahul@example.com" },
+                    { label: "Contact No.", placeholder: "+91 XXXXX XXXXX" },
+                    { label: "Current Class", placeholder: "Class 12 / Dropper" },
+                    { label: "Target Exam", placeholder: "JEE / NEET / Boards" },
+                    { label: "Dream Goal", placeholder: "IIT / AIIMS / 98%+" }
                   ].map((field, i) => (
-                    <div key={i} className="space-y-1.5">
-                      <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest ml-1">{field.label}</label>
-                      <input type={field.type} placeholder={field.placeholder} className="w-full px-4 py-3 bg-[#FAFAF8] border border-black/5 rounded-xl text-[#0D0D0D] text-xs focus:ring-1 focus:ring-[#FF6B35] focus:border-[#FF6B35] transition-all outline-none placeholder:text-slate-300 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]" />
+                    <div key={i} className="relative group">
+                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 block group-focus-within:text-brand-500 transition-colors">
+                        {field.label}
+                      </label>
+                      <input 
+                        type="text" 
+                        placeholder={field.placeholder}
+                        className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3.5 text-slate-900 text-sm font-semibold outline-none focus:bg-white focus:border-brand-500 transition-all placeholder:text-slate-300 shadow-[inset_0_1px_2px_rgba(0,0,0,0.01)]"
+                      />
                     </div>
                   ))}
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-[9px] font-bold text-slate-400 uppercase tracking-widest ml-1">Your Challenge</label>
+                <div className="relative group">
+                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 block group-focus-within:text-brand-500 transition-colors">
+                    Tell us about your biggest challenge
+                  </label>
                   <textarea 
-                    className="w-full px-4 py-3 bg-[#FAFAF8] border border-black/5 rounded-xl text-[#0D0D0D] text-xs focus:ring-1 focus:ring-[#FF6B35] focus:border-[#FF6B35] transition-all outline-none min-h-[80px] resize-none placeholder:text-slate-300 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]"
-                    placeholder="Briefly describe what's holding you back..."
+                    placeholder="Briefly describe what's holding you back from your goal..."
+                    className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-4 text-slate-900 text-sm font-semibold outline-none focus:bg-white focus:border-brand-500 transition-all min-h-[100px] resize-none placeholder:text-slate-300 shadow-[inset_0_1px_2px_rgba(0,0,0,0.01)]"
                   />
                 </div>
 
-                <button type="button" className="w-full group relative overflow-hidden rounded-xl bg-[#0D0D0D] text-white py-3.5 font-bold text-xs tracking-wide shadow-md hover:-translate-y-0.5 hover:shadow-lg transition-all mt-2">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#FF6B35] to-[#f98a60] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    Book Strategy Session
-                    <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </button>
+                <motion.button 
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3 shadow-xl hover:bg-brand-500 transition-all duration-300"
+                >
+                  Book Free Strategy Session
+                  <ArrowRight size={18} />
+                </motion.button>
               </form>
+              
+              <p className="text-center text-[10px] text-slate-400 font-bold uppercase tracking-[0.3em] mt-8">
+                Response within 12 hours • Guaranteed Result Shift
+              </p>
             </div>
           </motion.div>
         </div>
