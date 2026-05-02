@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -13,7 +13,8 @@ import {
   GraduationCap, Briefcase, ExternalLink, CheckCircle2, Search,
   ChevronDown, School, Building2, MapPin, Zap, Mail, Phone, Users,
   Globe, ShieldCheck, Gem, Settings, Tag, Crown, Activity, Award,
-  Target
+  Target,
+  X
 } from "lucide-react";
 
 if (typeof window !== "undefined") {
@@ -542,179 +543,566 @@ export const WhyChooseSection = () => {
   );
 };
 
-// --- MENTORS SECTION COMPONENT ---
-const MENTOR_CATEGORIES = [
-  { id: "academic", name: "Academic Mentorship", icon: BookOpen },
-  { id: "hackathon", name: "Hackathons", icon: Code },
-  { id: "startup", name: "Startup Mentorship", icon: Rocket },
+// // --- MENTORS SECTION COMPONENT ---
+// const MENTOR_CATEGORIES = [
+//   { id: "academic", name: "Academic Mentorship", icon: BookOpen },
+//   { id: "hackathon", name: "Hackathons", icon: Code },
+//   { id: "startup", name: "Startup Mentorship", icon: Rocket },
+// ];
+
+// const MENTORS_DATA = [
+//   {
+//     id: 1, category: "academic", name: "Arjun Sharma", college: "IIT Bombay", rank: "AIR 12", qualification: "B.Tech CS", experience: "5+ Years", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=600", tags: ["JEE Advanced", "Math Maestro"], description: "Expert in Advanced Mathematics with a track record of mentoring top 100 AIR rankers.", expertise: ["Advanced Calculus", "Problem Solving", "Exam Strategy"]
+//   },
+//   {
+//     id: 2, category: "academic", name: "Dr. Priya Verma", college: "AIIMS Delhi", rank: "AIR 4", qualification: "MBBS", experience: "6+ Years", image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=600", tags: ["NEET Biology", "Mind Maps"], description: "Simplifies complex physiological concepts through innovative visual learning.", expertise: ["Human Physiology", "Anatomy Visualization", "NEET Prep"]
+//   },
+//   {
+//     id: 3, category: "academic", name: "Rahul Gupta", college: "IIM Ahmedabad", rank: "99.98%ile", qualification: "MBA", experience: "8+ Years", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600", tags: ["CAT", "Logical Mastery"], description: "Strategist focusing on competitive exam psychology and conceptual mastery.", expertise: ["Quantitative Aptitude", "Logical Reasoning", "Interview Prep"]
+//   },
+//   {
+//     id: 4, category: "academic", name: "Sanya Singh", college: "DTU Delhi", rank: "AIR 102", qualification: "B.Tech IT", experience: "5+ Years", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600", tags: ["Organic Chemistry", "Boards"], description: "Specializes in Inorganic Chemistry and high-scoring strategies for Boards.", expertise: ["Inorganic Reactions", "Board Exam Patterns", "Score Optimization"]
+//   },
+//   {
+//     id: 5, category: "hackathon", name: "Vikram Das", college: "NIT Trichy", rank: "SIH Winner", qualification: "Full Stack Dev", experience: "30+ Hackathons", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600", tags: ["Web3", "System Design"], description: "Smart India Hackathon winner. Helps you build scalable MVPs in 24 hours.", expertise: ["MERN Stack", "Blockchain Dev", "Rapid Prototyping"]
+//   },
+//   {
+//     id: 6, category: "hackathon", name: "Neha Kapoor", college: "IIIT Hyderabad", rank: "Global Top 10", qualification: "AI/ML Engineer", experience: "4+ Years", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600", tags: ["AI/ML", "Pitch Deck"], description: "Master at integrating AI APIs and delivering winning hacker pitches.", expertise: ["NLP Models", "PyTorch", "Pitch Presentation"]
+//   },
+//   {
+//     id: 9, category: "startup", name: "Rohan Mehta", college: "Stanford GSB", rank: "Ex-YC Founder", qualification: "Serial Entrepreneur", experience: "10+ Years", image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=600", tags: ["Fundraising", "GTM Strategy"], description: "Helps early-stage startups navigate Y-Combinator applications and seed rounds.", expertise: ["Seed Funding", "Scale Strategy", "Founder Mindset"]
+//   },
+//   {
+//     id: 10, category: "startup", name: "Smriti Rao", college: "ISB Hyderabad", rank: "Angel Investor", qualification: "Finance Expert", experience: "8+ Years", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=600", tags: ["Financial Modeling", "B2B"], description: "Assists founders in creating bulletproof financial models and B2B sales pipelines.", expertise: ["Venture Capital", "Unit Economics", "B2B Sales"]
+//   }
+// ];
+
+// export const MentorsSection = () => {
+//   const [activeCategory, setActiveCategory] = useState("academic");
+//   const [displayedMentors, setDisplayedMentors] = useState(MENTORS_DATA.filter(m => m.category === "academic"));
+//   const [expandedId, setExpandedId] = useState<number | null>(null);
+//   const sectionRef = useRef(null);
+//   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+//   useGSAP(() => {
+//     gsap.from(".mentor-header", {
+//       scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
+//       opacity: 0, y: 30, duration: 1, ease: "power4.out"
+//     });
+//   }, { scope: sectionRef });
+
+//   const handleCategoryChange = (newCategory: string) => {
+//     if (newCategory === activeCategory) return;
+//     setExpandedId(null);
+//     const tl = gsap.timeline();
+//     tl.to(".mentor-card", {
+//       opacity: 0,
+//       y: -20,
+//       filter: "blur(10px)",
+//       stagger: 0.05,
+//       duration: 0.4,
+//       onComplete: () => {
+//         setActiveCategory(newCategory);
+//         setDisplayedMentors(MENTORS_DATA.filter(m => m.category === newCategory));
+//         if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
+//       }
+//     });
+//     tl.fromTo(".mentor-card", 
+//       { opacity: 0, y: 40, filter: "blur(20px)" },
+//       { opacity: 1, y: 0, filter: "blur(0px)", stagger: 0.1, duration: 0.8, ease: "power3.out", clearProps: "all" }
+//     );
+//   };
+
+//   const scroll = (direction: 'left' | 'right') => {
+//     if (scrollContainerRef.current) {
+//       const { scrollLeft, clientWidth } = scrollContainerRef.current;
+//       const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+//       scrollContainerRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+//     }
+//   };
+
+//   return (
+//     <section ref={sectionRef} className="relative w-full py-8 md:py-10 bg-white overflow-hidden font-sans">
+//       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none z-0">
+//         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-400/5 rounded-full blur-[100px]" />
+//         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-400/5 rounded-full blur-[120px]" />
+//       </div>
+
+//       <div className="relative z-10 max-w-[1440px] mx-auto px-4 md:px-12">
+//         <div className="mentor-header text-center mb-6 md:mb-8">
+//           <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/60 bg-white px-5 py-2 text-slate-700 mb-6 shadow-sm">
+//             <Sparkles size={14} className="text-brand-500" />
+//             <span className="text-[10px] font-bold uppercase tracking-[0.2em]">India&apos;s Elite Mentor Circle</span>
+//           </div>
+//           <h2 className="premium-h2 text-slate-900">Meet Your Future Architects</h2>
+//           <p className="premium-p max-w-xl mx-auto mt-4 px-4">
+//              Learn directly from the students who have cracked India&apos;s toughest exams. Real-world insights from the current Top 1%.
+//           </p>
+//         </div>
+
+//         <div className="flex flex-wrap justify-center gap-3 mb-12">
+//           {MENTOR_CATEGORIES.map((cat) => (
+//             <button
+//               key={cat.id}
+//               onClick={() => handleCategoryChange(cat.id)}
+//               className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold transition-all ${activeCategory === cat.id ? "bg-slate-900 text-white shadow-xl" : "bg-white text-slate-600 border border-slate-100"}`}
+//             >
+//               <cat.icon size={16} className={activeCategory === cat.id ? "text-brand-400" : "text-slate-400"} />
+//               {cat.name}
+//             </button>
+//           ))}
+//         </div>
+
+//         <div className="relative group">
+//           <button onClick={() => scroll('left')} className="absolute -left-6 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-white/80 backdrop-blur-md border border-white shadow-2xl flex items-center justify-center text-slate-900 opacity-0 group-hover:opacity-100 transition-all hover:bg-brand-500 hover:text-white hidden lg:flex">
+//             <ChevronLeft size={24} />
+//           </button>
+//           <button onClick={() => scroll('right')} className="absolute -right-6 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-white/80 backdrop-blur-md border border-white shadow-2xl flex items-center justify-center text-slate-900 opacity-0 group-hover:opacity-100 transition-all hover:bg-brand-500 hover:text-white hidden lg:flex">
+//             <ChevronRight size={24} />
+//           </button>
+
+//           <div ref={scrollContainerRef} className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar pb-10 gap-6">
+//             {displayedMentors.map((mentor) => (
+//               <div key={mentor.id} className="mentor-card relative flex-shrink-0 w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] snap-center bg-white rounded-[2rem] p-4 border border-slate-100 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_32px_64px_rgba(251,91,46,0.08)] transition-all duration-500">
+//                 <div className="relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-6 bg-slate-50">
+//                    <Image src={mentor.image} alt={mentor.name} fill className="object-cover transition-transform duration-700 hover:scale-105" />
+//                    <div className="absolute top-4 right-4 bg-brand-500 text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg">{mentor.rank}</div>
+//                 </div>
+
+//                 <div className="px-2">
+//                   <h3 className="text-lg font-bold text-slate-900 mb-1">{mentor.name}</h3>
+//                   <p className="text-[11px] text-slate-500 font-medium mb-3 line-clamp-2 leading-relaxed">{mentor.description}</p>
+                  
+//                   <div className="mb-4">
+//                     <button onClick={() => setExpandedId(expandedId === mentor.id ? null : mentor.id)} className="flex items-center gap-2 py-1.5 px-3 rounded-full bg-slate-50 hover:bg-brand-50 transition-colors group/btn border border-slate-100/50">
+//                       <Trophy size={12} className="text-brand-500" />
+//                       <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 group-hover/btn:text-brand-600">Expertise</span>
+//                       <ChevronDown size={14} className={`text-slate-400 group-hover/btn:text-brand-400 transition-transform duration-300 ${expandedId === mentor.id ? 'rotate-180' : ''}`} />
+//                     </button>
+                    
+//                     <AnimatePresence mode="wait">
+//                       {expandedId === mentor.id && (
+//                         <motion.div initial={{ height: 0, opacity: 0, y: -5 }} animate={{ height: "auto", opacity: 1, y: 0 }} exit={{ height: 0, opacity: 0, y: -5 }} transition={{ duration: 0.25, ease: "easeOut" }} className="overflow-hidden">
+//                           <div className="pt-3 flex flex-wrap gap-1.5">
+//                             {mentor.expertise?.map((exp, i) => (
+//                               <span key={i} className="text-[8.5px] font-bold px-2.5 py-1 bg-white text-slate-600 rounded-md border border-slate-100 shadow-sm">{exp}</span>
+//                             ))}
+//                           </div>
+//                         </motion.div>
+//                       )}
+//                     </AnimatePresence>
+//                   </div>
+
+//                   <div className="space-y-2.5 pt-4 border-t border-slate-100/60">
+//                     <div className="flex items-center gap-2.5">
+//                        <GraduationCap size={14} className="text-slate-400" />
+//                        <span className="text-[11px] font-bold text-slate-700">{mentor.college}</span>
+//                     </div>
+//                     <div className="flex items-center gap-2.5">
+//                        <Briefcase size={14} className="text-slate-400" />
+//                        <span className="text-[11px] font-bold text-slate-700">{mentor.experience} Exp</span>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+
+//         <div className="mt-8 text-center">
+//             <a href="https://play.google.com/store/apps/details?id=com.support.toppers.mantra&pcampaignid=web_share&pli=1" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-full text-xs font-bold hover:bg-brand-500 transition-all shadow-xl active:scale-95">
+//                View All Mentors in App
+//                <Star size={14} fill="currentColor" className="text-brand-400" />
+//             </a>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// ─── TYPES ───────────────────────────────────────────────────────────────────
+
+type Mentor = {
+  id: number;
+  name: string;
+  college: string;
+  rank: string;
+  qualification: string;
+  experience: string;
+  image: string;
+  tags: string[];
+  description: string;
+  expertise: string[];
+  color: string;
+};
+
+// ─── DATA ────────────────────────────────────────────────────────────────────
+
+const MENTORS_DATA: Record<string, Mentor[]> = {
+  academic: [
+    {
+      id: 1, name: "Arjun Sharma", college: "IIT Bombay", rank: "AIR 12",
+      qualification: "B.Tech CS", experience: "5+ Years",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=600",
+      tags: ["JEE Advanced", "Math Maestro"],
+      description: "Expert in Advanced Mathematics with a track record of mentoring top 100 AIR rankers.",
+      expertise: ["Advanced Calculus", "Problem Solving", "Exam Strategy"],
+      color: "#C8A84B",
+    },
+    {
+      id: 2, name: "Dr. Priya Verma", college: "AIIMS Delhi", rank: "AIR 4",
+      qualification: "MBBS", experience: "6+ Years",
+      image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=600",
+      tags: ["NEET Biology", "Mind Maps"],
+      description: "Simplifies complex physiological concepts through innovative visual learning.",
+      expertise: ["Human Physiology", "Anatomy Visualization", "NEET Prep"],
+      color: "#29B8A8",
+    },
+    {
+      id: 3, name: "Rahul Gupta", college: "IIM Ahmedabad", rank: "99.98%ile",
+      qualification: "MBA", experience: "8+ Years",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600",
+      tags: ["CAT", "Logical Mastery"],
+      description: "Strategist focusing on competitive exam psychology and conceptual mastery.",
+      expertise: ["Quantitative Aptitude", "Logical Reasoning", "Interview Prep"],
+      color: "#7B5EA7",
+    },
+    {
+      id: 4, name: "Sanya Singh", college: "DTU Delhi", rank: "AIR 102",
+      qualification: "B.Tech IT", experience: "5+ Years",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600",
+      tags: ["Organic Chemistry", "Boards"],
+      description: "Specializes in Inorganic Chemistry and high-scoring strategies for Boards.",
+      expertise: ["Inorganic Reactions", "Board Exam Patterns", "Score Optimization"],
+      color: "#E85090",
+    },
+  ],
+  hackathon: [
+    {
+      id: 5, name: "Vikram Das", college: "NIT Trichy", rank: "SIH Winner",
+      qualification: "Full Stack Dev", experience: "30+ Hackathons",
+      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600",
+      tags: ["Web3", "System Design"],
+      description: "Smart India Hackathon winner. Builds scalable MVPs in 24 hours.",
+      expertise: ["MERN Stack", "Blockchain Dev", "Rapid Prototyping"],
+      color: "#D85A30",
+    },
+    {
+      id: 6, name: "Neha Kapoor", college: "IIIT Hyderabad", rank: "Global Top 10",
+      qualification: "AI/ML Engineer", experience: "4+ Years",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600",
+      tags: ["AI/ML", "Pitch Deck"],
+      description: "Master at integrating AI APIs and delivering winning hacker pitches.",
+      expertise: ["NLP Models", "PyTorch", "Pitch Presentation"],
+      color: "#3B8FE8",
+    },
+  ],
+  startup: [
+    {
+      id: 7, name: "Rohan Mehta", college: "Stanford GSB", rank: "Ex-YC Founder",
+      qualification: "Serial Entrepreneur", experience: "10+ Years",
+      image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=600",
+      tags: ["Fundraising", "GTM Strategy"],
+      description: "Helps early-stage startups navigate Y-Combinator applications and seed rounds.",
+      expertise: ["Seed Funding", "Scale Strategy", "Founder Mindset"],
+      color: "#2EAF6B",
+    },
+    {
+      id: 8, name: "Smriti Rao", college: "ISB Hyderabad", rank: "Angel Investor",
+      qualification: "Finance Expert", experience: "8+ Years",
+      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=600",
+      tags: ["Financial Modeling", "B2B"],
+      description: "Assists founders in creating bulletproof financial models and B2B sales pipelines.",
+      expertise: ["Venture Capital", "Unit Economics", "B2B Sales"],
+      color: "#C8A84B",
+    },
+  ],
+};
+
+const COLUMNS = [
+  { key: "academic",  label: "Academic" },
+  { key: "hackathon", label: "Hackathons" },
+  { key: "startup",   label: "Entrepreneurship" },
 ];
 
-const MENTORS_DATA = [
-  {
-    id: 1, category: "academic", name: "Arjun Sharma", college: "IIT Bombay", rank: "AIR 12", qualification: "B.Tech CS", experience: "5+ Years", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=600", tags: ["JEE Advanced", "Math Maestro"], description: "Expert in Advanced Mathematics with a track record of mentoring top 100 AIR rankers.", expertise: ["Advanced Calculus", "Problem Solving", "Exam Strategy"]
-  },
-  {
-    id: 2, category: "academic", name: "Dr. Priya Verma", college: "AIIMS Delhi", rank: "AIR 4", qualification: "MBBS", experience: "6+ Years", image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=600", tags: ["NEET Biology", "Mind Maps"], description: "Simplifies complex physiological concepts through innovative visual learning.", expertise: ["Human Physiology", "Anatomy Visualization", "NEET Prep"]
-  },
-  {
-    id: 3, category: "academic", name: "Rahul Gupta", college: "IIM Ahmedabad", rank: "99.98%ile", qualification: "MBA", experience: "8+ Years", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600", tags: ["CAT", "Logical Mastery"], description: "Strategist focusing on competitive exam psychology and conceptual mastery.", expertise: ["Quantitative Aptitude", "Logical Reasoning", "Interview Prep"]
-  },
-  {
-    id: 4, category: "academic", name: "Sanya Singh", college: "DTU Delhi", rank: "AIR 102", qualification: "B.Tech IT", experience: "5+ Years", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600", tags: ["Organic Chemistry", "Boards"], description: "Specializes in Inorganic Chemistry and high-scoring strategies for Boards.", expertise: ["Inorganic Reactions", "Board Exam Patterns", "Score Optimization"]
-  },
-  {
-    id: 5, category: "hackathon", name: "Vikram Das", college: "NIT Trichy", rank: "SIH Winner", qualification: "Full Stack Dev", experience: "30+ Hackathons", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=600", tags: ["Web3", "System Design"], description: "Smart India Hackathon winner. Helps you build scalable MVPs in 24 hours.", expertise: ["MERN Stack", "Blockchain Dev", "Rapid Prototyping"]
-  },
-  {
-    id: 6, category: "hackathon", name: "Neha Kapoor", college: "IIIT Hyderabad", rank: "Global Top 10", qualification: "AI/ML Engineer", experience: "4+ Years", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=600", tags: ["AI/ML", "Pitch Deck"], description: "Master at integrating AI APIs and delivering winning hacker pitches.", expertise: ["NLP Models", "PyTorch", "Pitch Presentation"]
-  },
-  {
-    id: 9, category: "startup", name: "Rohan Mehta", college: "Stanford GSB", rank: "Ex-YC Founder", qualification: "Serial Entrepreneur", experience: "10+ Years", image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=600", tags: ["Fundraising", "GTM Strategy"], description: "Helps early-stage startups navigate Y-Combinator applications and seed rounds.", expertise: ["Seed Funding", "Scale Strategy", "Founder Mindset"]
-  },
-  {
-    id: 10, category: "startup", name: "Smriti Rao", college: "ISB Hyderabad", rank: "Angel Investor", qualification: "Finance Expert", experience: "8+ Years", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=600", tags: ["Financial Modeling", "B2B"], description: "Assists founders in creating bulletproof financial models and B2B sales pipelines.", expertise: ["Venture Capital", "Unit Economics", "B2B Sales"]
-  }
-];
+// ─── CONSTANTS ───────────────────────────────────────────────────────────────
 
-export const MentorsSection = () => {
-  const [activeCategory, setActiveCategory] = useState("academic");
-  const [displayedMentors, setDisplayedMentors] = useState(MENTORS_DATA.filter(m => m.category === "academic"));
-  const [expandedId, setExpandedId] = useState<number | null>(null);
-  const sectionRef = useRef(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+const PEEK_H = 52;  // px each stacked card peeks above the next
+const TOP_H  = 110; // height of the topmost (last) card
 
-  useGSAP(() => {
-    gsap.from(".mentor-header", {
-      scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
-      opacity: 0, y: 30, duration: 1, ease: "power4.out"
-    });
-  }, { scope: sectionRef });
+// ─── STACK COLUMN ────────────────────────────────────────────────────────────
 
-  const handleCategoryChange = (newCategory: string) => {
-    if (newCategory === activeCategory) return;
-    setExpandedId(null);
-    const tl = gsap.timeline();
-    tl.to(".mentor-card", {
-      opacity: 0,
-      y: -20,
-      filter: "blur(10px)",
-      stagger: 0.05,
-      duration: 0.4,
-      onComplete: () => {
-        setActiveCategory(newCategory);
-        setDisplayedMentors(MENTORS_DATA.filter(m => m.category === newCategory));
-        if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
-      }
-    });
-    tl.fromTo(".mentor-card", 
-      { opacity: 0, y: 40, filter: "blur(20px)" },
-      { opacity: 1, y: 0, filter: "blur(0px)", stagger: 0.1, duration: 0.8, ease: "power3.out", clearProps: "all" }
-    );
-  };
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, clientWidth } = scrollContainerRef.current;
-      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
-      scrollContainerRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
-    }
-  };
+function MentorStack({
+  mentors,
+  onSelect,
+}: {
+  mentors: Mentor[];
+  onSelect: (m: Mentor) => void;
+}) {
+  const N = mentors.length;
+  const stackH = (N - 1) * PEEK_H + TOP_H;
 
   return (
-    <section ref={sectionRef} className="relative w-full py-8 md:py-10 bg-white overflow-hidden font-sans">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none z-0">
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-400/5 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-400/5 rounded-full blur-[120px]" />
+    <div className="relative w-full" style={{ height: stackH }}>
+      {mentors.map((mentor, i) => {
+        const isTop = i === N - 1;
+        const top   = i * PEEK_H;
+        const cardH = isTop ? TOP_H : PEEK_H + 8;
+
+        return (
+          <motion.div
+            key={mentor.id}
+            className="absolute left-0 right-0 overflow-hidden cursor-pointer select-none"
+            style={{
+              top,
+              height: cardH,
+              zIndex: i + 1,
+              borderRadius: 18,
+              background: mentor.color,
+            }}
+            whileHover={{ scale: 1.018 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 340, damping: 28 }}
+            onClick={() => onSelect(mentor)}
+          >
+            {/* Photo overlay */}
+            <div className="absolute inset-0 overflow-hidden rounded-[18px]">
+              <Image
+                src={mentor.image}
+                alt={mentor.name}
+                fill
+                className="object-cover"
+                style={{ opacity: isTop ? 0.32 : 0.2 }}
+              />
+            </div>
+
+            {/* Label */}
+            <div
+              className="absolute bottom-0 left-0 right-0 flex items-end"
+              style={{ padding: isTop ? "14px 16px" : "9px 14px" }}
+            >
+              <span
+                className="relative z-10 text-white font-semibold leading-tight"
+                style={{ fontSize: isTop ? 15 : 13 }}
+              >
+                {mentor.name}
+              </span>
+
+              {isTop && (
+                <span
+                  className="ml-auto relative z-10 text-[10px] font-bold px-2.5 py-1 rounded-full"
+                  style={{ background: "rgba(255,255,255,0.22)", color: "white" }}
+                >
+                  {mentor.rank}
+                </span>
+              )}
+            </div>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ─── MODAL ───────────────────────────────────────────────────────────────────
+
+function MentorModal({
+  mentor,
+  onClose,
+}: {
+  mentor: Mentor;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 backdrop-blur-sm"
+      style={{ background: "rgba(0,0,0,0.6)" }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={(e) => e.target === e.currentTarget && onClose()}
+    >
+      <motion.div
+        className="relative w-full max-w-sm sm:max-w-md max-h-[90vh] overflow-y-auto rounded-[24px] bg-white shadow-2xl custom-scrollbar"
+        initial={{ scale: 0.86, y: 32, opacity: 0 }}
+        animate={{ scale: 1, y: 0, opacity: 1 }}
+        exit={{ scale: 0.86, y: 32, opacity: 0 }}
+        transition={{ type: "spring", stiffness: 360, damping: 30 }}
+      >
+        {/* Hero */}
+        <div className="relative h-52 w-full">
+          <Image
+            src={mentor.image}
+            alt={mentor.name}
+            fill
+            className="object-cover"
+          />
+          {/* Gradient fade */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-28"
+            style={{
+              background: `linear-gradient(to top, ${mentor.color}dd, transparent)`,
+            }}
+          />
+          {/* Rank pill */}
+          <div
+            className="absolute top-4 left-4 text-[10px] font-bold px-3 py-1 rounded-full text-white"
+            style={{ background: mentor.color }}
+          >
+            {mentor.rank}
+          </div>
+          {/* Close */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center hover:opacity-70 transition-opacity"
+            style={{ background: "rgba(0,0,0,0.32)", color: "white" }}
+          >
+            <X size={14} />
+          </button>
+        </div>
+
+        {/* Body */}
+        <div className="p-5">
+          <h3 className="text-xl font-bold text-slate-900">{mentor.name}</h3>
+          <p className="text-xs text-slate-400 mt-0.5 mb-3">
+            {mentor.college} · {mentor.qualification}
+          </p>
+
+          <p className="text-sm text-slate-600 leading-relaxed mb-4">
+            {mentor.description}
+          </p>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {mentor.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-[10px] font-bold px-3 py-1 rounded-full"
+                style={{
+                  background: `${mentor.color}18`,
+                  color: mentor.color,
+                  border: `1px solid ${mentor.color}38`,
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Expertise */}
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {mentor.expertise.map((exp) => (
+              <span
+                key={exp}
+                className="text-[10px] font-medium px-2.5 py-1 rounded-md bg-slate-100 text-slate-500"
+              >
+                {exp}
+              </span>
+            ))}
+          </div>
+
+          {/* Meta */}
+          <div className="flex items-center gap-5 text-xs text-slate-400 pb-4 mb-4 border-b border-slate-100">
+            <span className="flex items-center gap-1.5">
+              <GraduationCap size={12} />
+              {mentor.college}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Briefcase size={12} />
+              {mentor.experience} exp
+            </span>
+          </div>
+
+          {/* CTA */}
+          <button
+            className="w-full py-3 rounded-2xl text-sm font-bold text-white transition-opacity hover:opacity-85 active:scale-[0.98]"
+            style={{ background: mentor.color }}
+          >
+            Book a Session
+          </button>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+// ─── MAIN EXPORT ─────────────────────────────────────────────────────────────
+
+export const MentorsSection = () => {
+  const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
+
+  return (
+    <section className="relative w-full py-16 bg-white overflow-hidden font-sans">
+      {/* Ambient blobs */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 right-0 w-[420px] h-[420px] rounded-full bg-orange-50 blur-[120px] opacity-70" />
+        <div className="absolute bottom-0 -left-20 w-[360px] h-[360px] rounded-full bg-purple-50 blur-[100px] opacity-60" />
       </div>
 
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 md:px-12">
-        <div className="mentor-header text-center mb-6 md:mb-8">
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/60 bg-white px-5 py-2 text-slate-700 mb-6 shadow-sm">
-            <Sparkles size={14} className="text-brand-500" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">India&apos;s Elite Mentor Circle</span>
+      <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-10">
+
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 mb-5 shadow-sm">
+            <Star size={11} className="text-amber-500" fill="currentColor" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
+              India&apos;s Elite Mentor Circle
+            </span>
           </div>
-          <h2 className="premium-h2 text-slate-900">Meet Your Future Architects</h2>
-          <p className="premium-p max-w-xl mx-auto mt-4 px-4">
-             Learn directly from the students who have cracked India&apos;s toughest exams. Real-world insights from the current Top 1%.
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
+            Meet Your Future Architects
+          </h2>
+          <p className="text-slate-400 text-sm max-w-md mx-auto leading-relaxed">
+            Learn directly from students who cracked India&apos;s toughest exams.
+            Real insights from the current Top 1%.
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {MENTOR_CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => handleCategoryChange(cat.id)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold transition-all ${activeCategory === cat.id ? "bg-slate-900 text-white shadow-xl" : "bg-white text-slate-600 border border-slate-100"}`}
-            >
-              <cat.icon size={16} className={activeCategory === cat.id ? "text-brand-400" : "text-slate-400"} />
-              {cat.name}
-            </button>
+        {/* 3-column stacks */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {COLUMNS.map((col) => (
+            <div key={col.key}>
+              <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-5 text-center">
+                {col.label}
+              </p>
+              <MentorStack
+                mentors={MENTORS_DATA[col.key]}
+                onSelect={setSelectedMentor}
+              />
+            </div>
           ))}
         </div>
 
-        <div className="relative group">
-          <button onClick={() => scroll('left')} className="absolute -left-6 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-white/80 backdrop-blur-md border border-white shadow-2xl flex items-center justify-center text-slate-900 opacity-0 group-hover:opacity-100 transition-all hover:bg-brand-500 hover:text-white hidden lg:flex">
-            <ChevronLeft size={24} />
-          </button>
-          <button onClick={() => scroll('right')} className="absolute -right-6 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-white/80 backdrop-blur-md border border-white shadow-2xl flex items-center justify-center text-slate-900 opacity-0 group-hover:opacity-100 transition-all hover:bg-brand-500 hover:text-white hidden lg:flex">
-            <ChevronRight size={24} />
-          </button>
-
-          <div ref={scrollContainerRef} className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar pb-10 gap-6">
-            {displayedMentors.map((mentor) => (
-              <div key={mentor.id} className="mentor-card relative flex-shrink-0 w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] snap-center bg-white rounded-[2rem] p-4 border border-slate-100 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_32px_64px_rgba(251,91,46,0.08)] transition-all duration-500">
-                <div className="relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-6 bg-slate-50">
-                   <Image src={mentor.image} alt={mentor.name} fill className="object-cover transition-transform duration-700 hover:scale-105" />
-                   <div className="absolute top-4 right-4 bg-brand-500 text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg">{mentor.rank}</div>
-                </div>
-
-                <div className="px-2">
-                  <h3 className="text-lg font-bold text-slate-900 mb-1">{mentor.name}</h3>
-                  <p className="text-[11px] text-slate-500 font-medium mb-3 line-clamp-2 leading-relaxed">{mentor.description}</p>
-                  
-                  <div className="mb-4">
-                    <button onClick={() => setExpandedId(expandedId === mentor.id ? null : mentor.id)} className="flex items-center gap-2 py-1.5 px-3 rounded-full bg-slate-50 hover:bg-brand-50 transition-colors group/btn border border-slate-100/50">
-                      <Trophy size={12} className="text-brand-500" />
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-600 group-hover/btn:text-brand-600">Expertise</span>
-                      <ChevronDown size={14} className={`text-slate-400 group-hover/btn:text-brand-400 transition-transform duration-300 ${expandedId === mentor.id ? 'rotate-180' : ''}`} />
-                    </button>
-                    
-                    <AnimatePresence mode="wait">
-                      {expandedId === mentor.id && (
-                        <motion.div initial={{ height: 0, opacity: 0, y: -5 }} animate={{ height: "auto", opacity: 1, y: 0 }} exit={{ height: 0, opacity: 0, y: -5 }} transition={{ duration: 0.25, ease: "easeOut" }} className="overflow-hidden">
-                          <div className="pt-3 flex flex-wrap gap-1.5">
-                            {mentor.expertise?.map((exp, i) => (
-                              <span key={i} className="text-[8.5px] font-bold px-2.5 py-1 bg-white text-slate-600 rounded-md border border-slate-100 shadow-sm">{exp}</span>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-
-                  <div className="space-y-2.5 pt-4 border-t border-slate-100/60">
-                    <div className="flex items-center gap-2.5">
-                       <GraduationCap size={14} className="text-slate-400" />
-                       <span className="text-[11px] font-bold text-slate-700">{mentor.college}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                       <Briefcase size={14} className="text-slate-400" />
-                       <span className="text-[11px] font-bold text-slate-700">{mentor.experience} Exp</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-8 text-center">
-            <a href="https://play.google.com/store/apps/details?id=com.support.toppers.mantra&pcampaignid=web_share&pli=1" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-full text-xs font-bold hover:bg-brand-500 transition-all shadow-xl active:scale-95">
-               View All Mentors in App
-               <Star size={14} fill="currentColor" className="text-brand-400" />
-            </a>
+        {/* Bottom CTA */}
+        <div className="mt-14 text-center">
+          <a
+            href="https://play.google.com/store/apps/details?id=com.support.toppers.mantra"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2.5 bg-slate-900 text-white px-8 py-3.5 rounded-full text-xs font-bold hover:bg-slate-700 transition-colors active:scale-95"
+          >
+            View All Mentors in App
+            <Star size={12} fill="currentColor" className="text-amber-400" />
+          </a>
         </div>
       </div>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedMentor && (
+          <MentorModal
+            mentor={selectedMentor}
+            onClose={() => setSelectedMentor(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 };
